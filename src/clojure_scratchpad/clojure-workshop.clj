@@ -613,14 +613,6 @@
   (println (str "Flying from: Lat " lat-1 " Lon "
              lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 
-(def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
-
-(defn strike
-  ([enemy] (strike enemy :fists))
-  ([enemy weapon]
-    (let [damage (weapon weapon-damage)]
-      (update enemy :health - damage))))
-
 (strike {:name "n00b-hunter" :health 100})
 ;; => {:name "n00b-hunter", :health 90}
 
@@ -679,4 +671,62 @@
 
 (welcome "Jon" "Arya" "Tyrion" "Petyr")
 ;; => "Sending 3 friend request(s) to the following players: Arya, Tyrion, Petyr"
+
+(def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
+
+(defn strike
+  ([enemy] (strike enemy :fists))
+  ([target weapon]
+   (let [points (weapon weapon-damage)
+         damage (weapon weapon-damage)]
+     (if (= :gnomes (:camp target))
+       (update target :health + damage)
+       (update target :health - damage)))))
+
+(def enemy {:name "Zulkaz", :health 250, :camp :trolls})
+
+(strike enemy :sword)
+;; => {:name "Zulkaz", :health 150, :camp :trolls}
+
+(def ally {:name "Carla", :health 80, :camp :gnomes})
+(strike ally :staff) ;;; notice ,health,
+;; => {:name "Carla", :health 115, :camp :gnomes}
+
+(defn strike
+  ([target weapon]
+    (let [points (weapon weapon-damage)]
+      (if (= :gnomes (:camp target))
+        (update target :health + points)
+        (let [armor (or (:armor target) 0)
+              damage (* points (- 1 armor))]
+          (update target :health - damage))))))
+
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 100, :camp :trolls}
+
+(def enemy {:name "Zulkaz", :health 250, :armor 0.8, :camp :trolls})
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
+
+(defn strike
+  ([{:keys [camp armor]
+     :or {armor 0}
+     :as target}  weapon]
+    (let [points (weapon weapon-damage)]
+      (if (= :gnomes camp)
+        (update target :health + points)
+        (let [damage (* points (- 1 (or armor 0)))]
+          (update target :health - damage))))))
+;;; Special key (in context of associate destructuring) `:or` 
+;;; 	permits us to provide a default value for when a key 
+;;; 	that we want to extract isn't found (instead of binding
+;; 	to nil).
+
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
+
+
+(strike enemy :staff)
+;; => {:name "Zulkaz", :health 243.0, :armor 0.8, :camp :trolls}
+
 
