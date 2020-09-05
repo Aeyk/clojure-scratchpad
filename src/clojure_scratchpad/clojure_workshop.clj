@@ -431,9 +431,9 @@
   [table]
   (assoc-in (read-db) [table :indexes :name] (get-index table))
 )
-(insert :fruits {:name "Pear" :stock 3} :name)
-(insert :fruits {:name "Apricot" :stock 30} :name)
-(insert :fruits {:name "Grapefruit" :stock 6} :name)
+;; (insert :fruits {:name "Pear" :stock 3} :name)
+;; (insert :fruits {:name "Apricot" :stock 30} :name)
+;; (insert :fruits {:name "Grapefruit" :stock 6} :name)
 
 (defn insert
   [table record id-key]
@@ -471,8 +471,8 @@
     (map :hello [(insert-index table)
                  (insert-data table)])))
 
-(write-db)
-(insert :hello)
+;; (write-db)
+;; (insert :hello)
 
 (write-db (insert :hello))
 
@@ -491,9 +491,6 @@
 ;; (write-db (insert :hello (test-insertion-record "hello") :name))
 ;; -                                       
 
-
-
-
 (def fibo
   (fn fibo-item [n]
     (int
@@ -505,6 +502,8 @@
           (Math/pow
             (/ (- 1 (Math/sqrt 5)) 2) n))))))
 
+
+    
 (fn fib [n]
   (take n
     ((fn rfib [a b] 
@@ -522,13 +521,6 @@
 
 
 
-(let [big-booking
-      (conj booking
-        [[37.742, -25.6976], [51.1537, 0.1821]]
-        [[51.1537, 0.1821], [48.9615, 2.4372]])
-       [_ customer-name _ & flights] big-booking]
-  (print-flights flights))
-
 (defn print-flight
   "Formats and prints flight data/"
   [flight]
@@ -538,6 +530,14 @@
         ]
     (println (str "Flying from: Lat " lat-1 " Lon "
                lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2))))
+
+(let [big-booking
+      (conj booking
+        [[37.742, -25.6976], [51.1537, 0.1821]]
+        [[51.1537, 0.1821], [48.9615, 2.4372]])
+       [_ customer-name _ & flights] big-booking]
+  (for [flight flights]
+    (print-flight flights)))
 
 (print-flight [[48.9615, 2.4372], [37.742 -25.6976]])
 
@@ -563,3 +563,252 @@
     {:from {:lat 37.742 :lon -25.6976 :name "Ponta Delgada Airport"},
      :to {:lat 48.9615 :lon 2.4372 :name "Paris Le Bourget Airport"}}]})
 
+
+(def mapjet-booking
+  {:id 8773
+   :customer-name "Alice Smith"
+   :catering-notes "Vegetarian on Sundays"
+   :flights
+   [{:from {:lat 48.9615 :lon 2.4372 :name "Paris Le Bourget Airport"},
+     :to {:lat 37.742 :lon -25.6976 :name "Ponta Delgada Airport"}},
+    {:from {:lat 37.742 :lon -25.6976 :name "Ponta Delgada Airport"},
+     :to {:lat 48.9615 :lon 2.4372 :name "Paris Le Bourget Airport"}}]})
+(let [{:keys [customer-name flights]} mapjet-booking]
+  (println (str customer-name " booked " (count flights) " flights.")))
+
+
+(defn print-mapjet-flight [flight]
+  (for [flight flights]
+    (let [{:keys [to from]} flight
+          {:keys [lat lon]} to
+          lat-1 lat lon-1 lon]
+      (let [{:keys [lat-2 lon-2]} from
+            lat-2 lat lon-2 lon]
+        (println (str "Flying from: Lat " lat-1 " Lon " lon-1 " Flying to: Lat " lat-2 " Lon " lon-2))))))
+
+(defn print-mapjet-flight [flight]
+  (let [{:keys [customer-name flights]} mapjet-booking] 
+    (for [flight flights]
+      (let [{:keys [from to]} flight
+            {lat1 :lat lon1 :lon} from
+            {lat2 :lat lon2 :lon} to]
+        (println (str "Flying from: Lat " lat1 " Lon " lon1 " Flying to: Lat " lat2 " Lon " lon2))))))
+
+;; Notice that we cannot use the shorter syntax for extracting coordinates 
+;;	 because the names lat and lon would conflict; therefore, we used
+;;	 the normal syntax, allowing us to explicitly declare a new binding
+;;	 to symbols with different names.As with vectors, we can nest destructuring
+;;	 expressions, and even combine the two techniques.
+
+
+
+(print-mapjet-flight mapjet-booking)
+
+;; Destructuring Function Parameters
+
+(defn print-flight
+  "Formats and prints flight data"
+  [{{lat-1 :lat lon-1 :lon} :from
+    {lat-2 :lat lon-2 :lon} :to}]
+  (println (str "Flying from: Lat " lat-1 " Lon "
+             lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
+
+(strike {:name "n00b-hunter" :health 100})
+;; => {:name "n00b-hunter", :health 90}
+
+(strike {:name "n00b-hunter" :health 100 } :sword)
+;; => {:name "n00b-hunter", :health 0}
+
+
+(strike {:name "n00b-hunter" :health 100 } :cast-iron-saucepan)
+;; => {:name "n00b-hunter", :health 0}
+
+(str "Concatenating " "is " "difficult " "to " "spell " "but " "easy " "to " "use!")
+;; => "Concatenating is difficult to spell but easy to use!"
+
+
+(defn welcome
+  [player & friends]
+  (println
+    (str
+      "Welcome to the Parenthmazes "
+      player "!"))
+  (when (seq friends)
+    (println
+      (str "Sending "
+        (count friends)
+        " friend request(s) to the following players: "
+        (clojure.string/join ", " friends)))))
+
+;;Note: The seq function can be used to get a sequence from a collection. 
+;;	In the welcome function, we use the seq function to test whether
+;;	a collection contains elements. That's because seq returns nil 
+;;	when the collection passed as a parameter is empty.
+
+;;	`(if (seq (coll))` is a commonly used pattern that you should use instead of
+;; 	`(if (not (empty? coll)))``.
+
+
+(defn welcome
+  ([player] (print-str (str "Welcome to Parenthmazes (single-player mode), " player "!")))
+  ([player & friends]
+   (print-str
+     (str
+       "Welcome to Parenthmazes (multi-player mode), " player "!"))
+   (print-str
+     (str
+       "Sending "
+       (count friends)
+       " friend request(s) to the following players: "
+       (clojure.string/join ", " friends)))))
+
+(welcome "Malik" "n00bhunter" "n-0-0-b-y")
+;; => "Sending 2 friend request(s) to the following players: n00bhunter, n-0-0-b-y"
+
+
+(welcome "Jon")
+;; => "Welcome to Parenthmazes (single-player mode), Jon!"
+
+(welcome "Jon" "Arya" "Tyrion" "Petyr")
+;; => "Sending 3 friend request(s) to the following players: Arya, Tyrion, Petyr"
+
+(def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
+
+(defn strike
+  ([enemy] (strike enemy :fists))
+  ([target weapon]
+   (let [points (weapon weapon-damage)
+         damage (weapon weapon-damage)]
+     (if (= :gnomes (:camp target))
+       (update target :health + damage)
+       (update target :health - damage)))))
+
+(def enemy {:name "Zulkaz", :health 250, :camp :trolls})
+
+(strike enemy :sword)
+;; => {:name "Zulkaz", :health 150, :camp :trolls}
+
+(def ally {:name "Carla", :health 80, :camp :gnomes})
+(strike ally :staff) ;;; notice ,health,
+;; => {:name "Carla", :health 115, :camp :gnomes}
+
+(defn strike
+  ([target weapon]
+    (let [points (weapon weapon-damage)]
+      (if (= :gnomes (:camp target))
+        (update target :health + points)
+        (let [armor (or (:armor target) 0)
+              damage (* points (- 1 armor))]
+          (update target :health - damage))))))
+
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 100, :camp :trolls}
+
+(def enemy {:name "Zulkaz", :health 250, :armor 0.8, :camp :trolls})
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
+
+(defn strike
+  ([{:keys [camp armor]
+     :or {armor 0}
+     :as target}  weapon]
+    (let [points (weapon weapon-damage)]
+      (if (= :gnomes camp)
+        (update target :health + points)
+        (let [damage (* points (- 1 (or armor 0)))]
+          (update target :health - damage))))))
+;;; Special key (in context of associate destructuring) `:or` 
+;;; 	permits us to provide a default value for when a key 
+;;; 	that we want to extract isn't found (instead of binding
+;; 	to nil).
+
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
+
+
+(strike enemy :staff)
+;; => {:name "Zulkaz", :health 243.0, :armor 0.8, :camp :trolls}
+
+
+;; Higher Order Functions
+(update {:item "Tomato" :fruit false} :fruit not)
+;; => {:item "Tomato", :fruit true}
+
+(apply + [1 2 3 4])
+;; => 10
+
+(defn random-fn
+  []
+  (first (shuffle [+ - * /])))
+
+((random-fn) 4 5 5 5 6)
+;; => 3000
+;; => 25
+;; => 2/375
+;; => -17
+
+
+;; Partial Functions
+(def marketing-adder
+  (partial + 0.99))
+
+(marketing-adder 10)
+;; => 10.99
+
+(marketing-adder 0)
+;; => 0.99
+
+(def format-price (partial str "$"))
+
+(format-price "11")
+;; => "$11"
+
+(format-price "10" "." "50")
+;; => "$10.50"
+
+;; Composing Functions
+(def sample
+  (comp first shuffle))
+
+(sample (range 10))
+;; => 6
+;; => 0
+;; => 9
+;; => 0
+;; => 7
+
+
+((comp int *) 2 2)
+;; => 4
+
+((comp * int) 2 2)
+;;=>   Unhandled clojure.lang.ArityException
+;;       Wrong number of args (2) passed to: clojure.core/int
+
+
+
+(def checkout
+  (comp
+    (partial str "Only ")
+    format-price
+    marketing-adder))
+
+(checkout 10)
+;; => "Only $10.99"
+
+(checkout  9)
+;; => "Only $9.99"
+
+(checkout 10 20)
+;; => "Only $30.990000000000002"
+;; Oh the joys of floating point rounding errors.
+;; https://stackoverflow.com/questions/10751638/clojure-rounding-to-decimal-places
+(def checkout
+  (comp
+    (partial str "Only ")
+    format-price
+    (partial format "%.2f")
+    marketing-adder))
+
+(checkout 10 20)
+;; => "Only $30.99"
