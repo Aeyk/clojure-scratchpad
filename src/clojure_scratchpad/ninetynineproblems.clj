@@ -337,4 +337,14 @@
 
 
 
+(reduce
+  (fn [x, y]
+    (bit-xor x y))
+  [10 20 30 40])
 
+8 7 6 5 4 3 2 1
+0 0 0 0 0 0 0 0
+(defn bit? [b]
+  (bit-test 2 b))
+
+(bit? 1)
