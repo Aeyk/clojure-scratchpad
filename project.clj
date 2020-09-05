@@ -10,8 +10,10 @@
                  [org.clojure/core.logic "1.0.0"]
                  [org.clojure/clojurescript "1.10.773"
                   :scope "provided"]
-                 [incanter "1.9.3"]
-                 [quil "3.1.0"]
+                 [org.clojure/tools.macro "0.1.2"]
+                 [incanter "1.9.3"] ;; datascience
+                 [quil "3.1.0"] ;; processingjs interface
+                 [thalia "0.1.0"] ;; examples for man pages
                  [ring-server "0.5.0"]
                  [reagent "0.10.0"]
                  [reagent-utils "0.3.3"]
