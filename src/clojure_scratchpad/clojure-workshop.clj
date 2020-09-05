@@ -431,9 +431,9 @@
   [table]
   (assoc-in (read-db) [table :indexes :name] (get-index table))
 )
-(insert :fruits {:name "Pear" :stock 3} :name)
-(insert :fruits {:name "Apricot" :stock 30} :name)
-(insert :fruits {:name "Grapefruit" :stock 6} :name)
+;; (insert :fruits {:name "Pear" :stock 3} :name)
+;; (insert :fruits {:name "Apricot" :stock 30} :name)
+;; (insert :fruits {:name "Grapefruit" :stock 6} :name)
 
 (defn insert
   [table record id-key]
@@ -471,8 +471,8 @@
     (map :hello [(insert-index table)
                  (insert-data table)])))
 
-(write-db)
-(insert :hello)
+;; (write-db)
+;; (insert :hello)
 
 (write-db (insert :hello))
 
@@ -521,13 +521,6 @@
 
 
 
-(let [big-booking
-      (conj booking
-        [[37.742, -25.6976], [51.1537, 0.1821]]
-        [[51.1537, 0.1821], [48.9615, 2.4372]])
-       [_ customer-name _ & flights] big-booking]
-  (print-flights flights))
-
 (defn print-flight
   "Formats and prints flight data/"
   [flight]
@@ -537,6 +530,14 @@
         ]
     (println (str "Flying from: Lat " lat-1 " Lon "
                lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2))))
+
+(let [big-booking
+      (conj booking
+        [[37.742, -25.6976], [51.1537, 0.1821]]
+        [[51.1537, 0.1821], [48.9615, 2.4372]])
+       [_ customer-name _ & flights] big-booking]
+  (for [flight flights]
+    (print-flight flights)))
 
 (print-flight [[48.9615, 2.4372], [37.742 -25.6976]])
 
@@ -584,7 +585,7 @@
       (let [{:keys [lat-2 lon-2]} from
             lat-2 lat lon-2 lon]
         (println (str "Flying from: Lat " lat-1 " Lon " lon-1 " Flying to: Lat " lat-2 " Lon " lon-2))))))
-mapjet-booking
+
 (defn print-mapjet-flight [flight]
   (let [{:keys [customer-name flights]} mapjet-booking] 
     (for [flight flights]
