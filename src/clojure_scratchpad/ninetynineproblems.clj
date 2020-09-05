@@ -199,4 +199,46 @@
 (encode-modified '[a a a a b c c a a d e e e e])
 ;; => [[4 a] b [2 c] [2 a] [1 d] [4 e]]
 
+(defn decode
+  "(**) Decode a run-length encoded list.
+    Given a run-length code list generated as specified in problem P11 (encode / encode-modified).
+  Construct its uncompressed version."
+  [lst]
+  (flatten (map expand lst)))
+
+(decode (encode '[a a a a b c c a a d e e e e]))
+           ;; => (a a a a b c c a a d e e e e)
+
+(defn decode-modified
+  [lst]
+  (flatten
+    (for [i lst]
+      (expand-pair i))))
+
+(defn expand-pair
+  [pair]
+  (if (atom? pair)
+     pair
+    (repeat (first pair) (second pair))))
+
+
+(defn atom?
+  [maybe-atom]
+  ((complement coll?) maybe-atom))
+
+
+(def lst (encode-modified [\a \a \a \a \b \c \c \a \a \d \e \e \e \e]))
+
+(decode-modified
+  (encode-modified
+    [\a \a \a \a \b \c \c \a \a \d \e \e \e \e])) ;; kind of hard to see with character literals, it works
+;; => (a a a a b c c a a d e e e e)
+
+;; => ([4 a] b [2 c] [2 a] d [4 e])
+
+(decode-modified '[[4 a] b [2 c] [2 a] d [4 e]])
+
+(decode-modified
+  (encode-modified '[a a a a b c c a a d e e e e]))
+              ;; => (a a a a b c c a a d e e e e)
 
