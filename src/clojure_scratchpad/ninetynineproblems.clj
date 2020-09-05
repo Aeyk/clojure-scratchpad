@@ -253,3 +253,16 @@
 
 (dupli '(a b c c d))
 ;; => (a a b b c c c c d d)
+
+
+(defn
+  repli
+  "P15 (**) Replicate the elements of a list a given number of times.
+    Example:
+    * (repli '(a b c) 3)
+    (A A A B B B C C C)"
+  [lst n]
+  (flatten (map #(repeat n %) lst)))
+
+(repli '(a b c) 3)
+;; => (a a a b b b c c c)
