@@ -320,5 +320,21 @@
 (extract-slice '(a b c d e f g h i k) 3 7)
 
 
+(defn my-rotate
+  [coll n]
+  (loop [coll coll
+         n    n]
+    (if (<= n 0)
+      coll
+      (recur
+        (flatten
+          [(rest coll)
+           (first coll)])
+        (dec n)))))
+
+
+(my-rotate '[1 2 3 4] 2)
+
+
 
 
