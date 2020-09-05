@@ -609,7 +609,10 @@
 
 (defn print-flight
   "Formats and prints flight data"
-  [[[lat-1 lon-1] [lat-2 lon-2]]]
+  [{{lat-1 :lat lon-1 :lon} :from
+    {lat-2 :lat lon-2 :lon} :to}]
   (println (str "Flying from: Lat " lat-1 " Lon "
              lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
+
+
 
