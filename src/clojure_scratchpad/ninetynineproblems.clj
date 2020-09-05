@@ -1,5 +1,4 @@
-(ns clojure-scratchpad.ninetynineproblems
-  (:require [clojure.core.logic]))
+(ns clojure-scratchpad.ninetynineproblems)
 
 ;;;;; 99 Lisp Problems
 (defn my-last [args]
@@ -137,52 +136,67 @@
     * (compress '(a a a a b c c a a d e e e e))
     (A B C A D E)"
   [lst]
-  (for [[a b & rst] lst]
-    (if (= a b) a
-        [a b])))
+  (map first (partition-by identity lst)))
+;;;  taken from https://clojuredocs.org/clojure.core/partition-by
+;;;  
+;;;  Note that previously created 'bins' are not used when same value is seen again
+;;;  user=> (partition-by identity "ABBA")
+;;;  ((\A) (\B \B) (\A))
+;;;  
+;;;  That is why you use group-by function if you want all the the same values in the same 'bins' :) 
+;;;  Which gives you a hash, but you can extract values from that if you need.
+;;;  
+;;;  (group-by identity "ABBA")
+;;;  => {\A [\A \A], \B [\B \B]}
+
+(compress '(a a a a b c c a a d e e e e))
+;; => (a b c a d e)
+
+(defn pack
+  "(**) Pack consecutive duplicates of list elements into sublists.
+    If a list contains repeated elements they should be placed in separate sublists.
+
+    Example:
+    * (pack '(a a a a b c c a a d e e e e))
+    ((A A A A) (B) (C C) (A A) (D) (E E E E))"
+  [lst]
+  (partition-by identity lst))
+
+(pack '(a a a a b c c a a d e e e e))
+;; => ((a a a a) (b) (c c) (a a) (d) (e e e e))
 
 
+(defn encode
+  " (*) Run-length encoding of a list.
+    Use the result of problem P09 to implement the so-called run-length encoding data compression method. Consecutive duplicates of elements are encoded as lists (N E) where N is the number of duplicates of the element E.
 
+    Example:
+    * (encode '(a a a a b c c a a d e e e e))
+    ((4 A) (1 B) (2 C) (2 A) (1 D)(4 E))"
+  [lst]
+  (for [lol (partition-by identity lst)]
+    [(count lol) (first lol)]))
+(encode '(a a a a b c c a a d e e e e))
+;; => ([4 a] [1 b] [2 c] [2 a] [1 d] [4 e])
 
-;;; 99 Prolog Problems
-(use 'clojure.core.logic)
+;;; partition feels like cheating lol
 
-(run 2 (q)
-  (fresh [a b c d]
-    (== d  [a b c q])))
+(defn encode-modified
+  "(*) Modified run-length encoding.
+    Modify the result of problem P10 in such a way that if an element has no duplicates it is simply copied into the result list. Only elements with duplicates are transferred as (N E) lists.
 
-; Find the last element of a list
-(defn lasto [last list]
-  (matche [list]
-    ([[]]          fail)
-    ([[last]]      succeed)
-    ([[_ . ?rest]] (lasto last ?rest))))
+    Example:
+    * (encode-modified '(a a a a b c c a a d e e e e))
+    ((4 A) B (2 C) (2 A) D (4 E))"
+  [lst]
+  (for [count-item
+        (encode list)]
+    (if (= 1 (first count-item))
+      (second count-item)
+      [(first count-item)
+       (second count-item)])))
 
-
-(run* (q)
-  )
-
-
-(run 3 [q r]
-  (fresh [a b]
-    (== (lasto q a) b)
-    (== r b)
-    (== q r)))
-
-(run* [q]
-  (== q {:a 2 :b 2}))
-
-(run 3 [q]
-  (membero q [1 2 3]))
-
-(run 3 [q]
-  (membero q [q 2 3]))
-;; => (_0 2 3)
-
-
-;; I've heard of a SET INTERSECTION before. 
-(run* [q]
-  (membero q [1 2 3])
-  (membero q [3 4 5]))
+(encode-modified '[a a a a b c c a a d e e e e])
+;; => [[4 a] b [2 c] [2 a] [1 d] [4 e]]
 
 

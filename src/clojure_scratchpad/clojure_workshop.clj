@@ -573,6 +573,7 @@
      :to {:lat 37.742 :lon -25.6976 :name "Ponta Delgada Airport"}},
     {:from {:lat 37.742 :lon -25.6976 :name "Ponta Delgada Airport"},
      :to {:lat 48.9615 :lon 2.4372 :name "Paris Le Bourget Airport"}}]})
+
 (let [{:keys [customer-name flights]} mapjet-booking]
   (println (str customer-name " booked " (count flights) " flights.")))
 
@@ -610,9 +611,9 @@
   [{{lat-1 :lat lon-1 :lon} :from
     {lat-2 :lat lon-2 :lon} :to}]
   (println (str "Flying from: Lat " lat-1 " Lon "
+lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 
 (def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
-lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 
 (def weapon-fn-map
   {:fists (fn health [health]
@@ -625,22 +626,17 @@ lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
    #(- % 100 (rand-int 50)) 
    :sweet-potato identity})
 
+;; 2
 (defn strike
-  "With one argument, strike a target with a default :fists `weapon`. With two argument, strike a target with `weapon` and return the target entity"
-  ([target] (strike target :fists))
   ([target weapon]
-    (let [weapon-fn (weapon weapon-fn-map)]
-      (update target :health weapon-fn))))
-
-(strike {:name "n00b-hunter" :health 100} :fists)
-;; => {:name "n00b-hunter", :health 90}
-
-(strike {:name "n00b-hunter" :health 100 } :sword)
-;; => {:name "n00b-hunter", :health 0}
+    (let [points (weapon weapon-damage)]
+      (if (= :gnomes (:camp target))
+        (update target :health + points)
+        (update target :health - points)))))
 
 
-(strike {:name "n00b-hunter" :health 100 } :cast-iron-saucepan)
-;; => {:name "n00b-hunter", :health 0}
+(def enemy {:name "Zulkaz", :health 250, :armor 0.8, :camp :trolls})
+(strike enemy :sword)
 
 (str "Concatenating " "is " "difficult " "to " "spell " "but " "easy " "to " "use!")
 ;; => "Concatenating is difficult to spell but easy to use!"
@@ -701,15 +697,6 @@ lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 (strike ally :staff) ;;; notice ,health,
 ;; => {:name "Carla", :health 115, :camp :gnomes}
 
-;; (defn strike
-;;   ([target weapon]
-;;     (let [points (weapon weapon-damage)]
-;;       (if (= :gnomes (:camp target))
-;;         (update target :health + points)
-;;         (let [armor (or (:armor target) 0)
-;;               damage (* points (- 1 armor))]
-;;           (update target :health - damage))))))
-
 (def enemy {:name "Zulkaz", :health 250, :armor 0.8, :camp :trolls})
 
 (strike enemy :cast-iron-saucepan)
@@ -717,17 +704,6 @@ lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 
 (strike enemy :cast-iron-saucepan)
 ;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
-
-;; (defn strike
-;;   "With one argument, strike a target with a default :fists `weapon`. With two argument, strike a target with `weapon`.
-;;    Strike will heal a target that belongs to the gnomes camp."
-;;   ([target] (strike target :fists))
-;;   ([{:keys [camp armor], :or {armor 0}, :as target} weapon]
-;;     (let [points (weapon weapon-damage)]
-;;       (if (= :gnomes camp)
-;;         (update target :health + points)
-;;         (let [damage (* points (- 1 armor))]
-;;           (update target :health - damage))))))
 
 (defn strike
   ([target weapon]
@@ -797,10 +773,10 @@ lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 ;; => 7
 
 
-((comp int *) 2 2)
+((comp inc *) 2 2)
 ;; => 4
 
-((comp * int) 2 2)
+#_((comp * inc) 2 2)
 ;;=>   Unhandled clojure.lang.ArityException
 ;;       Wrong number of args (2) passed to: clojure.core/int
 
@@ -856,38 +832,38 @@ lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 ;; => 43
 ;; rand-int works
 
-((weapon-fn-map :sweet-potato) 150) 
+;;((weapon-fn-map :sweet-potato) 150) 
 ;; => 150
-
-(defn strike
-  ([target]
-   (strike target :fists))
-  ([target weapon]
-   (let [weapon-fn (weapon-fn-map weapon) ]    
-      (update target :health weapon-fn))))
+y
+;; (defn strike
+;;   ([target]
+;;    (strike target :fists))
+;;   ([target weapon]
+;;    (let [weapon-fn (weapon-fn-map weapon) ]    
+;;       (update target :health weapon-fn))))
 
   
 
 
-(def enemy {:name "Arnold", :health 250})
+;; (def enemy {:name "Arnold", :health 250})
 
-(strike enemy :sweet-potato)
+;; (strike enemy :sweet-potato)
 ;; => {:name "Arnold", :health 250}
 
-(strike enemy)
+;; (strike enemy)
 ;; => {:name "Arnold", :health 250}
 
 
-(update enemy :health (comp (:sword weapon-fn-map) (:cast-iron-saucepan weapon-fn-map)))
+;; y(update enemy :health (comp (:sword weapon-fn-map) (:cast-iron-saucepan weapon-fn-map)))
 ;; => {:name "Arnold", :health 19}
 
 
-(defn might-strike
-  [target]
-  (let [weapon-fn (apply comp (vals weapon-fn-map))]
-    (update target :health weapon-fn)))
+;; (defn might-strike
+;;   [target]
+;;   (let [weapon-fn (apply comp (vals weapon-fn-map))]
+;;     (update target :health weapon-fn)))
 
-(might-strike enemy)
+;;(might-strike enemy)
 ;; => {:name "Arnold", :health 44}
 
 
@@ -898,19 +874,17 @@ lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 ;; 	value is used to determine which function, defined with `defmethod`,
 ;;	to invoke.
 
-(defmulti strike (fn [m] (get m :weapon)))
-(defmulti strike :weapon)
+;; (defmulti strike (fn [m] (get m :weapon)))
+;; (defmulti strike :weapon)
 
 ;; (ns-unmap 'clojure-scratchpad.clojure-workshop 'strike)
+;; (defmethod strike :sword
+;;   [{{:keys [:health]} :target}]
+;;   (- health 100))
 
-
-(defmethod strike :sword
-  [{{:keys [:health]} :target}]
-  (- health 100))
-
-(defmethod strike :cast-iron-saucepan
-  [{{:keys [:health]} :target}]
-  (- health 100 (rand-int 50)))
+;; (defmethod strike :cast-iron-saucepan
+;;   [{{:keys [:health]} :target}]
+;;   (- health 100 (rand-int 50)))
 
 (strike {:weapon :sword :target {:health 200}})
 ;; => 82
