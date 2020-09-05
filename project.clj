@@ -11,6 +11,7 @@
                  [org.clojure/clojurescript "1.10.773"
                   :scope "provided"]
                  [org.clojure/tools.macro "0.1.2"]
+                 [cider/orchard "0.6.0"] ;; enhanced cider options
                  [incanter "1.9.3"] ;; datascience
                  [quil "3.1.0"] ;; processingjs interface
                  [thalia "0.1.0"] ;; examples for man pages
