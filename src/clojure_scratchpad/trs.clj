@@ -1,6 +1,7 @@
 (ns clojure-sratchpad.trs
   (:require [clojure.core.logic]))
 (use 'clojure.core.logic)
+;;; from [[https://github.com/clojure/core.logic/blob/master/src/test/clojure/clojure/core/logic/tests.clj#L459][clojure.core.logic/tests.clj]] line 459
 
 (defn twino [p]
   (fresh [x]
