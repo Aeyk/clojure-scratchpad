@@ -730,3 +730,21 @@
 ;; => {:name "Zulkaz", :health 243.0, :armor 0.8, :camp :trolls}
 
 
+;; Higher Order Functions
+(update {:item "Tomato" :fruit false} :fruit not)
+;; => {:item "Tomato", :fruit true}
+
+(apply + [1 2 3 4])
+;; => 10
+
+(defn random-fn
+  []
+  (first (shuffle [+ - * /])))
+
+((random-fn) 4 5 5 5 6)
+;; => 3000
+;; => 25
+;; => 2/375
+;; => -17
+
+
