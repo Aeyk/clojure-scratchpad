@@ -491,6 +491,9 @@
 ;; (write-db (insert :hello (test-insertion-record "hello") :name))
 ;; -                                       
 
+
+
+
 (def fibo
   (fn fibo-item [n]
     (int
@@ -502,8 +505,6 @@
           (Math/pow
             (/ (- 1 (Math/sqrt 5)) 2) n))))))
 
-
-    
 (fn fib [n]
   (take n
     ((fn rfib [a b] 
