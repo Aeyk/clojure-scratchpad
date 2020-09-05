@@ -242,3 +242,14 @@
   (encode-modified '[a a a a b c c a a d e e e e]))
               ;; => (a a a a b c c a a d e e e e)
 
+
+(defn dupli
+  "P14 (*) Duplicate the elements of a list.
+    Example:
+    * (dupli '(a b c c d))
+    (A A B B C C C C D D)"
+  [lst]
+  (flatten (map #(repeat 2 %) lst)))
+
+(dupli '(a b c c d))
+;; => (a a b b c c c c d d)
