@@ -1,6 +1,5 @@
 (ns clojure-scratchpad.clojure-workshop)
-(def print print-str)
-(def println println-str)
+
 ;; (+ 1 2)
 ;; => 3
 
@@ -605,7 +604,6 @@
 
 (print-mapjet-flight mapjet-booking)
 
-
 ;; Destructuring Function Parameters
 
 (defn print-flight
@@ -614,10 +612,6 @@
     {lat-2 :lat lon-2 :lon} :to}]
   (println (str "Flying from: Lat " lat-1 " Lon "
              lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
-
-
-
-
 
 (def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
 
