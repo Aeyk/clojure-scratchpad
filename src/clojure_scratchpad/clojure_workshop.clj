@@ -24,7 +24,7 @@
 ;; => 12
 
 
-(/ 1 1)
+;; (/ 1 1)
 ;; Exception: Divide by zero
 
 ;;(doc str)
@@ -578,13 +578,12 @@
 
 
 (defn print-mapjet-flight [flight]
-  (for [flight flights]
-    (let [{:keys [to from]} flight
-          {:keys [lat lon]} to
-          lat-1 lat lon-1 lon]
-      (let [{:keys [lat-2 lon-2]} from
-            lat-2 lat lon-2 lon]
-        (println (str "Flying from: Lat " lat-1 " Lon " lon-1 " Flying to: Lat " lat-2 " Lon " lon-2))))))
+  (let [{:keys [to from]} flight
+        {:keys [lat lon]} to
+        lat-1 lat lon-1 lon]
+    (let [{:keys [lat-2 lon-2]} from
+          lat-2 lat lon-2 lon]
+      (println (str "Flying from: Lat " lat-1 " Lon " lon-1 " Flying to: Lat " lat-2 " Lon " lon-2)))))
 
 (defn print-mapjet-flight [flight]
   (let [{:keys [customer-name flights]} mapjet-booking] 
@@ -611,9 +610,29 @@
   [{{lat-1 :lat lon-1 :lon} :from
     {lat-2 :lat lon-2 :lon} :to}]
   (println (str "Flying from: Lat " lat-1 " Lon "
-             lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 
-(strike {:name "n00b-hunter" :health 100})
+(def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
+lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
+
+(def weapon-fn-map
+  {:fists (fn health [health]
+            (if (< health 100)
+              (- health 10)
+              health))
+   :staff (partial + 30)
+   :sword (fn [x] (- x 100))
+   :cast-iron-saucepan
+   #(- % 100 (rand-int 50)) 
+   :sweet-potato identity})
+
+(defn strike
+  "With one argument, strike a target with a default :fists `weapon`. With two argument, strike a target with `weapon` and return the target entity"
+  ([target] (strike target :fists))
+  ([target weapon]
+    (let [weapon-fn (weapon weapon-fn-map)]
+      (update target :health weapon-fn))))
+
+(strike {:name "n00b-hunter" :health 100} :fists)
 ;; => {:name "n00b-hunter", :health 90}
 
 (strike {:name "n00b-hunter" :health 100 } :sword)
@@ -672,16 +691,6 @@
 (welcome "Jon" "Arya" "Tyrion" "Petyr")
 ;; => "Sending 3 friend request(s) to the following players: Arya, Tyrion, Petyr"
 
-(def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
-
-(defn strike
-  ([enemy] (strike enemy :fists))
-  ([target weapon]
-   (let [points (weapon weapon-damage)
-         damage (weapon weapon-damage)]
-     (if (= :gnomes (:camp target))
-       (update target :health + damage)
-       (update target :health - damage)))))
 
 (def enemy {:name "Zulkaz", :health 250, :camp :trolls})
 
@@ -692,31 +701,41 @@
 (strike ally :staff) ;;; notice ,health,
 ;; => {:name "Carla", :health 115, :camp :gnomes}
 
+;; (defn strike
+;;   ([target weapon]
+;;     (let [points (weapon weapon-damage)]
+;;       (if (= :gnomes (:camp target))
+;;         (update target :health + points)
+;;         (let [armor (or (:armor target) 0)
+;;               damage (* points (- 1 armor))]
+;;           (update target :health - damage))))))
+
+(def enemy {:name "Zulkaz", :health 250, :armor 0.8, :camp :trolls})
+
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 100, :camp :trolls}
+
+(strike enemy :cast-iron-saucepan)
+;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
+
+;; (defn strike
+;;   "With one argument, strike a target with a default :fists `weapon`. With two argument, strike a target with `weapon`.
+;;    Strike will heal a target that belongs to the gnomes camp."
+;;   ([target] (strike target :fists))
+;;   ([{:keys [camp armor], :or {armor 0}, :as target} weapon]
+;;     (let [points (weapon weapon-damage)]
+;;       (if (= :gnomes camp)
+;;         (update target :health + points)
+;;         (let [damage (* points (- 1 armor))]
+;;           (update target :health - damage))))))
+
 (defn strike
   ([target weapon]
     (let [points (weapon weapon-damage)]
       (if (= :gnomes (:camp target))
         (update target :health + points)
-        (let [armor (or (:armor target) 0)
-              damage (* points (- 1 armor))]
-          (update target :health - damage))))))
+        (update target :health - points)))))
 
-(strike enemy :cast-iron-saucepan)
-;; => {:name "Zulkaz", :health 100, :camp :trolls}
-
-(def enemy {:name "Zulkaz", :health 250, :armor 0.8, :camp :trolls})
-(strike enemy :cast-iron-saucepan)
-;; => {:name "Zulkaz", :health 220.0, :armor 0.8, :camp :trolls}
-
-(defn strike
-  ([{:keys [camp armor]
-     :or {armor 0}
-     :as target}  weapon]
-    (let [points (weapon weapon-damage)]
-      (if (= :gnomes camp)
-        (update target :health + points)
-        (let [damage (* points (- 1 (or armor 0)))]
-          (update target :health - damage))))))
 ;;; Special key (in context of associate destructuring) `:or` 
 ;;; 	permits us to provide a default value for when a key 
 ;;; 	that we want to extract isn't found (instead of binding
@@ -812,3 +831,175 @@
 
 (checkout 10 20)
 ;; => "Only $30.99"
+
+;; (fn [x] x) vs #(%1)
+;; reader-macro function literals ar so ugly... just to save 5 characters
+;; what am I reading, clojure.pl?
+
+;; :fists do nothing, unless youre already weakend
+((weapon-fn-map :fists) 100)
+;; => 100
+
+((weapon-fn-map :fists) 50)
+;; => 40
+
+((weapon-fn-map :staff) 150)
+;; => 180
+
+((weapon-fn-map :sword) 150)
+;; => 50
+
+
+((weapon-fn-map :cast-iron-saucepan) 150) 
+;; => 42
+;; => 16
+;; => 43
+;; rand-int works
+
+((weapon-fn-map :sweet-potato) 150) 
+;; => 150
+
+(defn strike
+  ([target]
+   (strike target :fists))
+  ([target weapon]
+   (let [weapon-fn (weapon-fn-map weapon) ]    
+      (update target :health weapon-fn))))
+
+  
+
+
+(def enemy {:name "Arnold", :health 250})
+
+(strike enemy :sweet-potato)
+;; => {:name "Arnold", :health 250}
+
+(strike enemy)
+;; => {:name "Arnold", :health 250}
+
+
+(update enemy :health (comp (:sword weapon-fn-map) (:cast-iron-saucepan weapon-fn-map)))
+;; => {:name "Arnold", :health 19}
+
+
+(defn might-strike
+  [target]
+  (let [weapon-fn (apply comp (vals weapon-fn-map))]
+    (update target :health weapon-fn)))
+
+(might-strike enemy)
+;; => {:name "Arnold", :health 44}
+
+
+;; Multimethods :: `defmethod` & `defmulti`
+;; 	`defmethod` creates the different implementations that will be chosen by
+;; 	the dispatch function. The dispatch function receives the arguments
+;; 	of the function call and returns a dispatch value. This dispatch
+;; 	value is used to determine which function, defined with `defmethod`,
+;;	to invoke.
+
+(defmulti strike (fn [m] (get m :weapon)))
+(defmulti strike :weapon)
+
+;; (ns-unmap 'clojure-scratchpad.clojure-workshop 'strike)
+
+
+(defmethod strike :sword
+  [{{:keys [:health]} :target}]
+  (- health 100))
+
+(defmethod strike :cast-iron-saucepan
+  [{{:keys [:health]} :target}]
+  (- health 100 (rand-int 50)))
+
+(strike {:weapon :sword :target {:health 200}})
+;; => 82
+
+(strike {:weapon :cast-iron-saucepan :target {:health 200}})
+;; => 96
+
+(strike {:weapon :spoon :target {:health 200}})
+;; No method in multimethod 'strike' for dispatch value: :spoon
+
+(defmethod strike :default [{{:keys [:health]} :target}] health)
+
+(strike {:weapon :spoon :target {:health 200}})
+;; => 200
+
+
+(defmulti strike
+  (fn
+    [{{:keys [:health]} :target weapon :weapon}]
+    (if (< health 50) :finisher weapon)))
+
+(defmethod strike :finisher [_] 0)
+
+
+(strike {:weapon :cast-iron-saucepan :target {:health 200}})
+
+(strike {:weapon :spoon :target {:health 30}}) 
+;; => 0 ;; :finisher works (kill u if hit with anything and health < 50)
+
+
+;; Multimethods can do a few more things,such as dispatching on multiple values
+;; 	(using a vector as the dispatch value) or dispatching on types and hierarchies.
+
+
+;; https://clojuredocs.org/clojure.core/defmulti#example-542692cdc026201cdc326d5b
+;; Implementing factorial using multimethods Note that factorial-like function 
+;; is best implemented using `recur` which enables tail-call optimization to avoid 
+;; a stack overflow error. This is a only a demonstration of clojure's multimethod
+
+;; identity form returns the same value passed
+(defmulti factorial identity)
+
+(defmethod factorial 0 [_]  1)
+(defmethod factorial :default [num] 
+    (* num (factorial (dec num))))
+
+(factorial 0) ; => 1
+(factorial 1) ; => 1
+(factorial 3) ; => 6
+(factorial 7) ; => 5040
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; So multimethods are like clojures built in pattern matching (for small patterns?)
+
+
+;; (defmulti g "Better function" {:arglists '([x])} (fn [x] :blah))
+;; docstring + arglist + (?...) make (doc ...) work
+
+;;; Moving north or south should change the y coordinate, and moving east
+;;	and west should change the x coordinate.
+
+
+((comp :facing :position) player-one)
+
+(def player-one
+  {:name "Malik"
+   :health 200
+   :position {:x 10 :y 10
+              :facing :north}})
+
+;; (ns-unmap 'clojure-scratchpad.clojure-workshop 'move)
+(defmulti
+  move
+  "Takes `player` hash map and changes `:facing` to one of:
+  [:north, :south, :east, :west]"
+  (comp :facing :position))
+
+(defmethod move :north
+  [entity]
+  (update-in entity [:position :y] inc))
+
+(move player-two)
+;; => {:name "Malik", :health 200, :position {:x 10, :y 11, :facing :north}}
+
+
+(meta #'println)
+;; #=> { :added "1.0",
+;;       :ns #namespace[clojure.core],
+;;       :name println,
+;;       :file "clojure/core.clj",
+;;       :static true, :column 1, :line 3733,
+;;       :arglists ([& more]),
+;;       :doc "Same as print followed by (newline)"}
