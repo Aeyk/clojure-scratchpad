@@ -603,3 +603,13 @@
 
 
 (print-mapjet-flight mapjet-booking)
+
+
+;; Destructuring Function Parameters
+
+(defn print-flight
+  "Formats and prints flight data"
+  [[[lat-1 lon-1] [lat-2 lon-2]]]
+  (println (str "Flying from: Lat " lat-1 " Lon "
+             lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
+
