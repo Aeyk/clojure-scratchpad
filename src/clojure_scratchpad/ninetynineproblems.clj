@@ -266,3 +266,59 @@
 
 (repli '(a b c) 3)
 ;; => (a a a b b b c c c)
+
+(defn drop-nth
+  "P16 (**) Drop every N'th element from a list.
+    Example:
+    * (drop '(a b c d e f g h i k) 3)
+    (A B D E G H K)"
+  [coll n]
+  (for [item coll]
+    (drop-while #(= 0 (mod (count coll) n))
+      coll)))
+
+;; https://clojuredocs.org/clojure.core/take-nth
+(defn drop-nth [n coll]
+  (lazy-seq
+    (when-let [s (seq coll)]
+      (concat (take (dec n) (rest s))
+              (drop-nth n (drop n s))))))
+
+(drop-nth 3 (range 10))
+;; (1 2 4 5 7 8)
+
+;; or alternatively: (keep-indexed #(when-not (zero? (rem %1 n)) %2) coll)
+
+
+(defn split
+  [coll n]
+  (loop [lst lst
+         newlst []
+         m n]
+    (if (<= m 0)      
+      (vector
+         newlst
+         lst)
+      
+      (recur (drop 1 lst)
+        (merge newlst (first lst))
+        (dec m)))))
+(split '(a b c d e f g h i k) 3)
+
+;; Sometimes I don't know when to use vector/sequence/map
+
+
+(defn extract-slice
+  [lst n m]
+  (let [m  m
+        n (dec n)]   ;; include index at n
+	             ;; (otherwise it's an exclusive
+		     ;; search, n to m, excluding n and m
+      (take (- m n)
+        (second (split lst n)))))
+
+(extract-slice '(a b c d e f g h i k) 3 7)
+
+
+
+
