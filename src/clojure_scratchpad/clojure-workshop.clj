@@ -1,5 +1,6 @@
 (ns clojure-scratchpad.clojure-workshop)
-
+(def print print-str)
+(def println println-str)
 ;; (+ 1 2)
 ;; => 3
 
@@ -615,4 +616,73 @@
              lon-1 "\nFlying to: Lat " lat-2 " Lon " lon-2)))
 
 
+
+
+
+(def weapon-damage {:fists 10 :staff 35 :sword 100 :cast-iron-saucepan 150})
+
+(defn strike
+  ([enemy] (strike enemy :fists))
+  ([enemy weapon]
+    (let [damage (weapon weapon-damage)]
+      (update enemy :health - damage))))
+
+(strike {:name "n00b-hunter" :health 100})
+;; => {:name "n00b-hunter", :health 90}
+
+(strike {:name "n00b-hunter" :health 100 } :sword)
+;; => {:name "n00b-hunter", :health 0}
+
+
+(strike {:name "n00b-hunter" :health 100 } :cast-iron-saucepan)
+;; => {:name "n00b-hunter", :health 0}
+
+(str "Concatenating " "is " "difficult " "to " "spell " "but " "easy " "to " "use!")
+;; => "Concatenating is difficult to spell but easy to use!"
+
+
+(defn welcome
+  [player & friends]
+  (println
+    (str
+      "Welcome to the Parenthmazes "
+      player "!"))
+  (when (seq friends)
+    (println
+      (str "Sending "
+        (count friends)
+        " friend request(s) to the following players: "
+        (clojure.string/join ", " friends)))))
+
+;;Note: The seq function can be used to get a sequence from a collection. 
+;;	In the welcome function, we use the seq function to test whether
+;;	a collection contains elements. That's because seq returns nil 
+;;	when the collection passed as a parameter is empty.
+
+;;	`(if (seq (coll))` is a commonly used pattern that you should use instead of
+;; 	`(if (not (empty? coll)))``.
+
+
+(defn welcome
+  ([player] (print-str (str "Welcome to Parenthmazes (single-player mode), " player "!")))
+  ([player & friends]
+   (print-str
+     (str
+       "Welcome to Parenthmazes (multi-player mode), " player "!"))
+   (print-str
+     (str
+       "Sending "
+       (count friends)
+       " friend request(s) to the following players: "
+       (clojure.string/join ", " friends)))))
+
+(welcome "Malik" "n00bhunter" "n-0-0-b-y")
+;; => "Sending 2 friend request(s) to the following players: n00bhunter, n-0-0-b-y"
+
+
+(welcome "Jon")
+;; => "Welcome to Parenthmazes (single-player mode), Jon!"
+
+(welcome "Jon" "Arya" "Tyrion" "Petyr")
+;; => "Sending 3 friend request(s) to the following players: Arya, Tyrion, Petyr"
 
