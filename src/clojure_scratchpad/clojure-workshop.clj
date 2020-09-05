@@ -748,3 +748,67 @@
 ;; => -17
 
 
+;; Partial Functions
+(def marketing-adder
+  (partial + 0.99))
+
+(marketing-adder 10)
+;; => 10.99
+
+(marketing-adder 0)
+;; => 0.99
+
+(def format-price (partial str "$"))
+
+(format-price "11")
+;; => "$11"
+
+(format-price "10" "." "50")
+;; => "$10.50"
+
+;; Composing Functions
+(def sample
+  (comp first shuffle))
+
+(sample (range 10))
+;; => 6
+;; => 0
+;; => 9
+;; => 0
+;; => 7
+
+
+((comp int *) 2 2)
+;; => 4
+
+((comp * int) 2 2)
+;;=>   Unhandled clojure.lang.ArityException
+;;       Wrong number of args (2) passed to: clojure.core/int
+
+
+
+(def checkout
+  (comp
+    (partial str "Only ")
+    format-price
+    marketing-adder))
+
+(checkout 10)
+;; => "Only $10.99"
+
+(checkout  9)
+;; => "Only $9.99"
+
+(checkout 10 20)
+;; => "Only $30.990000000000002"
+;; Oh the joys of floating point rounding errors.
+;; https://stackoverflow.com/questions/10751638/clojure-rounding-to-decimal-places
+(def checkout
+  (comp
+    (partial str "Only ")
+    format-price
+    (partial format "%.2f")
+    marketing-adder))
+
+(checkout 10 20)
+;; => "Only $30.99"
