@@ -63,3 +63,5 @@ flycheck_*.el
 chrome.dat
 chrome.json
 chart-chrome.json
+/db/*
+/db/
