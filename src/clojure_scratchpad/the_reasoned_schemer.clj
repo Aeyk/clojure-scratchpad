@@ -1,5 +1,7 @@
 (ns clojure-sratchpad.trs
-  (:require [clojure.core.logic]))
+  (:require [clojure.core.logic]
+            [clojure.core.match]))
+
 (use 'clojure.core.logic)
 ;;; from [[https://github.com/clojure/core.logic/blob/master/src/test/clojure/clojure/core/logic/tests.clj#L459][clojure.core.logic/tests.clj]] line 459
 
@@ -181,3 +183,26 @@
     (caro ("grape" "raisin" "pear") x)
     (caro '(,a ,b ,c) y)
     (== (cons x y) r)))
+
+#_(run* [q r]
+  (== (appendo r q [:e])
+    (appendo [:a :b] [:c :d :e] q)))
+;; => ()
+;; => ((:a :b :c :d :e))
+
+;; (def appendo2
+;;   (fn [l s =>]
+;;     (conde
+;;       [(== '() l) (== s =>)
+;;        (fresh [a d]
+;;          (== '(a . d) l)
+;;          (fresh (res)
+;;            (appendo d s res)
+;;            (== '(a . res) =>)))])))
+
+
+;; (run* [q]
+;;   (fresh (l s)
+;;     (appendo l s '(a b c d e f))
+;;     (== '(l s) q)))
+
