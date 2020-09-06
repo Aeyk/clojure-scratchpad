@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+
+  </head>
+  
+  <body>
+    <canvas id="myChart" width="400" height="400"></canvas>
+
+    <script src="./Chart.bundle.js"></script>
+    <script>
+      
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myBarChart = new Chart(ctx, {
+	type: 'bar',
+	data: top_sites,
+	options: {}
+      });
+            var top_sites =  {
+	"ameelio-org" : 8,
+	"www-craigslist-org" : 41,
+	"m-facebook-com" : 100,
+	"soltec-net" : 3,
+	"www-mksybr-com" : 10,
+	"cloud-mongodb-com" : 11,
+	"cloud-digitalocean-com" : 66,
+	"mksybr-com" : 35,
+	"167-71-122-237" : 7,
+	"api-mksybr-com" : 17,
+	"boards-4channel-org" : 32,
+	"craigslist-org" : 14,
+	"www-indeed-com" : 15,
+	"www-google-com" : 59,
+	"www-youtube-com" : 88,
+	"accounts-google-com" : 1,
+	"46-101-174-87" : 40,
+	"news-ycombinator-com" : 50,
+	"www-paypal-com" : 20,
+	"triplebyte-com" : 13,
+	"aeyk-github-io" : 5,
+	"youtube-com" : 78,
+	"www-facebook-com" : 42,
+	"m-17track-net" : 24,
+	"www-jpay-com" : 9,
+	"irc-mksybr-com" : 12,
+	"svnzldcwbthmxrfk-neverssl-com" : 19,
+	"www-wellsfargo-com" : 46,
+	"drive-google-com" : 6,
+	"neverssl-com" : 74,
+	"gitter-im" : 23,
+	"roadmap-sh" : 4,
+	"mail-google-com" : 58,
+	"www-xnxx-com" : 25,
+	"github-com" : 0 };
+
+    </script>
+  </body>
+</html>
