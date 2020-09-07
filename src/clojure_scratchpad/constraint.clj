@@ -1,6 +1,8 @@
 (ns clojure-scratchpad.constraints
-  (:require [clojure.core.logic :as logic]
-            [clojure.core.logic.fd :as fd]))
+  (:require [clojure.core.logic
+             :refer [fresh run* run == conde or* lcons]]
+            [clojure.core.logic.fd :as fd]
+            [clojure.core.logic.pldb]))
 
 (def constraint-solving-prob1
   (logic/run* [q]
@@ -108,3 +110,102 @@ constraint-solving-prob3
 ;; [[9 6 7 8] [1 0 8 6] [1 0 7 6 4]])
 
 
+;; 0 = q^2 + 4q + 4 
+;; (def algebra1
+;;   (logic/run* [q]
+;;     (logic/fresh [x]
+;;       (fd/in x (fd/interval -10000 10000))
+;;       (fd/eq
+;;         (= x q))      
+;;       (logic/== q x))))
+;; After failing, I realized: Finite Domain means INTEGER!
+
+;; 0 = q^2 + 4q + 4 
+(def algebra2
+  (logic/run* [q]
+    (logic/fresh [x]
+      (logic/== x 1)
+      (logic/project [x]
+        (logic/== q
+          (+ (* x x)
+            (* 4 x)
+            4))))))
+algebra2
+
+(defn digit-1 [x]
+  (logic/conde
+    [(logic/== 0 x)]))
+
+(defn digit-4 [x]
+  (logic/conde
+    [(logic/== 0 x)]
+    [(logic/== 1 x)]
+    [(logic/== 2 x)]
+    [(logic/== 3 x)]))
+
+(logic/run* [q]
+  (logic/fresh [x y]
+    (digit-4 x)
+    (digit-4 y)
+    (logic/== q [x y])))
+
+
+(run* [q r]
+  (fresh [x y]
+    (fd/in y x (fd/interval 1 3))
+    (== q (lcons x y))))
+
+(run* [a b c d]
+  (fd/in a b c d (fd/interval 0 4))
+  (fd/< a b)
+  (fd/< c d)
+  (fd/< d a))
+
+
+
+
+
+
+
+(run* [q]
+  (fresh [x y p]
+    (fd/in x y (fd/interval 1 38))
+    (fd/* x y p)
+    (fd/+ p 2 40)
+    (== q [x y])))
+;; => ([1 38] [2 19] [19 2] [38 1])
+
+
+
+;; 5  ways three values combine to be less than 100.
+(run 5 [q]
+  (fresh [w x y]
+    (fd/in w x y (fd/interval 1 100))
+    (fd/* w x y)
+    (== q [w x y])))
+;; => ([1 1 1] [2 1 2] [1 2 2] [1 3 3] [3 1 3])
+
+
+(run 15 [q]
+  (fresh [x y z p0 p1]
+    (fd/in x y z (fd/interval 1 1000))
+    (fd/* x x p0)
+    (== x 3)
+    (== y 4)
+    (== z 5)
+    (== q [x y z])))
+;; => ([3 4 5])
+
+(run 15 [q]
+  (fresh [A B C]
+    (fd/-
+      (fd/* C C A)
+      (fd/* B B A)
+      (fd/* A A (fd/+ B C A)))))
+;; => (#object[clojure.core.logic$cgoal$reify__8996 0x424d8ba9 "clojure.core.logic$cgoal$reify__8996@424d8ba9"])
+
+(run 1 [q]
+  (fresh [a b c]
+    
+    ))
+(db-rel zebra_owner )
