@@ -55,3 +55,6 @@
             
 (lookup2 (initial-board) "a1")
 ;; => \r
+
+
+
