@@ -13,7 +13,15 @@
                  [org.clojure/algo.monads "0.1.6"]
                  [org.clojure/clojurescript "1.10.773"
                   :scope "provided"]
+                 [org.clojure/math.numeric-tower "0.0.4"]
                  [org.clojure/tools.macro "0.1.2"]
+                 [org.clojure/core.async "1.3.610"]
+                 [metosin/reitit-ring "0.5.5"]
+                 [aleph "0.4.7-alpha5"]
+                 [http-kit "2.4.0"] 
+                 [enlive "1.1.6"]
+                 [reaver "0.1.3"]
+                 [clj-soup/clojure-soup "0.1.3"]
                  [cider/orchard "0.6.0"] ;; enhanced cider options
                  [incanter "1.9.3"] ;; datascience
                  [quil "3.1.0"] ;; processingjs interface
@@ -25,17 +33,20 @@
                  [ring/ring-defaults "0.3.2"]
                  [hiccup "1.0.5"]
                  [yogthos/config "1.1.7"]
-
-                 [metosin/reitit "0.5.1"]
+                 [metosin/reitit "0.5.5"]
                  [metosin/jsonista "0.2.6"]
                  [pez/clerk "1.0.0"]
+                 
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]
                  [compojure "1.6.1"]]
+  :plugins [[lein-ring "0.12.5"]]
+  :ring {:handler server/app}
+  :repl-options {:init-ns server}
+
+
 
   
-
-  ;;   ;; :ring {:handler clojure-scratchpad.ring-world.handler/app}
   ;;   ;; :ring {:handler hello-web.handler/app
   ;;   ;;        :uberwar-name "hello-web.war"}
   ;;   ;; :ring-handler hello-web.handler/app}
@@ -44,8 +55,9 @@
 
 
 
-  ;;   :plugins [[lein-environ "1.1.0"]
-  ;;             [lein-ring "0.12.5"]
+  ;;   :plugins [[lein-ring "0.12.5"]]
+  ;;	         [lein-environ "1.1.0"]
+  ;;             
   ;;             [nightlight/lein-nightlight "2.4.1"]
   ;;             [org.clojure/core.unify "0.5.7"]
   ;;             [lein-cljsbuild "1.1.7"]
