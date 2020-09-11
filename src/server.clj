@@ -16,23 +16,55 @@
             [ring.adapter.jetty :as jetty]
             [muuntaja.core :as m]
             [clojure.java.io :as io]
-            [ring.util.response :as response]))
+            [ring.util.response :as response]
+            [clojure.data.json :as json]
+            [clojure.java.jdbc :as jdbc]))
 
 (defn check-ip [req]
   (:body
    (response/response (:remote-addr req))))
+
+(def lite-db
+  {:classname   "org.sqlite.JDBC"
+   :subprotocol "sqlite"
+   :subname     "db/dev.db"
+   })
+
+(defn qstr [& strs]
+  (str \" (apply str strs) \"))
+
+#_(jdbc/execute! lite-db ["create table pastes(id INTEGER PRIMARY KEY AUTOINCREMENT, content  CLOB)"])
+(jdbc/query lite-db ["select * from pastes"])
+;; => ()
+;; https://stackoverflow.com/questions/8892973/how-to-get-last-insert-id-in-sqlite/8893008
+(let [content "Hello, BITCH!
+"]
+  (jdbc/execute! lite-db
+    (apply str ["INSERT INTO pastes(content) VALUES(" (qstr  content ) ");"])))
+
+
 (def app
   (ring/ring-handler
     (ring/router
       [["/ip"
-        {:post 
+        {:get 
          {:summary "get back the ip address"
           :responses {200 {:body {:remote-addr string?}}}
           :handler (fn [req]
                      {:status 200
                       :body {:remote-addr (check-ip req)}})}} ]
 
-       
+       ["/text"
+        {:post
+         {:summary
+          "upload a text blob"
+          :parameters {:body {:text string?}}
+          :responses {200 {:body {:text string?
+                                  :path string?}}}
+          :handler (fn [{{{:keys [path text]} :body} :parameters}]
+                     {:status 200
+                      :body {:text text
+                             :path  (str (rand-int 100))}})}}]
        ["/swagger.json"
         {:get
          {:no-doc false

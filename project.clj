@@ -6,7 +6,11 @@
   :profiles
   {:dev
    {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]}}
-  :dependencies [[org.clojure/clojure "1.10.1"]
+  :dependencies [
+                 [org.clojure/java.jdbc "0.7.8"]
+                 [org.xerial/sqlite-jdbc "3.23.1"]
+                 [ring/ring-codec "1.1.2"]
+                 [org.clojure/clojure "1.10.1"]
                  [org.clojure/core.match "1.0.0"]
                  [org.clojure/core.logic "1.0.0"]
                  [org.clojure.typed/runtime.jvm "1.0.1"]
@@ -37,6 +41,10 @@
                  [metosin/jsonista "0.2.6"]
                  [pez/clerk "1.0.0"]
                  
+                 [com.h2database/h2 "1.4.193"]
+
+
+
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]
                  [compojure "1.6.1"]]
