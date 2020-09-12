@@ -1,4 +1,4 @@
-(defproject clojure-scratchpad "0.1.0-SNAPSHOT"
+>(defproject clojure-scratchpad "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -6,11 +6,7 @@
   :profiles
   {:dev
    {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]}}
-  :dependencies [
-                 [org.clojure/java.jdbc "0.7.8"]
-                 [org.xerial/sqlite-jdbc "3.23.1"]
-                 [ring/ring-codec "1.1.2"]
-                 [org.clojure/clojure "1.10.1"]
+  :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/core.match "1.0.0"]
                  [org.clojure/core.logic "1.0.0"]
                  [org.clojure.typed/runtime.jvm "1.0.1"]
@@ -18,36 +14,37 @@
                  [org.clojure/clojurescript "1.10.773"
                   :scope "provided"]
                  [org.clojure/math.numeric-tower "0.0.4"]
+                 [org.clojure/math.combinatorics "0.1.6" ]
                  [org.clojure/tools.macro "0.1.2"]
                  [org.clojure/core.async "1.3.610"]
-                 [metosin/reitit-ring "0.5.5"]
-                 [aleph "0.4.7-alpha5"]
-                 [http-kit "2.4.0"] 
-                 [enlive "1.1.6"]
-                 [reaver "0.1.3"]
-                 [clj-soup/clojure-soup "0.1.3"]
-                 [cider/orchard "0.6.0"] ;; enhanced cider options
-                 [incanter "1.9.3"] ;; datascience
-                 [quil "3.1.0"] ;; processingjs interface
-                 [thalia "0.1.0"] ;; examples for man pages
+                 [org.clojure/java.jdbc "0.7.8"]
+                 [org.xerial/sqlite-jdbc "3.23.1"]
+                 [com.h2database/h2 "1.4.193"]
+                 [ring/ring-codec "1.1.2"]
                  [ring-server "0.5.0"]
                  [reagent "0.10.0"]
                  [reagent-utils "0.3.3"]
                  [ring "1.8.1"]
                  [ring/ring-defaults "0.3.2"]
                  [hiccup "1.0.5"]
-                 [yogthos/config "1.1.7"]
+                 [metosin/reitit-ring "0.5.5"]
                  [metosin/reitit "0.5.5"]
                  [metosin/jsonista "0.2.6"]
+                 [aleph "0.4.7-alpha5"]
+                 [http-kit "2.4.0"] 
+
+                 [enlive "1.1.6"]
+                 [reaver "0.1.3"]
+                 [clj-soup/clojure-soup "0.1.3"]
+                 [cider/orchard "0.6.0"] ;; enhanced cider options
+                 [incanter "1.9.3"] ;; datascience
+                 [quil "3.1.0"] ;; processingjs interface
+                 [yogthos/config "1.1.7"]
                  [pez/clerk "1.0.0"]
-                 
-                 [com.h2database/h2 "1.4.193"]
-
-
-
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]
                  [compojure "1.6.1"]]
+   
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler server/app}
   :repl-options {:init-ns server}
