@@ -33,11 +33,13 @@
 (defn qstr [& strs]
   (str \" (apply str strs) \"))
 
+(qstr "Hello?")
+
 #_(jdbc/execute! lite-db ["create table pastes(id INTEGER PRIMARY KEY AUTOINCREMENT, content  CLOB)"])
-(jdbc/query lite-db ["select * from pastes"])
+#_(jdbc/query lite-db ["select * from pastes"])
 ;; => ()
 ;; https://stackoverflow.com/questions/8892973/how-to-get-last-insert-id-in-sqlite/8893008
-(let [content "Hello, BITCH!
+#_(let [content "Hello, BITCH!!!!!!
 "]
   (jdbc/execute! lite-db
     (apply str ["INSERT INTO pastes(content) VALUES(" (qstr  content ) ");"])))
@@ -53,9 +55,17 @@
           :handler (fn [req]
                      {:status 200
                       :body {:remote-addr (check-ip req)}})}} ]
-
        ["/text"
-        {:post
+        {:get
+         {:parameters 
+          :responses {200 {:body {:text string?}}}
+          :handler
+          (fn [_]
+            {:status 200
+             :body
+             {:text  "hello" }})} 
+         
+         :post
          {:summary
           "upload a text blob"
           :parameters {:body {:text string?}}

@@ -1182,10 +1182,6 @@ schedule
          (vec (repeat n
                 nil)))))
 
-
-;; If I try to use make-2d-vec in loop, I get an Type error.
-;; Vector is not PersistentQueue!
-;; If I just leave the call to (vec (repeat ...))
 (defn astar [start-yx step-est cell-costs]
   (let [size (count cell-costs)]
     (loop [steps 0
@@ -1266,25 +1262,6 @@ schedule
 ;; => (:2)
 
 
-(defn contextual-eval [ctx expr]
-  (eval
-    `(let [~@(mapcat (fn [[k v]]
-                       [k `'~v])
-               ctx)]
-       ~expr)))
-
-(contextual-eval '{a 1 b 2} '(+ a b))
-;; => 3
-
-
-(let [x 9
-      y '(- x)]
-  (list
-       `y 
-      ``y
-     ``~y
-     ``~~y)
-  (contextual-eval '{x 36} ``~~y))
 
 ;; #=>
 ;; (list 
@@ -1309,3 +1286,191 @@ schedule
 ;; => (if true (do (prn 1) (if false (do (prn 2) nil))))
 
 
+
+
+(+ 1 3)
+;; => 4
+
+'(+ 1 3)
+;; => (+ 1 3)
+
+'+
+;; => +
+
+
+(defn contextual-eval [ctx expr]
+  (eval
+    `(let [~@(mapcat (fn [[k v]]
+                       [k `'~v])
+               ctx)]
+       ~expr)))
+
+(contextual-eval '{a 1 b 2} '(+ a b))
+;; => 3
+
+(contextual-eval '{b 10
+                   a 100
+                   c `(fn [x y] (+ x y))}
+  '(c a b))
+
+(let [x 9
+      y '(- x)]
+  (list
+       `y 
+      ``y
+     ``~y
+     ``~~y)
+  (contextual-eval '{x 36} ``~~y))
+
+
+
+'+
+;; => +
+
+;; ` syntax-quote wil include the symbol’s full namespace
+;; This helps avoid name collisons.
+`+
+;; => clojure.core/+
+;; Syntax quoting lets you unquote as well.
+
+`+
+;; => clojure.core/+
+
+;; If syntax quote lets you unquote, whats the difference
+;; between syntax-quote unquote symbol and just symbol:
+(list `~+ +)
+;; => (#function[clojure.core/+] #function[clojure.core/+])
+
+;; Aparently nothing.
+(identical? `~+ +)
+;; => true
+
+
+`(+ 1 ~(inc 1))
+;; => (clojure.core/+ 1 2)
+`( + 1
+  ~(inc 1))
+;; The unquote gets replaced as a form to be evaluated.
+(inc 1)
+;; => 2
+;; So expanded
+(+ 1 2)
+;; => 3
+`(+ 1 (inc 1))
+;; They make analogy to string interpolation,
+;;	only its for code forms not string forms
+(list '+ 1 (inc 1))
+;; => (+ 1 2)
+
+`(+ 1 ~(inc 1))
+;; => (clojure.core/+ 1 2)
+
+
+ `(+ ~(list 1 2 3))
+;; => (clojure.core/+ (1 2 3))
+
+
+;; Unquote Splicing
+`(+ ~@(list 1 2 3))
+;; => (clojure.core/+ 1 2 3)
+
+;; Macro Hygeine
+(gensym)
+;; => G__12272
+
+`(hello#)
+;; Finally! Is this why The-Reasoned-Schemer names it's
+;;	success and failure clauses like s# and u#?
+
+
+(defmacro my-first-macro []
+ (list reverse "Hello World"))
+
+(my-first-macro)
+;; (#function[clojure.core/reverse] "Hello World")
+
+
+(defmacro my-2nd-macro [n]
+  `(apply str (reverse ~n)))
+
+
+(my-2nd-macro "Hello")
+;; (apply str (reverse "Hello"))
+
+(defmacro unless [arg & body]
+  `(if (not ~arg)
+     (do ~@body)))
+
+(unless false (+ 1 2 3 4))
+;; (if (not false)
+;;	(do (+ 1 2 3 4)))
+
+(def x# (gensym 'x))
+
+
+(def simple-metric {:meter 1,
+                    :km 1000,
+                    :cm 1/100,
+                    :mm [1/10 :cm]})
+
+(defn convert [context descriptor]
+  (reduce
+    (fn [result [mag unit]]
+      (+ result
+        (let [val (get context unit)]
+          (if (vector? val)
+            (* mag (convert context val))
+            (* mag val)))))
+    0 (partition 2 descriptor)))
+
+(convert simple-metric [1 :km])
+
+(float
+  (convert simple-metric [3 :km 10 :meter 80 :cm 10 :mm]))
+;; => 3010.81
+
+(def simple-bits
+  {:bit 1,
+   :byte 8,
+   :nibble [1/2 :byte]})
+
+(convert simple-bits [32 :nibble])
+
+
+;;; MORE CPS
+(defn fact [n]
+  (if (zero? n)
+    1
+    (* n (fact (dec n)))))
+
+(fact 10)
+;; => 3628800
+
+(fact 10 (fn [m] (str m)))
+;; => "0"
+
+
+(defn id [x]
+  x)
+
+(defn id [x cc]
+  (cc x))
+
+(defn fact [n ret]
+  (if (zero? n)
+    (ret n) ;;  this was the error
+    ;; base case for factorial is 1
+    (fact (dec n)
+      (fn [x]
+        (ret (* n x))))))
+
+(defn fact
+  [n cc]
+  (if (zero? n)
+    (cc 1)
+    (fact (dec n)
+      (fn [t0]
+        (cc (* n t0))))))
+
+(fact 10 id)
+;; => 3628800
