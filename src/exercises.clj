@@ -45,3 +45,26 @@
 #_(take 3 (my-iterate inc 1))
 
 
+(defn my-map [f xs]
+  (loop [c (count xs)
+         xs xs]
+    (if (zero? c)
+      xs
+      (recur (dec c)
+        (conj
+          (rest xs)
+          (f (first xs))
+          )))))
+ 
+;; (my-map inc (range 10))
+
+;; (my-map inc [2 3 4 5 6])
+
+
+
+(defn count-differnece [s t]
+  (count
+    (filter (comp not zero?) 
+           (map compare s t))))
+
+(count-differnece "GAGCCTACTAACGGGAT" "CATCGTAATGACGGCCT")
