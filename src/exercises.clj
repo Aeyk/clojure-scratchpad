@@ -68,3 +68,12 @@
            (map compare s t))))
 
 (count-differnece "GAGCCTACTAACGGGAT" "CATCGTAATGACGGCCT")
+
+(defn phone-number
+  [s]
+  (apply str 
+    (map first
+      (re-seq #"([0-9])" s))))
+
+
+(phone-number "+1 (613)-995-0253")
