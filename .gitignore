@@ -75,3 +75,4 @@ chart-chrome.json
 *.dat
 /resources/logic/
 /src/purely_functional/clojure_collections/
+/src/clojure_scratchpad/transducer.clj
