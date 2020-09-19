@@ -196,3 +196,49 @@
   (vals (group-by identity s)))
 
 (dedupe [1 1 2 1 1 1 3 3])
+
+(fn my-dedupe [s]
+  (apply str (sequence (fn [rf]
+     (let [pv (volatile! ::none)]
+       (fn
+         ([] (rf))
+         ([result] (rf result))
+         ([result input]
+            (let [prior @pv]
+              (vreset! pv input)
+              (if (= prior input)
+                result
+                (rf result input))))))) s)))
+
+
+(fn disjoint-set [s1 s2]
+  (every? false?
+    (for [i s1]
+      (contains? s2 i))))
+
+(defn disjoint-sets [sets]
+  (letfn [(disjoint-set [s1 s2]
+            (every? false?
+              (for [i s1]
+                (contains? s2 i))))] 
+    (every? true?
+      (flatten
+        (for [set sets]
+          (map #(disjoint-set set %) (disj sets set)))))))
+
+(disjoint-sets #{#{1 2 3}
+                 #{4 5 9}
+                 #{6 7 8}})
+;;; <2020-09-18 Fri 23:48>
+
+
+(defn my-intersection [s1 s2]
+  (into #{}
+    (filter (complement nil?)
+      (for [i s1]
+        (if (contains? s2 i)
+          i)))))
+
+(my-intersection #{0 1 2 3} #{2 3 4 5})
+;;; <2020-09-18 Fri 23:51>
+
