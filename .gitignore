@@ -65,3 +65,11 @@ chrome.json
 chart-chrome.json
 /db/*
 /db/
+/CHANGELOG.md
+/domains.txt
+/exec-wget.sh
+/resources/sqlite-urls2get.txt
+/src/clojure_scratchpad/fun_with_transducers.clj
+/to_grep.txt
+/urls_purely_functional_guide.txt
+*.dat
