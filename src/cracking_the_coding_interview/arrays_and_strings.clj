@@ -188,6 +188,50 @@
 
 ;;; That was fun... Hard but fun. <2020-09-18 Fri 23:10>
 
+;; Write an algorithm such that if an element in an MxN matrix is 0, its entire row and column is set to 0
+
+(for [y (nxm 4 4)]
+  (for [x y]
+    (zero? x))) #=-'v
+((true false false false)
+ (true false false false)
+ (true false false false)
+ (true false false false))
+
+;; =>
+((0 1 2 3)
+ (0 1 2 3)
+ (0 1 2 3)
+ (0 1 2 3))
+
+(let [s1 "waterbottle"
+      s2 "erbottlewat"]
+  (.contains
+    (str s1 s1) 
+    s2))
+;;; https://stackoverflow.com/questions/26386766/check-if-string-contains-substring-in-clojure
+;;; <2020-09-18 Fri 23:23>
+
+;; file:///home/malik/Downloads/cracking_the_coding_interview.pdf#Solution%20Chapter%20Arrays%20and%20Strings.indd%3AAnchor%2036
+;;; 1.  Check if length(s1) == length(s2)
+;;; 	If not, return false2  
+;;; 	Else, concatenate s1 with itself and see whether s2 is substring of the 
+;;;
+;;; ex: s1 = apple, s2 = pleap  ==> apple is a substring of pleappleap 
+;;; input: s1 = apple, s2 = ppale ==> apple is not a substring of ppaleppale
+
+
+(defn substring-of? [s1 s2]
+  (if (not= (count s2)
+        (count s1)
+        false)
+    (.contains
+      (str s1 s1) 
+      s2)))
+
+(substring-of? "Apple" "pp")
+;; => true
+;; <2020-09-18 Fri 23:26>
 
 
 
