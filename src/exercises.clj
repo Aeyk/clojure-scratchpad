@@ -242,3 +242,88 @@
 (my-intersection #{0 1 2 3} #{2 3 4 5})
 ;;; <2020-09-18 Fri 23:51>
 
+(fn some-but-not-all
+  [& bools]
+  (letfn [(s [bools]
+            (and (not (every? false? bools))
+              (not (every? true? bools))))]
+    (apply s (vector bools))))
+
+(some-but-not-all false true)
+;;; <2020-09-18 Fri 23:55>
+
+
+(defn my-map [f xs]
+  (for [x xs]
+    (f x)))
+
+;;; <2020-09-18 Fri 23:56>
+;; Then I notice map and for aren't allowed!!
+
+(defn my-map [f xs]
+  (loop [nxs []
+         xs xs]
+    (if (empty? xs)
+      nxs
+      (recur (conj nxs
+               (f (first xs))) (rest xs)))))
+
+(my-map inc [3 4 5 6 7])
+
+;;; <2020-09-19 Sat 00:00>
+;;; and It timed out again?
+;;; http://www.4clojure.com/problem/118
+;;;; Whats up with that?
+
+(defn my-group-by [f xs]
+  (loop [nxs {}
+         xs xs]
+    (if (empty? xs)
+      nxs
+      (recur
+        (assoc nxs
+          (f (first xs))
+          xs)
+        (rest xs)))))
+
+(my-group-by #(> % 5) [1 3 6 8])
+;; => {false (3 3 6 8), true (8 8)}
+
+(fn f [op x y]
+  (cond
+    (op x y) :lt
+    (= x y) :eq
+    :else :gt))
+
+
+(f > 0 2)
+
+(fn f [op x y]
+  (cond
+    (= x y) :eq
+    (op x y) :lt
+    (op y x) :gt))
+
+(f > 100 20)
+
+(fn f [op x y]
+  (cond
+    (= x y) :eq
+    (op x y) :lt
+    (op y x) :gt
+    :else :eq))
+;;; <2020-09-19 Sat 00:20> struggled for a long time felt like i cheated with that :else
+
+(defn binary-tree?
+  [bt]
+  (if (seq? bt)
+    (recur (rest bt)))
+  )
+(def bt1 [1 nil [2 [3 nil nil] [4 nil nil]]])
+(get bt1 2)
+;; <2020-09-19 Sat 00:33> ... yawn I should get to sleep
+
+
+
+    
+
