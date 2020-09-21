@@ -2,7 +2,8 @@
   (:require [ring.adapter.jetty :as jetty]
             [ring.middleware.reload :refer [wrap-reload]]
             [compojure.core :refer [defroutes GET]]
-            [compojure.route :refer [not-found]]))
+            [compojure.route :refer [not-found]]
+            [ring.handler.dump :refer [handle-dump]]))
 
 (defn greet
   [req]
@@ -18,7 +19,8 @@
 (defroutes app
   (GET "/" [] greet)
   (GET "/goodbye" [] goodbye)
-  (GET "/request" [] request-handler)
+  (GET "/request" [] handle-dump
+    )
   (not-found "Page Not Found."))
 
 (defn -main [port]
@@ -28,7 +30,7 @@
 
 (defn -dev-main [port]
   (jetty/run-jetty
-    (wrap-reload #'app)
+    (wrap-reload #'app) 
     {:port (Integer. port)}))
 
 
