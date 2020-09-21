@@ -74,7 +74,6 @@ chart-chrome.json
 /urls_purely_functional_guide.txt
 *.dat
 /resources/logic/
-/src/purely_functional/clojure_collections/
 /src/clojure_scratchpad/transducer.clj
 /src/greek2clojure/
 *.clj
