@@ -77,3 +77,6 @@ chart-chrome.json
 /src/clojure_scratchpad/transducer.clj
 /src/greek2clojure/
 qop
+/src/purely_functional/clojure_collections/
+/src/logic-tutorial/
+/src/hateoas_example.clj
