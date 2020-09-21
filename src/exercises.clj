@@ -1,3 +1,5 @@
+
+(require '[clojure.edn :as edn])
 (require '[clojure.core.match :refer [match]])
 (require '[clojure.math.numeric-tower :as math])
 
@@ -283,8 +285,8 @@
       (recur
         (assoc nxs
           (f (first xs))
-          xs)
-        (rest xs)))))
+          (rest xs))
+         xs))))
 
 (my-group-by #(> % 5) [1 3 6 8])
 ;; => {false (3 3 6 8), true (8 8)}
@@ -327,3 +329,96 @@
 
     
 
+(defn my-compress [lst]
+  (loop [lst lst
+         newlst []]
+    (if (empty? lst)
+      newlst
+      (let [pk (first lst)
+            npk (first newlst)]
+
+        (if-not 
+          (and (not (nil? npk))
+            (= npk pk))
+          (recur
+            (rest lst)
+            (conj newlst (first lst))))))))
+
+(my-compress "aaaa")
+
+
+(partition-by identity)
+
+(map first (partition-by identity))
+"Leeeeeerrroyyy"
+;; <2020-09-21 Mon 11:57>
+
+(fn my-group-by [f xs]
+  (loop [xs xs
+         nxs {}]
+    (if (empty? xs)
+      nxs
+      (recur (rest xs)
+        (assoc nxs (f (first xs))
+          (conj
+            (get nxs (f (first xs)) [])
+            (first xs)))))))
+
+(my-group-by #(> % 5) [1 3 6 8])
+;;; <2020-09-21 Mon 12:07> I hate how sometimes I randomly stumble upon the answer. This was what I wanted to do though.
+
+
+
+(tree-seq
+  map?
+  keys
+  '{a {p 1, q 2}
+    b {m 3, n 4}})
+
+
+(fn indexing [seq]
+  (partition 2
+    (interleave seq (range))))
+
+(indexing [:a :b :c])
+
+(defn digitize
+  "(digitize 1000)
+  ;; => (1 0 0 0)
+  (digitize 666)
+  ;; => (6 6 6)"
+  [n]
+  (map edn/read-string
+    (re-seq #"\d"
+      (.toString n))))
+
+
+(defn square-of-digits [n]
+  (map #(* % %) (digitize n)))
+
+(defn smaller-square-of-digits [n]
+ (< n (reduce +
+       (square-of-digits n))))
+
+(defn smaller-square-of-digits* [ns]
+ (map smaller-square-of-digits ns))
+
+(defn count-smaller-square-of-digits [ns]
+  (count (filter true? (smaller-square-of-digits* ns))))
+
+(defn sum-of-square-of-digits [ns]
+  (letfn [(seperate-digits [ds]
+            (map edn/read-string
+              (re-seq #"\d"
+                (.toString ds))))
+          (square-of-digit [n]
+            (map #(* % %) (digitize n)))
+          (smaller-square-of-digit [n]
+            (< n
+              (reduce +
+                (square-of-digits n))))]
+    (count (filter true? (map smaller-square-of-digit ns)))))
+
+
+
+(sum-of-square-of-digits (range 1000))
