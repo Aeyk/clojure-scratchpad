@@ -3,9 +3,7 @@
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :profiles
-  {:dev
-   {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]}}
+
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [org.clojure/core.match "1.0.0"]
                  [org.clojure/core.logic "1.0.0"]
@@ -51,7 +49,12 @@
   :ring {:handler server/app}
   :repl-options {:init-ns server}
   :main purely-functional.web-dev.server
-
+  :profiles
+  {
+   :dev   
+   {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]
+    :main purely-functional.web-dev.server/-dev-main }
+   }
 
   
   ;;   ;; :ring {:handler hello-web.handler/app
