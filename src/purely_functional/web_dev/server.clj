@@ -19,11 +19,41 @@
 (defn yo-name [req]
   {:status 200 :body (str "Yo, " (get-in req [:params :name]) "!") :headers {}})
 
+
+(defn math-handler [req]
+  (let [x (get-in req [:params :x])
+        y (get-in req [:params :y])
+        op (get-in req [:params :op])]
+    {:status 200
+     :headers {}
+     :body
+     (str x op y "="
+       (cond
+         (= ":" op)
+         (/
+           (Integer/parseInt x)
+           (Integer/parseInt y))
+         (= "*" op)
+         (*
+           (Integer/parseInt x)
+           (Integer/parseInt y))
+
+         (= "+" op)
+         (+
+           (Integer/parseInt x)
+           (Integer/parseInt y))
+         (= "-" op)
+         (-
+           (Integer/parseInt x)
+           (Integer/parseInt y))))}))
+
+
 (defroutes app
   (GET "/" [] greet)
   (GET "/goodbye" [] goodbye)
   (GET "/request" [] handle-dump)
   (GET "/yo/:name" [] yo-name)
+  (GET "/math/:x/:op/:y" [] math-handler)
   
   (not-found "Page Not Found."))
 
