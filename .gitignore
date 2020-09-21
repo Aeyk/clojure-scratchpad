@@ -1,4 +1,4 @@
-/target
+b/target
 /classes
 /checkouts
 profiles.clj
@@ -76,4 +76,4 @@ chart-chrome.json
 /resources/logic/
 /src/clojure_scratchpad/transducer.clj
 /src/greek2clojure/
-*.clj
+qop
