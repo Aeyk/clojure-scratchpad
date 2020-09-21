@@ -16,11 +16,15 @@
 (defn request-handler [req]
   {:status 200 :body (str req) :headers {}})
 
+(defn yo-name [req]
+  {:status 200 :body (str "Yo, " (get-in req [:params :name]) "!") :headers {}})
+
 (defroutes app
   (GET "/" [] greet)
   (GET "/goodbye" [] goodbye)
-  (GET "/request" [] handle-dump
-    )
+  (GET "/request" [] handle-dump)
+  (GET "/yo/:name" [] yo-name)
+  
   (not-found "Page Not Found."))
 
 (defn -main [port]
