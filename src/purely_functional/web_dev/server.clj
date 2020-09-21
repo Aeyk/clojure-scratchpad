@@ -15,7 +15,6 @@
 (defn request-handler [req]
   {:status 200 :body (str req) :headers {}})
 
-
 (defroutes app
   (GET "/" [] greet)
   (GET "/goodbye" [] goodbye)
