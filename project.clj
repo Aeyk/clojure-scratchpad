@@ -50,7 +50,7 @@
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler server/app}
   :repl-options {:init-ns server}
-
+  :main purely-functional.web-dev.server
 
 
   
