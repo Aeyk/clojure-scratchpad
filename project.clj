@@ -50,6 +50,7 @@
   :main purely-functional.web-dev.server
   :profiles
   {
+   #_(comment :repl {:global-vars {*println-length* 30}})
    :dev   
    {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]
     :main purely-functional.web-dev.server/-dev-main }
