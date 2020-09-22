@@ -55,7 +55,7 @@
    {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]
     :main purely-functional.web-dev.server/-dev-main }
    }
-
+  :jvm-opts ["-Xmx2g"]
   
   ;;   ;; :ring {:handler hello-web.handler/app
   ;;   ;;        :uberwar-name "hello-web.war"}
