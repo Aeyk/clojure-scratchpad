@@ -67,9 +67,70 @@
 ;; => 55
 
 
+(reduce-kv (fn [m k v]
+             (assoc m k v))
+  {} (vec "abcdef"))
+;; => {0 \a, 1 \b, 2 \c, 3 \d, 4 \e, 5 \f}
 
 
+;; reductions does a lazy eval of a reduce 1 step at a time
+(reductions (fn [[kcount vcount] [k v]]
+             [(+ kcount (count k))
+              (+ vcount (count v))])
+  [0 0]
+  {"Malik" "Kennedy" "Coltrane"  "Kennedy" "Gabriel"  "Kennedy" })
+;; => ([0 0] [5 7] [13 14] [20 21])
+
+(defn average [xs]
+  (/ (reduce + xs)
+    (count xs)))
+
+(average (range 11))
+;; => 5
+
+(average [1])
+;; => 1
+
+(average [1 2 3])
+;; => 2
 
 
+(defn average* [xs]
+  (reduce (fn [[numer denom] number]
+            [(+ numer number)
+             (+ denom 1)])
+    [0 0]
+    xs))
 
+(average* [])
+;; => [0 0]
+(average* (range 11))
+;; => [55 11]
+(average* [2 2 2 2 2 2 2])
+;; => [14 7]
+
+(defn combine-averages [[n_1 d_1] [n_2  d_2]]
+  [(+ n_1 n_2)
+   (+ d_1 d_2)])
+
+(defn average** [xs]
+  (reduce
+    combine-averages 
+    [0 0] (map over-one xs)))
+
+(defn over-one
+  [n]
+  [n 1])
+
+(reduce combine-averages [0 0]
+  (map over-one (range 10)))
+
+(average** (range 10))
+;; => [45 10]
+
+;; 7/reduced
+;; <2020-09-22 Tue 16:11>
+;; seems like a reduce way of breaking out of an iteration?
+
+;; todo shorter than
 
