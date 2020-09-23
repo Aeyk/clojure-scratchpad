@@ -532,3 +532,29 @@
        (not (nil? (nth xs 0))) (valid-node? xs 1) (valid-node? xs 2))
       false)))
 
+(defn infix [x]
+  (let [[a op b] x]
+    (eval `(~op ~a ~b))))
+
+(infix (take 3 '(38 + 48 - 2 / 2)))
+;; => 86
+
+(fn infix
+[[a b & [c d e & m]]] ;; note this interesting destructuring syntax 
+  (let [&& #(and % %2)
+        || #(or % %2)
+        ops '[- + * / < > && || =]
+        rank (zipmap ops (iterate inc 1))
+        op? rank]
+    (cond
+      (vector? a) (recur (list* (infix a) b c d e m))
+      (vector? c) (recur (list* a b (infix c) d e m))
+      (op? b) (if (and d (< (rank b 0) (rank d 0)))
+                (recur (list a b (infix (list* c d e m))))
+                (recur (list* (list b a c) d e m)))
+      :else a))) 
+;; <2020-09-23 Wed 11:50>
+;; https://groups.google.com/g/clojure/c/PsC1cX5_MsA
+
+(eval (infix '(38 + 48 - 2 / 2)))
+;; => (- (+ 38 48) (/ 2 2))
