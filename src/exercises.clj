@@ -539,22 +539,60 @@
 (infix (take 3 '(38 + 48 - 2 / 2)))
 ;; => 86
 
-(fn infix
-[[a b & [c d e & m]]] ;; note this interesting destructuring syntax 
-  (let [&& #(and % %2)
-        || #(or % %2)
-        ops '[- + * / < > && || =]
-        rank (zipmap ops (iterate inc 1))
-        op? rank]
-    (cond
-      (vector? a) (recur (list* (infix a) b c d e m))
-      (vector? c) (recur (list* a b (infix c) d e m))
-      (op? b) (if (and d (< (rank b 0) (rank d 0)))
-                (recur (list a b (infix (list* c d e m))))
-                (recur (list* (list b a c) d e m)))
-      :else a))) 
+(defn infix
+  ([[a b & [c d e & m]]] ;; note this interesting destructuring syntax 
+   (let [&& #(and % %2)
+         || #(or % %2)
+         ops '[- + * / < > && || =]
+         rank (zipmap ops (iterate inc 1))
+         op? rank]
+     (cond
+       (vector? a) (recur (list* (infix a) b c d e m))
+       (vector? c) (recur (list* a b (infix c) d e m))
+       (op? b) (if (and d (< (rank b 0) (rank d 0)))
+                 (recur (list a b (infix (list* c d e m))))
+                 (recur (list* (list b a c) d e m)))
+       :else a)))
+  ([x & xs]
+   (infix (vector (conj xs x))))
+  ) 
 ;; <2020-09-23 Wed 11:50>
 ;; https://groups.google.com/g/clojure/c/PsC1cX5_MsA
 
-(eval (infix '(38 + 48 - 2 / 2)))
+(eval (list 38 + 48 - 2 / 2))
+(infix '(38 + 48 - 2 / 2))
 ;; => (- (+ 38 48) (/ 2 2))
+
+(quote (list 2 + 5))
+
+
+((fn sosc [coll]
+   (letfn [(digits [ds] (map #(Integer/parseInt %)
+                          (clojure.string/split (str ds) #"")))
+           (squared-comps [d] (map #(* % %) d))
+           (sum [d]
+             (reduce + d))
+           (digits->number [d]
+             (Integer/parseInt
+               (clojure.string/join
+                 d)))]
+     (count
+       (filter (fn [[x sos]]
+                 (< x sos))
+         (for [x coll
+               :let [sos (-> (digits x)
+                           squared-comps
+                           sum)]]
+           [x sos])))))
+ (range 10))
+
+;; => ((0 0) (1 1) (16 2) (81 3) (37 4) (29 5) (45 6) (97 7) (52 8) (65 9) (1 10) (2 11))
+;;; <2020-09-23 Wed 13:52>
+;;; took long time lol.
+;;; ands its actually wong lol
+;;; now I don't know works on my machine but not on 4clojure... Commit!
+;;; <2020-09-23 Wed 13:58>
+
+(defn sum-of-square-of-digits [coll]
+  )
+
