@@ -422,3 +422,100 @@
 
 
 (sum-of-square-of-digits (range 1000))
+
+
+(map second 
+  (filter (comp (complement zero?) first) 
+    (vec
+      (map vec
+        (partition 2
+          (interleave (cycle (range 3))
+            (range 11)))))))
+
+(fn my-drop-nth [coll n]
+  (map second 
+    (filter (comp (complement #(= (dec n) %)) first) 
+      (vec
+        (map vec
+          (partition 2
+            (interleave (cycle (range n))
+              coll)))))))
+(my-drop-nth [1 2 3 4 5 6 7 8] 3)
+;; <2020-09-23 Wed 10:17>
+
+
+(fn [f coll]
+    (letfn
+        [(map* [f xs]
+           (reduce
+             (fn [res v]
+               (conj res (f v)))
+             []
+             xs))]
+      (map* f coll)
+      (->> (map* inc (range))
+        (drop (dec 1000000))
+        (take 2))))
+;;; Ive solved this like 3 times... Last unit test always times outs.
+;;; <2020-09-23 Wed 10:22>
+
+(defn is-symmetric
+  ([bta btb]
+   (let [roota (first bta)
+         rootb (first btb)]
+     (cond (every? true?
+             [(nil? roota)
+              (nil? rootb)])
+           true
+           
+           (not-every? true?
+             [(nil? roota)
+              (nil? rootb)])
+           false
+           
+           (= roota rootb)
+           (if (is-symmetric
+                 (get bta 1)
+                 (get btb 2))
+             (is-symmetric
+               (get bta 2)
+               (get btb 1))))
+     false)))
+;; https://www.ideserve.co.in/learn/check-if-binary-tree-is-symmetric-tree
+(= (is-symmetric
+     [] [1])
+   false)
+
+
+
+(fn [t]
+  ((fn mir? [l r]
+     (if (or (= nil l r)
+             (and (= (first l) (first r))
+                  (mir? (second l) (last r))
+                  (mir? (last l) (second r))))
+       true false)) 
+   (second t) (last t)))
+;;; https://yyhh.org/blog/2011/06/my-solutions-for-problems-no-76-100-on-4clojurecom/
+;;; <2020-09-23 Wed 10:43>
+
+((letfn [(suitify [suit]
+           (case suit
+             \S :spade
+             \D :diamond
+             \H :heart
+             \C :club))
+         (rankify [rank]
+           (case rank
+             \T 8 \J 9 \Q 10
+             \K 11 \A 12
+             (- (Integer/parseInt (str rank)) 2)))]
+   (fn [card]
+     (let [suit (first card)
+           rank (second card)]
+       {:suit (suitify suit)
+        :rank (rankify rank)})))
+ "DQ")
+;;; <2020-09-23 Wed 10:51>
+
+
