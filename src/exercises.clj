@@ -519,3 +519,16 @@
 ;;; <2020-09-23 Wed 10:51>
 
 
+;;; <2020-09-23 Wed 11:35>
+;;; https://github.com/yveszoundi/4clojure-answers
+(defn binary-tree? [xs]
+  (letfn [(valid-node? [col idx]
+            (let [elem (nth col idx)]
+              (if (nil? elem)
+                true
+                (and (coll? elem) (binary-tree? elem)))))]
+    (if (= 3 (count xs))
+      (and
+       (not (nil? (nth xs 0))) (valid-node? xs 1) (valid-node? xs 2))
+      false)))
+
