@@ -158,3 +158,43 @@ p
 
 (:a #{:a :b :c})
 ;; => :a
+
+;;; Chapter 3 Exercises
+;; 1. Use the str, vector, list, hash-map, and hash-set functions.
+(str (vector (list (hash-set (hash-map :a :a :b :b :c :c)))))
+;; => "[(#{{:c :c, :b :b, :a :a}})]"
+
+;; 2. Write a function that takes a number and adds 100 to it.
+((fn [x]
+   (+ 100 x))
+ 2);; => 102
+;; 3. Write a function, dec-maker, that works exactly like the function
+;;	inc-maker except with subtraction:
+
+(defn dec-maker [x]
+  (fn [y] (- y x)))
+
+((dec-maker 100) 1000)
+;; => 900
+
+;; 4. Write a function, mapset, that works like map except the return value
+;;	is a set:
+
+(defn mapset [f st]  
+  (map f (into #{} st)))
+
+(mapset inc [1 1 2 2])
+;; => (2 3)
+;; 5. Create a function that’s similar to symmetrize-body-parts 
+;; 	except that it has to work with weird space aliens 
+;; 	with radial symmetry. Instead of two eyes, arms, 
+;; 	legs, and so on, they have five. 
+;;
+;; 6. Create a function that generalizes symmetrize-body-parts
+;; 	 and the function you created in Exercise 5. 
+;; 	The new function should take a collection of body parts
+;; 	 and the number of matching body parts to add. 
+;; 	If you’re completely new to Lisp languages and functional 
+;; 	programming, it probably won’t be obvious how to do this. 
+;; 	If you get stuck, just move on to the next chapter and 
+;; 		revisit the problem later.
