@@ -70,3 +70,25 @@ m
 ;; => :unknown-key
 
 
+;;; Keywords
+:keywords :self :evaluate :to :themselves 
+;; => :keywords
+;; => :self
+;; => :evaluate
+;; => :to
+;; => :themselves
+
+:keywords :are :functions
+
+(:key-one)
+;;; 1. Unhandled java.lang.IllegalArgumentException
+;;;   Wrong number of args passed to keyword: :key-one
+
+:keywords :take :one :parameter {\a "hash-map"}
+(:key-one {:key-one "keywords are often used as hash-lookup"})
+;; => "keywords are often used as hash-lookup"
+
+(:key-two {:key-one "keywords are often used as hash-lookup"}  "like `get`, :keyword-as-fn lets you supply an if-nil value")
+;; => "like `get`, :keyword-as-fn lets you supply an if-nil value"
+
+
