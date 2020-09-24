@@ -37,3 +37,36 @@
 (def truthy? (complement falsey?))
 
 
+;;;; Data Structures
+;;; Maps
+
+{};; => {}
+(hash-map) ;; => {}
+(= {} (hash-map));; => true
+
+{:key-one "value one"
+ :key-two "value two"}
+;; => {:key-one "value one", :key-two "value two"}
+
+(def m
+  (hash-map :key-one "value one"
+    :key-two "value two"))
+;; => #'brave-and-true/m
+
+m
+;; => {:key-one "value one", :key-two "value two"}
+
+(get m :key-one)
+;; => "value one"
+
+(get m :key-two)
+;; => "value two"
+
+(get m :key-four) ;; nil means none, none found in response to get means key don't  exist
+;; => nil
+
+
+(get m :key-four :unknown-key) ;; unless you tell nil what to say when no key is found
+;; => :unknown-key
+
+
