@@ -90,5 +90,25 @@ m
 
 (:key-two {:key-one "keywords are often used as hash-lookup"}  "like `get`, :keyword-as-fn lets you supply an if-nil value")
 ;; => "like `get`, :keyword-as-fn lets you supply an if-nil value"
+p
 
+;;; Vectors
+
+[] ;; => []
+(vector) ;; => []
+(= (vector) []);; => true
+
+;; vectors are integer indexed
+;; so get accepts on integers, from 0 to (dec length-of-vector) inclusive
+(get [0 10 100 1000 10000 10000] 0)
+;; => 0
+(get [0 10 100 1000 10000 10000] 3)
+;; => 1000
+
+;;; `conj` is the super smart, super fast data structure away modernized `cons`
+;;; (conj vector x) adds x to the end, the fasted place to add to a vector
+;;; remember vectors are sparse and only grow or shrink easily from the ends
+;;;				(? or one end?).
+(conj [0 10 100] 1000)
+;; => [0 10 100 1000]
 
