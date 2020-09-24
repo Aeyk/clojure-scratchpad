@@ -105,10 +105,30 @@ p
 (get [0 10 100 1000 10000 10000] 3)
 ;; => 1000
 
-;;; `conj` is the super smart, super fast data structure away modernized `cons`
-;;; (conj vector x) adds x to the end, the fasted place to add to a vector
-;;; remember vectors are sparse and only grow or shrink easily from the ends
-;;;				(? or one end?).
+;; `conj` is the super smart, super fast data structure away modernized `cons`
+;; (conj vector x) adds x to the end, the fasted place to add to a vector
+;; remember vectors are sparse and only grow or shrink easily from the ends
+;;				(? or one end?).
 (conj [0 10 100] 1000)
 ;; => [0 10 100 1000]
 
+
+
+;;; Lists
+'(1 2 3 4);; => (1 2 3 4)
+(= '(1 2) (list 1 2));; => true
+
+;; Unlike `get` on a vector, nth of a list is O(n) time for n of access.
+;; meaning nth must traverse the entire list one at a time until it reaches n
+;; 	(likely using first and rest)
+;; (for small lists this isn't an issue, for an infinite list you've conjured a
+;; 	Spectre of Turing's  Halting / Incompleteness Theorem).
+(nth '(0 10 100 1000) 0);; => 0
+(nth '(0 10 100 1000) 3);; => 1000
+
+;; conj our super smart data type aware adds to the /begining/ of lists
+(conj (list 0 10 100 1000) -10)
+;; => (-10 0 10 100 1000)
+;; remeber and contrast that with vectors
+(conj (vector 0 10 100 1000) -10)
+;; => [0 10 100 1000 -10]
