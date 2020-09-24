@@ -593,6 +593,11 @@
 ;;; now I don't know works on my machine but not on 4clojure... Commit!
 ;;; <2020-09-23 Wed 13:58>
 
-(defn sum-of-square-of-digits [coll]
-  )
+
+;;; https://prakhar.me/articles/infix-in-clojure/
+(defn infix 
+  ([x op y] (op x y))
+  ([x op y & xs]
+    (apply infix (cons (infix x op y) xs))))
+
 
