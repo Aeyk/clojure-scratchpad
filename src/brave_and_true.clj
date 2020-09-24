@@ -132,3 +132,29 @@ p
 ;; remeber and contrast that with vectors
 (conj (vector 0 10 100 1000) -10)
 ;; => [0 10 100 1000 -10]
+;;
+;;; Sets
+;; Sets are collections of unique values. 
+;; Clojure has two kinds of sets: hash-sets and sorted sets. 
+;; hash-sets are more common.
+(= #{1 2}
+  (hash-set 1 1 2 2))
+;; => true
+
+(conj #{:a :b} :b)
+;; => #{:b :a}
+
+(set [3 4 4 3 4])
+;; => #{4 3}
+;;You can check for `set` membership using the `contains?` function, by
+;;	using `get`, or by using a `keyword` as a function with the `set` as 
+;;	its argument.
+
+(contains? #{:a :b :c} :a)
+;; => true
+
+(get #{:a :b :c} :a)
+;; => :a
+
+(:a #{:a :b :c})
+;; => :a
