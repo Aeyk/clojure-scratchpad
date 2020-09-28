@@ -28,15 +28,22 @@
 ;; (a + i * b) + (c + i * d) =
 ;;; 	(a + c) + (b + d) * i,
 ;;;	   (a + i * b) - (c + i * d) =
-;;; 	(a - c) + (b - d) * i
+;;; 	(a - c) + (b - d) * ib
 (defn add [[a b] [c d]]
-  [(+
-     (+ a c)
-     (+ b d))
-   (- (* a b)
-     (* c d))])
+  (if (zero? a)
+    [(- (* a b)
+       (* c d))
+     (+
+       (+ a c)
+       (+ b d))]
+    [(+
+       (+ a c)
+       (+ b d))
+     (- (* a b)
+       (* c d))]))
 
 
+(add [0 1] [0 2])
 
 (defn sub [[a b] [c d]] ;; <- arglist goes here
   ;; your code goes here
