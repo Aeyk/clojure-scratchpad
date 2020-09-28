@@ -50,7 +50,14 @@
      (* b d))
    (+ (* b c) (* a d))])
 
+;;; ividing a complex number a + i * b by another c + i * d gives:
+;;; (a + i * b) / (c + i * d) =
+;;; [ (a * c + b * d)/(c^2 + d^2)
+;;; (b * c - a * d)/(c^2 + d^2)] .
 
-(defn div [[a b] [c d]] ;; <- arglist goes here
-  ;; your code goes here
-  )
+
+(defn div [[a b] [c d]]
+  [(/ (+ (* a c)  (* b d))
+     (+ (Math/pow c 2)(Math/pow d 2)))
+   (/ (+ (* b c) (* a d))
+     (+ (Math/pow c 2)(Math/pow d 2)))])
