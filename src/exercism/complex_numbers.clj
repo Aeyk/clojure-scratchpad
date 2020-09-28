@@ -14,9 +14,14 @@
     (apply +
       (map #(Math/pow % 2) [a b]))))
 
-(defn conjugate [[a b]] ;; <- arglist goes here
-  ;; your code goes here
-  )
+
+
+;;; The conjugate of the number a + b * i is the number a - b * i.
+(defn conjugate [[a b]]
+  [a (- b)])
+
+
+
 ;;; The sum/difference of two complex numbers involves adding/subtracting
 ;;; their real and imaginary parts separately:
 
@@ -25,11 +30,11 @@
 ;;;	   (a + i * b) - (c + i * d) =
 ;;; 	(a - c) + (b - d) * i
 (defn add [[a b] [c d]]
-   [(+
-        (+ a c)
-        (+ b d))
-      (- (* a b)
-        (* c d))])
+  [(+
+     (+ a c)
+     (+ b d))
+   (- (* a b)
+     (* c d))])
 
 
 
