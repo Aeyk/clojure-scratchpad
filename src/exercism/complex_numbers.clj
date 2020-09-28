@@ -39,20 +39,18 @@
     [(+ a c)
      (+ b d)]))
 
-(add [1 2] [3 4])
-;; => [10 -10]
-(let [a 1 b 2 c 3 d 4]
-  )
-
-
 (defn sub [[a b] [c d]]
   [(- a c) (- b d)])
 
+;;; (a * c - b * d) + (b * c + a * d) * i.
+(defn mul [[a b] [c d]]
+  [
+   (-
+     (* a c)
+     (* b d))
+   (+ (* b c) (* a d))])
 
-(defn mul [[a b] [c d]] ;; <- arglist goes here
-  ;; your code goes here
-  )
 
 (defn div [[a b] [c d]] ;; <- arglist goes here
   ;; your code goes here
-)
+  )
