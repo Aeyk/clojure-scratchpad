@@ -123,8 +123,26 @@ bmp-buffer
     (and (= (int \B) b?) (= (int \M) m?))
     #_(= bm? "BM")))
 
-(has-bmp-magic-header? bmp)
+(defn unsign [int]
+  (bit-and 0xFF int))
 
-(char 77)
+(defn prn-as-binary
+  [x]
+  (format "%08d" (Integer/parseInt (Integer/toBinaryString x))))
+
+(defn bmp-parse-file-header [bmp]
+  (let [magic (if (has-bmp-magic-header? bmp) true false)
+        size (BigInteger. (apply str (reverse  (map (comp prn-as-binary unsign) (take 4 (drop 2 bmp))))) 2)]
+    {:has_magic_bytes magic
+     :size size}))
+
+
+;; => 480216
+(count bmp)
+;; => 120054
+(has-bmp-magic-header? bmp)
+(bmp-parse-file-header bmp)
+
+;; => {:has_magic_bytes true, :size 120054}
 
 
