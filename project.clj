@@ -16,6 +16,7 @@
                  [org.clojure/tools.macro "0.1.2"]
                  [org.clojure/core.async "1.3.610"]
                  [org.clojure/java.jdbc "0.7.8"]
+                 [com.github.sarxos/webcam-capture "0.3.12"]
                  [com.layerware/hugsql "0.5.1"]
                  [org.xerial/sqlite-jdbc "3.23.1"]
                  [com.h2database/h2 "1.4.193"]
