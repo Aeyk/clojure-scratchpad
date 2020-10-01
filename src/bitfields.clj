@@ -132,9 +132,29 @@ bmp-buffer
 
 (defn bmp-parse-file-header [bmp]
   (let [magic (if (has-bmp-magic-header? bmp) true false)
-        size (BigInteger. (apply str (reverse  (map (comp prn-as-binary unsign) (take 4 (drop 2 bmp))))) 2)]
+        size (BigInteger. (apply str (reverse  (map (comp prn-as-binary unsign) (take 4 (drop 2 bmp))))) 2)
+        offset (BigInteger. (apply str (reverse  (map (comp prn-as-binary unsign) (take 4 (drop 6 bmp))))) 2)
+        rst (drop  (+ offset 10) bmp)]
     {:has_magic_bytes magic
-     :size size}))
+     :size size
+     :offset offset
+     :blob rst}))
+
+(defn bmp-parse-dib-header [bmp]
+  (let [size         (take 4 (drop 14 bmp))
+        width        (take 2 (drop 18 bmp))
+        height 	     (take 2 (drop 22 bmp))
+        colorplanes  (take 2 (drop 26 bmp))
+        bpp 	     (take 2 (drop 28 bmp))]
+    (interleave
+      [:size :width :height :colorplanes :bits-per-pixel]
+      (map #(map unsign %)
+        
+        [size width height colorplanes bpp]))))
+
+  (bmp-parse-dib-header bmp)
+;; => {:size (40 0 0 0), :width (-56 0), :height (0 0), :color-planes (-56 0), :bits-per-pixel (-56 0)}
+
 
 
 ;; => 480216
@@ -142,7 +162,6 @@ bmp-buffer
 ;; => 120054
 (has-bmp-magic-header? bmp)
 (bmp-parse-file-header bmp)
-
 ;; => {:has_magic_bytes true, :size 120054}
 
 
