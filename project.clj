@@ -19,7 +19,10 @@
                  [com.layerware/hugsql "0.5.1"]
                  [org.xerial/sqlite-jdbc "3.23.1"]
                  [com.h2database/h2 "1.4.193"]
-                 [ring/ring-codec "1.1.2"]
+                 [ring/ring-codec "1.1.2"]                 
+                 [buddy/buddy-auth "2.2.0"]
+                 [io.parsingdata/metal-core "7.1.0"]
+                 [io.parsingdata/metal-formats "7.1.0"]
                  [seesaw "1.5.0"]
                  [ring-server "0.5.0"]
                  [reagent "0.10.0"]
@@ -43,10 +46,10 @@
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]
                  [compojure "1.6.1"]]
-   
+  
   :plugins [[lein-ring "0.12.5"]]
-  :ring {:handler server/app}
-  :repl-options {:init-ns server}
+  :ring {:handler auth.basic/app}
+  :repl-options {:init-ns auth.basic}
   :main purely-functional.web-dev.server
   :profiles
   {
