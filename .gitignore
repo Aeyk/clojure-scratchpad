@@ -80,3 +80,4 @@ qop
 /src/purely_functional/clojure_collections/
 /src/logic-tutorial/
 /src/hateoas_example.clj
+/target/
