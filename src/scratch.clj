@@ -101,15 +101,22 @@
         b (bit-and rgb 255)]
     [r g b]))
 
-(let [w (.getWidth img)
+(let [ img
+      (javax.imageio.ImageIO/read
+        (java.io.File. "/home/malik/bmp_24.bmp"))
+      w (.getWidth img)
       h (.getHeight img)]
   (for [x (range w)
         y (range h)
         :let 
         [rgb (.getRGB img x y)
-         [r g b] (debytize-rgb rgb)]]
+         r (bit-and (bit-shift-left 16 rgb) 255)          
+        g (bit-and (bit-shift-left 8 rgb) 255)          
+        b (bit-and rgb 255)
+         ;;[r g b] (debytize-rgb rgb)
+         ]]
     (.setRGB img x y      
-      (.getRGB (java.awt.Color. 0 0 0))))
+        (.getRGB (java.awt.Color. r g b))))
   (javax.imageio.ImageIO/write img "png"
     (java.io.File. "try.png")))
 
