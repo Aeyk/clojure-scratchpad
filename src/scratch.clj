@@ -88,12 +88,6 @@
   (sort-by #(.getName %)))
 
 
-(def img
-  (javax.imageio.ImageIO/read
-    (java.io.File. "/home/malik/bmp_24.bmp")))
-;; => #'scratch/img
-
-
 (defn debytize-rgb [byt]
   (let [rgb byt
         r (bit-and (bit-shift-left 16 rgb) 255)          
@@ -101,28 +95,72 @@
         b (bit-and rgb 255)]
     [r g b]))
 
-(let [ img
-      (javax.imageio.ImageIO/read
-        (java.io.File. "/home/malik/bmp_24.bmp"))
-      w (.getWidth img)
-      h (.getHeight img)]
+
+(def img
+  (javax.imageio.ImageIO/read
+    (java.io.File. "/home/malik/bmp_24.bmp")))
+;; => #'scratch/img
+
+(def outimg
+  (javax.imageio.ImageIO/read
+    (java.io.File. "/home/malik/bmp_24.bmp")))
+
+(defn make-image [mb f]
+  (let [img
+        (java.awt.image.BufferedImage.
+          mb mb
+          java.awt.image.BufferedImage/TYPE_INT_RGB)]
+    (doseq [x (range mb)
+            y (range mb)]
+      (.setRGB img x y
+        (.getRGB
+	  (#(java.awt.Color. % % %)
+            (bit-xor x y)))))
+    img)) ;; return BufferedImage img
+
+(defn make-image [mb]
+  (let [img
+        (java.awt.image.BufferedImage. mb mb
+          java.awt.image.BufferedImage/TYPE_INT_RGB)]
+    (doseq [x (range mb)
+            y (range mb)]
+      (.setRGB img x y
+        (.getRGB
+	  (#(java.awt.Color.
+               (bit-xor x 1)
+               (bit-xor 1 y)
+                %)
+            (bit-xor y
+               x )))))
+    img)) ; return BufferedImage img
+
+(def display
+  (proxy [javax.swing.JPanel] []
+    (paintComponent [g]
+      (.drawImage g (make-image 256)
+        0 0 nil))))
+
+(def frame (javax.swing.JFrame. "Hello World"))
+
+(doto frame
+  (.setResizable false)
+  (.add display)
+  (.pack)
+  (.setSize 256 256)
+  (.setVisible true))
+
+(let [w (.getWidth img)
+      h (.getHeight img)
+      img (javax.imageio.ImageIO/read
+            (java.io.File. "/home/malik/bmp_24.bmp"))]
+  (.delete (java.io.File. "try.png"))
   (for [x (range w)
         y (range h)
-        :let 
-        [rgb (.getRGB img x y)
-         r (bit-and (bit-shift-left 16 rgb) 255)          
+        rgb (.getRGB img x y)
+        r (bit-and (bit-shift-left 16 rgb) 255)          
         g (bit-and (bit-shift-left 8 rgb) 255)          
-        b (bit-and rgb 255)
-         ;;[r g b] (debytize-rgb rgb)
-         ]]
-    (.setRGB img x y      
-        (.getRGB (java.awt.Color. r g b))))
+        b (bit-and rgb 255)]   
+    (.setRGB img x y
+      (.getRGB (java.awt.Color. 127 0 127))))  
   (javax.imageio.ImageIO/write img "png"
     (java.io.File. "try.png")))
-
-(.getRGB  @aimg 0 0)
-
-
-
-
-
