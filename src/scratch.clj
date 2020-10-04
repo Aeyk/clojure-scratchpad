@@ -118,7 +118,17 @@
             (bit-xor x y)))))
     img)) ;; return BufferedImage img
 
+
+
+(def ops
+  [bit-xor (comp bit-not bit-and) bit-shift-left])
+
+
+(defn sample [arr]
+  (first (shuffle arr)))
+
 (defn make-image [mb]
+  (Thread/sleep 32)
   (let [img
         (java.awt.image.BufferedImage. mb mb
           java.awt.image.BufferedImage/TYPE_INT_RGB)]
@@ -127,10 +137,11 @@
       (.setRGB img x y
         (.getRGB
 	  (#(java.awt.Color.
-              (mod (bit-xor x %) 256)
-              (mod (bit-xor % y) 256)
-              (mod (bit-and (bit-xor 1 y) %) 256))
-            (mod (bit-xor x y) 256)))))
+              (mod ((sample ops) x %) 256)
+              (mod ((sample ops) % y) 256)
+              (mod ((sample ops)
+                    ((sample ops) 1 x) %) 256))
+            (mod ((sample ops) x y) 256)))))
     img)) ; return BufferedImage img
 
 (def display
@@ -140,13 +151,19 @@
         0 0 nil))))
 
 (def frame (javax.swing.JFrame. "Hello World"))
+(def imgs (repeatedly (make-image 512)))
 
 (doto frame
   (.setResizable false)
   (.add display)
   (.pack)
-  (.setSize 512 512)
-  (.setVisible true))
+  (.setSize 512 512))
+
+(for [img (take 10 imgs)]
+  (javax.imageio.ImageIO/write img "png"
+    (java.io.File. "try.png")))
+
+
 
 (let [w (.getWidth img)
       h (.getHeight img)

@@ -1,4 +1,5 @@
 (ns bitfields
+  (:require [gloss.core])
   (:import [io.parsingdata.metal.data ByteStream]))
 
 ;;; https://stackoverflow.com/questions/23018870/how-to-read-a-whole-binary-file-nippy-into-byte-array-in-clojure
@@ -21,16 +22,16 @@
   [n]
   (struct bit-field 31 (byte-array (inc (byte (/ n 31))))))
 
-(def onebyte (bit-array 20))
+;;(def onebyte (bit-array 20))
 
-(print onebyte)
+;;(print onebyte)
 
-(def *parsingdata-api* "")
-(clojure.java.javadoc/)
+;;(def *parsingdata-api* "")
+;;(clojure.java.javadoc/)
 
-(clojure.java.javadoc/add-remote-javadoc "io.parsingdata.metal")
+;; (clojure.java.javadoc/add-remote-javadoc "io.parsingdata.metal")
 
-(clojure.java.javadoc/javadoc io.parsingdata.metal.data.ByteStream)
+;;(clojure.java.javadoc/javadoc io.parsingdata.metal.data.ByteStream)
 (defn set-bit!
   [bitfield bit val]
   (let [r (mod bit (bitfield :element-width))
@@ -92,9 +93,9 @@
 ;; => ("01000010" "01001101" "11110110" "11010100" "00000001")
 
 
-(for [b ]
+#_(for [b ]
   (print b))
-;; => #object["[B" 0x3ac4c022 "[B@3ac4c022"]
+;;;; => #object["[B" 0x3ac4c022 "[B@3ac4c022"]
 bmp-buffer
 
 
@@ -162,6 +163,7 @@ bmp-buffer
         (map #(map unsign %)        
           [size width height colorplanes bpp rst])))))
 
+(char 93)
 
 (take 5 (bmp-parse-file-header bmp))
 (take 5 (bmp-parse-dib-header bmp))
@@ -193,7 +195,7 @@ bmp-buffer
 (take 50 altered-colors)
 (byte-array (map int  (take 50 colors)))
 
-(with-open [tbmp (clojure.java.io/output-stream "try.bmp")]
+#_(with-open [tbmp (clojure.java.io/output-stream "try.bmp")]
   (.write tbmp ))
 
 (def bmp-altered-colors 
@@ -207,32 +209,32 @@ bmp-buffer
 
 altered-colors
 
-(bmp-parse-file-header)
-(map (comp unsign int)) 
-(spit "try.bmp"
-  (byte-array
-    (map int
-      (seq
-        (clojure.string/join  
-          (into
-            altered-colors
-            (into ["BM"]
-              (map char
-                (drop 2
-                  (flatten
-                    (vals 
-                      (into
-                        (into
-                          {}      
-                          (take 3 (bmp-parse-file-header bmp)))
-                        (take 5
-                          (bmp-parse-dib-header bmp))))))))))))))
+;; (bmp-parse-file-header)
+;; (map (comp unsign int)) 
+;; (spit "try.bmp"
+;;   (byte-array
+;;     (map int
+;;       (seq
+;;         (clojure.string/join  
+;;           (into
+;;             altered-colors
+;;             (into ["BM"]
+;;               (map char
+;;                 (drop 2
+;;                   (flatten
+;;                     (vals 
+;;                       (into
+;;                         (into
+;;                           {}      
+;;                           (take 3 (bmp-parse-file-header bmp)))
+;;                         (take 5
+;;                           (bmp-parse-dib-header bmp))))))))))))))
+-
 
-
-(clojure.string/join
-  "BM"
-  (map #(.toString (char %)) bmp-altered-colors))
-    #_(map (comp unsign int)) altered-colors
+;; (clojure.string/join
+;;   "BM"
+;;   (map #(.toString (char %)) bmp-altered-colors))
+;;     #_(map (comp unsign int)) altered-colors
 
 
 
@@ -248,10 +250,10 @@ altered-colors
   (map #(.toString %)
   (.getMethods (class klass))))
 
-(clojure.inspector/inspect)
-(get-all-methods-of-class  @jframe)
+;; (clojure.inspector/inspect)
+;; (get-all-methods-of-class  @jframe)
 
-(java.awt.Component/imageUpdate(java.awt.Image,int,int,int,int,int))
+;; (java.awt.Component/imageUpdate(java.awt.Image,int,int,int,int,int))
 
 
 
@@ -277,10 +279,10 @@ altered-colors
           b (.getSample (.getData image) x y 2)]
       [r g b])))
 
-(.draw) (get-all-methods-of-class)
-(partition 3 (.getDataStorage (.getTile image 0 0)))
+;; (.draw) (get-all-methods-of-class)
+;; (partition 3 (.getDataStorage (.getTile image 0 0)))
 
-()(get-all-methods-of-class)
+;; ()(get-all-methods-of-class)
 
  (.getData image (java.awt.Rectangle. 200 200))
 
@@ -289,7 +291,7 @@ altered-colors
 (get-all-methods-of-class (.getData image))
 ;; => #object[sun.awt.image.ByteInterleavedRaster 0x212ea935 "ByteInterleavedRaster: width = 200 height = 200 #numDataElements 3 dataOff[0] = 2"]
 
-(.setVisible @jframe true)
+
   
 ;; => #object[javax.swing.JPanel 0x13dddba1 "javax.swing.JPanel[null.contentPane,0,0,0x0,invalid,layout=javax.swing.JRootPane$1,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]"]
 
@@ -297,6 +299,35 @@ altered-colors
 
 
 
-java.awt.image.BufferedImage
-(java.awt.image.SampleModel. "")
-(java.awt.image.WritableRaster/createWritableRaster (java.awt.Point. 64 64)) 
+;; java.awt.image.BufferedImage
+;; (java.awt.image.SampleModel. "")
+;; (java.awt.image.WritableRaster/createWritableRaster (java.awt.Point. 64 64)) 
+
+(def bmp-uri   "/home/malik/bmp_24.bmp")
+
+(def window (.setSize (javax.swing.JFrame. "Hello World") 20 20))
+
+(def bmp-image (javax.imageio.ImageIO/read (java.io.File. bmp-uri)))
+
+(.setVisible
+  (javax.swing.JLabel.
+    (javax.swing.ImageIcon. bmp-image))
+  true)
+
+
+ (.getGraphics bmp-image)
+
+
+
+;;; changing directions here now <2020-10-01 Thu 15:31>
+;;; https://docs.racket-lang.org/bitsyntax/index.html
+
+
+
+
+(def bmp-file-header
+  (gloss.core/compile-frame
+    {:magic 	(gloss.data.string/string-codec :utf-8 2)
+     :size 	:int32
+     :_		:int32
+     :offset :int32}))
