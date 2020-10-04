@@ -127,9 +127,9 @@
       (.setRGB img x y
         (.getRGB
 	  (#(java.awt.Color.
-              (mod (bit-xor x 1) 256)
-              (mod (bit-xor 1 y) 256)
-              (mod % 256))
+              (mod (bit-xor x %) 256)
+              (mod (bit-xor % y) 256)
+              (mod (bit-and (bit-xor 1 y) %) 256))
             (mod (bit-xor x y) 256)))))
     img)) ; return BufferedImage img
 
@@ -138,8 +138,6 @@
     (paintComponent [g]
       (.drawImage g (make-image 512)
         0 0 nil))))
-
-(mod 511 256)
 
 (def frame (javax.swing.JFrame. "Hello World"))
 
