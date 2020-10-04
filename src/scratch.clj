@@ -88,8 +88,18 @@
   (sort-by #(.getName %)))
 
 
-(def img (javax.imageio.ImageIO/read (java.io.File. "/home/malik/bmp_24.bmp")))
+(def img
+  (javax.imageio.ImageIO/read
+    (java.io.File. "/home/malik/bmp_24.bmp")))
 ;; => #'scratch/img
+
+
+(defn debytize-rgb [byt]
+  (let [rgb byt
+        r (bit-and (bit-shift-left 16 rgb) 255)          
+        g (bit-and (bit-shift-left 8 rgb) 255)          
+        b (bit-and rgb 255)]
+    [r g b]))
 
 (let [w (.getWidth img)
       h (.getHeight img)]
@@ -97,13 +107,13 @@
         y (range h)
         :let 
         [rgb (.getRGB img x y)
-         r (bit-and (bit-shift-left 16 rgb) 255)          
-         g (bit-and (bit-shift-left 8 rgb) 255)          
-         b (bit-and rgb 255)]]
-    (.setRGB img 0 g b (.getRGB java.awt.Color/WHITE)))
+         [r g b] (debytize-rgb rgb)]]
+    (.setRGB img x y      
+      (.getRGB (java.awt.Color. 0 0 0))))
   (javax.imageio.ImageIO/write img "png"
     (java.io.File. "try.png")))
 
+(.getRGB  @aimg 0 0)
 
 
 
