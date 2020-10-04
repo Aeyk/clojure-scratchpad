@@ -1,3 +1,4 @@
+
 (def *not-dynamic*)
 ;; Warning: *not-dynamic* not declared dynamic and thus is not dynamically rebindable, but its name suggests otherwise. Please either indicate ^:dynamic *not-dynamic* or change the name. ($Workspace/scratch.clj:1)
 ;; => #'user/*not-dynamic*
@@ -76,5 +77,35 @@
 ;;   mapped to a set of the maps in xrel with the corresponding values of
 ;;   ks.
 ;;
+
+(ns scratch)
+
+(supers (class "Hello "))
+;; => #{java.lang.CharSequence java.lang.Object java.lang.Comparable java.io.Serializable}
+
+(->> (class {})
+  supers
+  (sort-by #(.getName %)))
+
+
+(def img (javax.imageio.ImageIO/read (java.io.File. "/home/malik/bmp_24.bmp")))
+;; => #'scratch/img
+
+(let [w (.getWidth img)
+      h (.getHeight img)]
+  (for [x (range w)
+        y (range h)
+        :let 
+        [rgb (.getRGB img x y)
+         r (bit-and (bit-shift-left 16 rgb) 255)          
+         g (bit-and (bit-shift-left 8 rgb) 255)          
+         b (bit-and rgb 255)]]
+    (.setRGB img 0 g b (.getRGB java.awt.Color/WHITE)))
+  (javax.imageio.ImageIO/write img "png"
+    (java.io.File. "try.png")))
+
+
+
+
 
 
