@@ -127,18 +127,19 @@
       (.setRGB img x y
         (.getRGB
 	  (#(java.awt.Color.
-               (bit-xor x 1)
-               (bit-xor 1 y)
-                %)
-            (bit-xor y
-               x )))))
+              (mod (bit-xor x 1) 256)
+              (mod (bit-xor 1 y) 256)
+              (mod % 256))
+            (mod (bit-xor x y) 256)))))
     img)) ; return BufferedImage img
 
 (def display
   (proxy [javax.swing.JPanel] []
     (paintComponent [g]
-      (.drawImage g (make-image 256)
+      (.drawImage g (make-image 512)
         0 0 nil))))
+
+(mod 511 256)
 
 (def frame (javax.swing.JFrame. "Hello World"))
 
@@ -146,7 +147,7 @@
   (.setResizable false)
   (.add display)
   (.pack)
-  (.setSize 256 256)
+  (.setSize 512 512)
   (.setVisible true))
 
 (let [w (.getWidth img)
