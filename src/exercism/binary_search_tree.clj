@@ -20,7 +20,7 @@
       (> e (value tree))
       (nil? (left tree)))
     (merge tree {:right (singleton e)})
-    :else (throw (Exception. "Duplicate Entry Exception"))))
+    :else nil))
 
 
 (defn from-list [lst] lst)
