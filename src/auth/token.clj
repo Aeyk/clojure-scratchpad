@@ -1,5 +1,7 @@
 (ns auth.token
   (:require
+;; [auth.views.login :as login]
+   [auth.views.login :as login]
    [ring.adapter.jetty :as jetty]
    [buddy.hashers :as hashers]
    [cheshire.core :as json]
@@ -9,10 +11,11 @@
    [buddy.auth.middleware :refer [wrap-authentication]]
    [ring.util.response :refer [response redirect]]
    [ring.middleware.reload :refer [wrap-reload]]
-   [buddy.auth :refer [authenticated?]]))
-            
+   [buddy.auth :refer [authenticated?]]
+   [compojure.core :refer [defroutes GET]]
+   [compojure.route :refer [not-found]]))
 
-  ;; https://adambard.com/blog/clojure-auth-with-buddy/
+;; https://adambard.com/blog/clojure-auth-with-buddy/
 
 ;; (import 'org.bouncycastle.crypto.digests.SHA3Digest) was erroneous
 
@@ -20,6 +23,15 @@
   (if (authenticated? req)
     {:status 200 :body "OK."}
     {:status 403 :body "NOT OK."}))
+
+(defroutes app-routes
+  (GET "/" [] my-app-handler)
+  (GET "/login" []
+    (login/login))  
+  (not-found "Page Not Found."))
+
+
+
 
 ;; (def backend (session-backend))
 
@@ -35,7 +47,8 @@
 
 (def app
   (->
-    my-app-handler
+    #_my-app-handler
+    app-routes
     wrap-reload 
     (wrap-authentication backend)))
 
@@ -61,3 +74,7 @@
   (jetty/run-jetty
     app
     {:port (Integer. port)}))
+
+#_(-main 3000)
+
+#_(System/exit 0)
