@@ -9,19 +9,16 @@
                  [org.clojure/core.logic "1.0.0"]
                  [org.clojure.typed/runtime.jvm "1.0.1"]
                  [org.clojure/algo.monads "0.1.6"]
-                 [org.clojure/clojurescript "1.10.773"
-                  :scope "provided"]
                  [org.clojure/math.numeric-tower "0.0.4"]
                  [org.clojure/math.combinatorics "0.1.6" ]
                  [org.clojure/tools.macro "0.1.2"]
-                 [org.clojure/core.async "1.3.610"]
                  [org.clojure/java.jdbc "0.7.8"]
                  [com.github.sarxos/webcam-capture "0.3.12"]
-                 [com.layerware/hugsql "0.5.1"]
+                 ;; [com.layerware/hugsql "0.5.1"]
                  [org.xerial/sqlite-jdbc "3.23.1"]
                  [com.h2database/h2 "1.4.193"]
                  [ring/ring-codec "1.1.2"]                 
-                 [buddy/buddy-auth "2.2.0"]
+                 [gloss "0.2.6"]
                  [io.parsingdata/metal-core "7.1.0"]
                  [io.parsingdata/metal-formats "7.1.0"]
                  [seesaw "1.5.0"]
@@ -31,27 +28,47 @@
                  [ring "1.8.1"]
                  [ring/ring-defaults "0.3.2"]
                  [hiccup "1.0.5"]
-                 [metosin/reitit-ring "0.5.5"]
-                 [metosin/reitit "0.5.5"]
-                 [metosin/jsonista "0.2.6"]
                  [aleph "0.4.7-alpha5"]
                  [http-kit "2.4.0"] 
                  [enlive "1.1.6"]
                  [reaver "0.1.3"]
                  [clj-soup/clojure-soup "0.1.3"]
-                 [cider/orchard "0.6.0"] ;; enhanced cider options
-                 [incanter "1.9.3"] ;; datascience
-                 [quil "3.1.0"] ;; processingjs interface
+                 ;; [cider/orchard "0.6.0"] ;; enhanced cider options
+                 ;; [incanter "1.9.3"] ;; datascience
+                 ;;[quil "3.1.0" :excluisions [bouncycastle/bctsp-jdk14]
+                  ;; [bouncycastle/bctsp-jdk14]] ;; processingjs interface
                  [yogthos/config "1.1.7"]
                  [pez/clerk "1.0.0"]
+                 [metosin/reitit-ring "0.5.5"]
+                 [metosin/reitit "0.5.5"]
+
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]
-                 [compojure "1.6.1"]]
+                 [ring/ring-defaults "0.3.2" :exclusions [joda-time clj-time]]
+                 [compojure "1.6.1" :exclusions
+                  [joda-time clj-time org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
+                 [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map]]
+                 [aleph "0.4.7-alpha5" :exclusions [riddley io.aleph/dirigiste primitive-math]]
+                 [yogthos/config "1.1.7" :exclusions [org.clojure/tools.logging]]
+                 [aleph "0.4.7-alpha5" :exclusions [riddley primitive-math byte-streams manifold potemkin io.aleph/dirigiste]]
+                 [clj-soup/clojure-soup "0.1.3" :exclusions [org.jsoup/jsoup]]
+                 [reaver "0.1.3" :exclusions [org.jsoup/jsoup]]
+                 [buddy/buddy-auth "2.2.0" :exclusions [commons-codec com.google.code.findbugs/jsr305]]
+                 [cider/orchard "0.6.0" :exclusions [com.google.code.findbugs/jsr305]]
+                 [org.clojure/clojurescript "1.10.773" :exclusions [com.google.code.findbugs/jsr305]]
+                 [buddy/buddy-hashers "1.6.0"  :exclusions [commons-codec]]
+                 [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map org.clojure/core.cache]]
+                 [metosin/reitit "0.5.5" :exclusions [com.cognitect/transit-java org.clojure/spec.alpha com.cognitect/transit-clj]]
+                 [compojure "1.6.1" :exclusions [joda-time clj-time org.clojure/tools.macro org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
+
+
+                 ]
+  
   
   :plugins [[lein-ring "0.12.5"]]
-  :ring {:handler auth.basic/app}
-  :repl-options {:init-ns auth.basic}
-  :main purely-functional.web-dev.server
+  :ring {:handler auth.token/app}
+  :repl-options {:init-ns auth.token}
+  :main auth.token.server ;;purely-functional.web-dev.server
   :profiles
   {
    #_(comment :repl {:global-vars {*println-length* 30}})
