@@ -62,7 +62,7 @@
                  [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map org.clojure/core.cache]]
                  [metosin/reitit "0.5.5" :exclusions [com.cognitect/transit-java org.clojure/spec.alpha com.cognitect/transit-clj]]
                  [compojure "1.6.1" :exclusions [joda-time clj-time org.clojure/tools.macro org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
-
+                 [ring/ring-json "0.5.0"]
 
                  ]
   
