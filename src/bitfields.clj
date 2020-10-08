@@ -10,8 +10,6 @@
     (clojure.java.io/copy (clojure.java.io/input-stream x) out)
     (.toByteArray out)))
 
-
-
   #_(:import )
 
 ;; http://www.fatvat.co.uk/2009/02/bit-fields-using-clojure.html
