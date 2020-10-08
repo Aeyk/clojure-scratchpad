@@ -17,7 +17,8 @@
                  ;; [com.layerware/hugsql "0.5.1"]
                  [org.xerial/sqlite-jdbc "3.23.1"]
                  [com.h2database/h2 "1.4.193"]
-
+                 [ring/ring-codec "1.1.2"]
+                 [com.cemerick/friend "0.2.3"]
                  
                  [gloss "0.2.6"]
                  [io.parsingdata/metal-core "7.1.0"]
@@ -46,9 +47,7 @@
 
                  [venantius/accountant "0.2.5"
                   :exclusions [org.clojure/tools.reader]]
-                 [ring/ring-defaults "0.3.2" :exclusions [joda-time clj-time]]
-                 [compojure "1.6.1" :exclusions
-                  [joda-time clj-time org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
+
                  [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map]]
                  [aleph "0.4.7-alpha5" :exclusions [riddley io.aleph/dirigiste primitive-math]]
                  [yogthos/config "1.1.7" :exclusions [org.clojure/tools.logging]]
@@ -61,9 +60,9 @@
                  [buddy/buddy-hashers "1.6.0"  :exclusions [commons-codec]]
                  [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map org.clojure/core.cache]]
                  [metosin/reitit "0.5.5" :exclusions [com.cognitect/transit-java org.clojure/spec.alpha com.cognitect/transit-clj]]
-                 [compojure "1.6.1" :exclusions [joda-time clj-time org.clojure/tools.macro org.bouncycastle/bcpkix-jdk15on org.bouncycastle/bcprov-jdk15on]]
+                 [compojure "1.6.1"]
                  [ring/ring-json "0.5.0"]
-
+                 [instaparse "1.4.10"]
                  ]
   
   
