@@ -75,3 +75,12 @@ valid-phone-number
 
 (right-unfolder "aaaa")
 ;; => [:reduce "a" [:reduce "a" [:reduce "a" [:reduce "a"]]]]
+
+
+(def well-balanced-bracked
+  (insta/parser "expr = openparen  closeparen | openparen expr closeparen
+openparen = '('
+closeparen = ')'
+"))
+
+(well-balanced-bracked "(())")
