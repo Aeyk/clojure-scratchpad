@@ -20,16 +20,14 @@
                  [com.h2database/h2 "1.4.193"]
                  [ring/ring-codec "1.1.2"]
                  [com.cemerick/friend "0.2.3"]
-                 
                  [gloss "0.2.6"]
                  [io.parsingdata/metal-core "7.1.0"]
                  [io.parsingdata/metal-formats "7.1.0"]
                  [seesaw "1.5.0"]
                  [reagent-utils "0.3.3"]
                  [reagent "0.10.0"]
-
-                 [ring-server "0.5.0"]
-                 [ring "1.8.1"]
+                 [ring/ring-jetty-adapter "1.8.0"]
+                 [ring "1.8.0"]
                  [ring/ring-defaults "0.3.2"]
                  [hiccup "1.0.5"]
                  [aleph "0.4.7-alpha5"]
@@ -45,31 +43,17 @@
                  [pez/clerk "1.0.0"]
                  [metosin/reitit-ring "0.5.5"]
                  [metosin/reitit "0.5.5"]
-
-                 [venantius/accountant "0.2.5"
-                  :exclusions [org.clojure/tools.reader]]
-
-                 [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map]]
-                 [aleph "0.4.7-alpha5" :exclusions [riddley io.aleph/dirigiste primitive-math]]
-                 [yogthos/config "1.1.7" :exclusions [org.clojure/tools.logging]]
-                 [aleph "0.4.7-alpha5" :exclusions [riddley primitive-math byte-streams manifold potemkin io.aleph/dirigiste]]
-                 [clj-soup/clojure-soup "0.1.3" :exclusions [org.jsoup/jsoup]]
                  [reaver "0.1.3" :exclusions [org.jsoup/jsoup]]
-                 [cider/orchard "0.6.0" :exclusions [com.google.code.findbugs/jsr305]]
-                 [org.clojure/clojurescript "1.10.773" :exclusions [com.google.code.findbugs/jsr305]]
-                 [buddy/buddy-auth "2.2.0" :exclusions [commons-codec com.google.code.findbugs/jsr305]]
-                 [buddy/buddy-hashers "1.6.0"  :exclusions [commons-codec]]
-                 [org.clojure/core.async "1.3.610" :exclusions [org.clojure/data.priority-map org.clojure/core.cache]]
-                 [metosin/reitit "0.5.5" :exclusions [com.cognitect/transit-java org.clojure/spec.alpha com.cognitect/transit-clj]]
+                 [cider/orchard "0.6.0"]
+                 [org.clojure/clojurescript "1.10.773"]
+                 [org.clojure/core.async "1.3.610"]
                  [compojure "1.6.1"]
                  [ring/ring-json "0.5.0"]
                  [instaparse "1.4.10"]
                  ]
-  
-  
   ;; :plugins [[lein-ring "0.12.5"]]
   ;; :ring {:handler auth.token/app}
-  :repl-options {:init-ns auth.token}
+  :repl-options {:init-ns real-world.api}
   ;; :main auth.token.server ;;purely-functional.web-dev.server
   :profiles
   {
