@@ -1,16 +1,17 @@
 (ns queue)
- (defn queue
-      ([] clojure.lang.PersistentQueue/EMPTY)
-      ([coll] (reduce conj clojure.lang.PersistentQueue/EMPTY coll)))
 
-    (defmethod print-method clojure.lang.PersistentQueue
-      [q ^java.io.Writer w]
-      (.write w "#queue ")
-      (print-method (sequence q) w))
+(defn queue
+  ([] clojure.lang.PersistentQueue/EMPTY)
+  ([coll] (reduce conj clojure.lang.PersistentQueue/EMPTY coll)))
 
-    (comment
-       (let [*data-readers* {'queue #'queue}]
-         (read-string (pr-str (queue [1 2 3])))))
+(defmethod print-method clojure.lang.PersistentQueue
+  [q ^java.io.Writer w]
+  (.write w "#queue ")
+  (print-method (sequence q) w))
+
+(comment
+  (let [*data-readers* {'queue #'queue}]
+    (read-string (pr-str (queue [1 2 3])))))
 
 
 
@@ -29,4 +30,4 @@
 
 
 (into (sorted-map-by count-comparator)
-  [3 1 4 2])
+      [3 1 4 2])
