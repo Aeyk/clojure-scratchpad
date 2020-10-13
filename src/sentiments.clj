@@ -42,6 +42,7 @@
   (get syllable-map
        (str/upper-case word)))
 
+
 (def sorted-by-syllable-happy-word
   (group-by second 
             (filter
