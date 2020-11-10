@@ -49,128 +49,43 @@
                  ;; [yogthos/config "1.1.7"]
                  ;; [pez/clerk "1.0.0"]
                  ;; [metosin/reitit-ring "0.5.5"]
-                 ;; [metosin/reitit "0.5.5"]
+                 [metosin/reitit "0.5.5"]
                  ;; [reaver "0.1.3"]
                  ;; [cider/orchard "0.6.0"]
-                 ;; [org.clojure/clojurescript "1.10.773"]
+                 [org.clojure/clojurescript "1.10.773"]
                  ;; [org.clojure/core.async "1.3.610"]
                  ;; [instaparse "1.4.10"]
+                 [rum "0.12.3"]
                  ]
-  ;; :plugins [[lein-ring "0.12.5"]]
-  ;; :ring {:handler auth.token/app}
-  :repl-options {:init-ns real-world.api}
-  ;; :main auth.token.server ;;purely-functional.web-dev.server
-  #_:profiles
-  #_{
-   #_(comment :repl {:global-vars {*println-length* 30}})
-   :dev   
-   {:dependencies [[org.clojure.typed/checker.jvm "1.0.1"]]
-    :main purely-functional.web-dev.server/-dev-main }
-   }
-  :jvm-opts ["-Xmx2g"]
-  ;; :source-paths ["src/clj" "src/cljc" "src/cljs"]
-  ;;   ;; :ring {:handler hello-web.handler/app
-  ;;   ;;        :uberwar-name "hello-web.war"}
-  ;;   ;; :ring-handler hello-web.handler/app}
-  ;;   ;; :uberjar-name "hello-web.jar"
-  ;;   ;; :main hello-web.server
+  :plugins [[lein-cljsbuild "1.1.7"]
+            [lein-figwheel "0.5.20"]]
 
+  :figwheel {:http-server-root "."
+             :nrepl-port 7002
+             :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
+             :css-dirs ["public/css"]}
 
-
-  ;;   :plugins [[lein-ring "0.12.5"]]
-  ;;	         [lein-environ "1.1.0"]
-  ;;             
-  ;;             [nightlight/lein-nightlight "2.4.1"]
-  ;;             [org.clojure/core.unify "0.5.7"]
-  ;;             [lein-cljsbuild "1.1.7"]
-  ;;             [lein-asset-minifier "0.4.6"
-  ;;              :exclusions [org.clojure/clojure]]]
-
-  ;;   :min-lein-version "2.5.0"
-  ;;   :clean-targets ^{:protect false}
-  ;;   [:target-path
-  ;;    [:cljsbuild :builds :app :compiler :output-dir]
-  ;;    [:cljsbuild :builds :app :compiler :output-to]]
-
-
-  ;;   :resource-paths ["resources" "target/cljsbuild"]
-
-  ;;   :minify-assets
-  ;;   [[:css {:source "resources/public/css/site.css"
-  ;;           :target "resources/public/css/site.min.css"}]]
-
-  ;;   :cljsbuild
-  ;;   {:builds {:min
-  ;;             {:source-paths ["src/cljs" "src/cljc" "env/prod/cljs"]
-  ;;              :compiler
-  ;;              {:output-to        "target/cljsbuild/public/js/app.js"
-  ;;               :output-dir       "target/cljsbuild/public/js"
-  ;;               :source-map       "target/cljsbuild/public/js/app.js.map"
-  ;;               :optimizations :advanced
-  ;;               :infer-externs true
-  ;;               :pretty-print  false}}
-  ;;             :app
-  ;;             {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
-  ;;              :figwheel {:on-jsload "hello-web.core/mount-root"}
-  ;;              :compiler
-  ;;              {:main "hello-web.dev"
-  ;;               :asset-path "/js/out"
-  ;;               :output-to "target/cljsbuild/public/js/app.js"
-  ;;               :output-dir "target/cljsbuild/public/js/out"
-  ;;               :source-map true
-  ;;               :optimizations :none
-  ;;               :pretty-print  true}}}}
-
-  ;;   :figwheel
-  ;;   {:http-server-root "public"
-  ;;    :server-port 3449
-  ;;    :nrepl-port 7002
-  ;;    :nrepl-middleware [cider.piggieback/wrap-cljs-repl
-  ;;                       cider.nrepl/cider-middleware
-  ;;                       refactor-nrepl.middleware/wrap-refactor
-  ;;                       ]
-  ;;    :css-dirs ["resources/public/css"]}
-
-  ;;   :profiles {:dev {:repl-options {:init-ns clojure-scratchpad.repl}
-  ;;                    :dependencies [[javax.servlet/servlet-api "2.5"]
-  ;;                                   [ring/ring-mock "0.3.2"]
-  ;;                                   [cider/piggieback "0.5.1"]
-  ;;                                   [binaryage/devtools "1.0.0"]
-  ;;                                   [figwheel-sidecar "0.5.20"]
-  ;;                                   [binaryage/devtools "1.0.2"]
-  ;;                                   [ring/ring-mock "0.4.0"]
-  ;;                                   [ring/ring-devel "1.8.1"]
-  ;;                                   [prone "2020-01-17"]
-  ;;                                   [figwheel-sidecar "0.5.20"]
-  ;;                                   [nrepl "0.8.0"]
-  ;;                                   [pjstadig/humane-test-output "0.10.0"]]
-
-  ;;                    :source-paths ["env/dev/clj"]
-  ;;                    :plugins [[lein-figwheel "0.5.20"]
-  ;;                              [cider/cider-nrepl "0.21.1"]
-  ;;                              [org.clojure/tools.namespace "0.3.0-alpha4"
-  ;;                               :exclusions [org.clojure/tools.reader]]
-  ;;                              [refactor-nrepl "2.4.0"
-  ;;                               :exclusions [org.clojure/clojure]]
-  ;;                              ]
-
-  ;;                    :injections [(require 'pjstadig.humane-test-output)
-  ;;                                 (pjstadig.humane-test-output/activate!)]}
-
-  ;;              :env {:dev true}
-
-  ;;              :uberjar {:hooks [minify-assets.plugin/hooks]
-  ;;                         :source-paths ["env/prod/clj"]
-  ;;                         :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
-  ;;                         :env {:production true}
-  ;;                         :aot :all
-  ;;                         :omit-source true}})
-
-  ;; ;; (defproject clojure-scratchpad "0.1.0-SNAPSHOT"
-  ;; ;;   :description "FIXME: write description"
-  ;; ;;   :url "http://example.com/FIXME"
-  ;; ;;   :license {:name "EPL-2.0 OR GPL-2.0-or-later WITH Classpath-exception-2.0"
-  ;; ;;             :url "https://www.eclipse.org/legal/epl-2.0/"}
-  ;; ;;   :dependencies [[org.clojure/clojure "1.10.1"]]
-  ;; ;;   :repl-options {:init-ns clojure-scratchpad.core})
-  )
+  :cljsbuild {:builds {:app
+                       {:source-paths ["src/cljs"]
+                        :compiler
+                        {:main "frontend.counter"
+                         :output-to "public/js/app.js"
+                         :output-dir "public/js/out"
+                         :asset-path   "js/out"
+                         :source-map true
+                         :optimizations :none
+                         :pretty-print  true}
+                        :figwheel
+                        {:on-jsload "frontend.counter/init!"
+                         :open-urls ["http://localhost:3449/index.html"]}}
+                       :release
+                       {:source-paths ["src/cljs"]
+                        :compiler
+                        {:output-to "public/js/app.js"
+                         :output-dir "target/release"
+                         :optimizations :advanced
+                         :infer-externs true
+                         :pretty-print false}}}}
+  :main backend.websocket
+  :repl-options
+  {:init-ns backend.websocket})

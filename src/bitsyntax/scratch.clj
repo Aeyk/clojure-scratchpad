@@ -1,6 +1,6 @@
 (ns bitsyntax.scratch
   (:require [instaparse.core :as insta :refer [defparser]])
-  (:require [clojure.data.int-map :as int-map])
+  (:require [clojure.data.int-map :as i])
   (:require [clojure.core.reducers :as reducers])
   (:require [clojure.math.numeric-tower :as math])
   (:require [clojure.java.io :as io])
@@ -274,3 +274,27 @@ closeparen = ')'
 (defn deci [number]
   (->base number 10))
 ;;; <2020-10-13 Tue 20:31>
+
+;; <2020-10-16 Fri>
+;; a bit is a either 0 or 1
+;; a byte is 8 bites, 0-indexed (0-7)
+;; its represented as an int-map.
+;; it will usually be divisibles or powers of 2 but 
+;; doesnt have to be that way.
+
+(defn binary-int-set
+  [bitset] 
+ {:pre [(every? #(or (= 0 %) (= 1 %)) (vals bitset))]}
+  (for [v (vals bitset)]
+    v))
+
+(defn bitset [size] ;; {:pre [(zero? (mod size 2))]}
+   (apply i/int-map (vec (interleave (range size) (repeat 0)))))
+
+(defn bitarray [bs]
+  (vec (vals bs)))
+
+(def my-buffer (buf/allocate 8 {:type :direct}))
+
+(buf/write! my-buffer (bitarray (bitset 8)) )
+

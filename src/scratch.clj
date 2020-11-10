@@ -180,3 +180,11 @@
       (.getRGB (java.awt.Color. 127 0 127))))  
   (javax.imageio.ImageIO/write img "png"
     (java.io.File. "try.png")))
+
+
+
+;; https://aphyr.com/posts/352-clojure-from-the-ground-up-polymorphism
+(defn compare-classes 
+  [a b]
+  (clojure.set/intersection (supers a) (supers b)))
+                              

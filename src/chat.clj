@@ -11,21 +11,12 @@
 
 ;; https://gist.githubusercontent.com/mikeball/ba04dd5479f51c00205f/raw/583f292cc2ba2528ffa0629d92de0fbe597d7cb7/core.clj
 
-#_(def pg-db 
-  (doto (PGDataSource.)
-    (.setHost     "localhost") 
-    (.setPort     5432)
-    (.setDatabaseName "realtime-chat")
-    (.setUser     "postgres")
-    (.setPassword "Px36xnX2JkzjkLRXEQo7ki")))
-
+;; http://ix.io/2C8g
 (def pg-db {:dbtype "pgsql"
             :dbname "realtime-chat"
             :user "postgres"
-            :password "Px36xnX2JkzjkLRXEQo7ki"})
+            :password ""})
 
-
-#_(map #(ns-unmap 'chat %) (keys (ns-interns 'chat)))
 
 (def listener
   (reify PGNotificationListener
@@ -33,18 +24,26 @@
      (println payload))))
 
 (def connection
-  (doto (jdbc/get-connection pg-db) #_(.getConnection pg-db)
+  (doto (jdbc/get-connection pg-db) 
         (.addNotificationListener listener)))
 
 (defn send-message [msg]
   (jdbc/query pg-db ["SELECT pg_notify('messages', ?);" msg]))
 
-(jdbc/prepare-statement 
-  (jdbc/get-connection pg-db) 
-  "LISTEN messages;")
+
+(jdbc/with-db-connection [conn (jdbc/get-connection pg-db)]
+  (jdbc/prepare-statement 
+    conn
+    "LISTEN messages;"))
+
+(doto (.createStatement connection)
+      (.execute "LISTEN messages;")
+      (.close))
+
+
+(send-message "I love to send messages")
 
 ;; TODO: clojure.async my pg-db stream
 ;; TODO: clojurescript websockets <-> postgresql LISTEN / NOTIFY;
 ;; TODO: sente / ? for websockets
-
 
