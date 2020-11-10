@@ -14,6 +14,8 @@
                  [org.clojure/tools.macro "0.1.2"]
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.clojure/data.csv "1.0.0"]
+                 [org.clojure/data.int-map "1.0.0"]
+                 [byte-streams "0.2.4"]
                  [com.github.sarxos/webcam-capture "0.3.12"]
                  ;; [com.layerware/hugsql "0.5.1"]
                  [org.xerial/sqlite-jdbc "3.23.1"]
