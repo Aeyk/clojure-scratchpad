@@ -4,7 +4,9 @@
   (:require [clojure.core.reducers :as reducers])
   (:require [clojure.math.numeric-tower :as math])
   (:require [clojure.java.io :as io])
-  (:require [byte-streams.byte-streams] :refer [convert])
+  (:require [octet.core :as buf])
+  (:require [octet.spec :as bspec])
+  #_(:require [byte-streams.byte-streams] :refer [convert]) ;; ? why ?
   (:import (java.util BitSet)
            (java.io File DataOutputStream 
              ByteArrayOutputStream FileOutputStream)))
@@ -246,6 +248,16 @@ closeparen = ')'
 
 (spit "cafebabe_test.dat"
   (into-array Byte/TYPE (map byte)))
-
-
 ;; = [:expr [:openparen "("] [:expr [:openparen "("] [:closeparen ")"]] [:closeparen ")"]
+
+;; <2020-10-13 Tue 18:17>
+;; http://funcool.github.io/octet/latest/
+(def cafe-babe-spec (bspec/spec buf/int16 buf/int16 buf/int16 buf/int16))
+(def my-buffer (buf/allocate 8 {:type :direct}))
+(buf/write! my-buffer [0xCA 0xFA 0xBA 0xBE] cafe-babe-spec)
+(buf/read my-buffer cafe-babe-spec)
+
+(defn hex [b]
+  (symbol (format "0x%02X" b)))
+
+(map hex (buf/read my-buffer cafe-babe-spec))
