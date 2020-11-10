@@ -96,9 +96,36 @@
 ;;;; => #object["[B" 0x3ac4c022 "[B@3ac4c022"]
 bmp-buffer
 
+(defn add1 [x]
+  (inc x))
 
+(map
+  (fn [x] (* x x))
+  (filter odd? (range 10)))
 
+(a b c)
 
+(defn add [x y]
+  (if (zero? x)
+    y
+    (recur (dec x) (inc y))))
+
+;; palindome
+;; mom
+;; wow
+;; racecar
+;; a
+;; i
+(string? "hello")
+
+(drop 1 "hello")
+(defn palindrome? [s]
+  (if (empty? s)
+    true
+    (if (= (last s)
+          (first s))
+      ()
+      false)))
 
 ;;; https://en.wikipedia.org/wiki/BMP_file_format
 (def bmp  (slurp-bytes "/home/malik/bmp_24.bmp"))
@@ -176,7 +203,7 @@ bmp-buffer
 ;;     G   R B A   G R B   A  ....
 ;; => (0 255 0 0 255 0 0 255 0 0 255 0 0 255 0 0 255 0 0 255 0 0 255 0 0 255 0 0 255 0)
 
-
+ 
 (defn get-colors [bmp]
   "Returns array of integers from a BITMAP as [R ? ?]"
   (let [colors (map unsign (drop 54 bmp))]
@@ -329,3 +356,11 @@ altered-colors
      :size 	:int32
      :_		:int32
      :offset :int32}))
+
+
+
+
+
+(reduce + (range 1 101))
+
+

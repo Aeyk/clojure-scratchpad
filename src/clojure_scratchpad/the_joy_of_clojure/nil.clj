@@ -686,6 +686,7 @@ schedule
   (/
     (* n (+ n 1))
     2))
+(def triangle-numbers (map triangle (iterate inc 1)))
 
 (triangle 10)
 ;; => 55
@@ -694,7 +695,7 @@ schedule
 ;; => (1 3 6 10 15 21 28 36 45 55)
 
 
-(def triangle-numbers (map triangle (iterate inc 1)))
+
 
 (nth triangle-numbers 99)
 ;; => 5050

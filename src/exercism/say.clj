@@ -20,7 +20,7 @@ j(ns say
     2 (str (first nd) " thousand ")
     1 (str nd "")))
 
-
+(defn number [num])
 ;; (defn number [num]
 ;;   (let [ns [" billion " " million " " thousand " ""]]
 ;;     (letfn [(defn num-digitizer [num]

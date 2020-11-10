@@ -33,7 +33,7 @@
                  [ring/ring-defaults "0.3.2"]
                  [hiccup "1.0.5"]
                  [aleph "0.4.7-alpha5"]
-                 [http-kit "2.4.0"] 
+                 [http-kit "2.4.0"]
                  [enlive "1.1.6"]
                  [reaver "0.1.3"]
                  [clj-soup/clojure-soup "0.1.3"]

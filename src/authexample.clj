@@ -4,15 +4,45 @@
             [compojure.response :refer [render]]
 
             [clojure.java.io :as io]
+
             [ring.util.response :refer [response redirect content-type]]
             [ring.middleware.session :refer [wrap-session]]
             [ring.middleware.params :refer [wrap-params]]
             [ring.adapter.jetty :as jetty]
+            
+            [clojure.java.jdbc :as jdbc]
 
             [buddy.auth :refer [authenticated? throw-unauthorized]]
             [buddy.auth.backends.session :refer [session-backend]]
             [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]])
   (:gen-class))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Database stuff                                   ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(def db
+  {:classname   "org.sqlite.JDBC"
+   :subprotocol "sqlite"
+   :subname     "db/dev.db"})
+
+
+(defn create-user [req]
+   ;; req
+  (jdbc/insert! db :users req)) 
+
+(defn get-last-user []
+  (jdbc/query db "SELECT * FROM    users WHERE ID = (SELECT MAX(ID) FROM users);"))
+
+
+(defn get-users []
+  (jdbc/query db "SELECT * FROM    users;"))
+
+
+(defn get-users-password [n]
+  (first  (jdbc/query db ["SELECT password FROM    users WHERE 1=1 AND username = ?;" n])))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Controllers                                      ;;
@@ -58,6 +88,7 @@
 
 ;; Authentication Handler
 ;; Used to respond to POST requests to /login.
+;;;;;; (:password (get-users-password "admin"))
 
 (defn login-authenticate
   "Check request username and password against authdata
@@ -71,7 +102,7 @@
   (let [username (get-in request [:form-params "username"])
         password (get-in request [:form-params "password"])
         session (:session request)
-        found-password (get authdata (keyword username))]
+        found-password (:password (get-users-password password))]
     (if (and found-password (= found-password password))
       (let [next-url (get-in request [:query-params :next] "/")
             updated-session (assoc session :identity (keyword username))]
@@ -79,6 +110,31 @@
             (assoc :session updated-session)))
       (let [content (slurp (io/resource "login.html"))]
         (render content request)))))
+
+
+;; ;; Authentication Handler
+;; ;; Used to respond to POST requests to /login.
+
+;; (defn login-authenticate
+;;   "Check request username and password against authdata
+;;   username and passwords.
+
+;;   On successful authentication, set appropriate user
+;;   into the session and redirect to the value of
+;;   (:next (:query-params request)). On failed
+;;   authentication, renders the login page."
+;;   [request]
+;;   (let [username (get-in request [:form-params "username"])
+;;         password (get-in request [:form-params "password"])
+;;         session (:session request)
+;;         found-password (get authdata (keyword username))]
+;;     (if (and found-password (= found-password password))
+;;       (let [next-url (get-in request [:query-params :next] "/")
+;;             updated-session (assoc session :identity (keyword username))]
+;;         (-> (redirect next-url)
+;;             (assoc :session updated-session)))
+;;       (let [content (slurp (io/resource "login.html"))]
+;;         (render content request)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Routes and Middlewares                           ;;
@@ -132,3 +188,18 @@
     (jetty/run-jetty $ {:port 3001})))
 
 #_(-main)
+
+;; (get-users-password "admin")
+
+
+
+;; (let [u (get-users)]
+;;   (interleave (map :username u)
+;;     (map :password u)))
+
+
+#_(create-user {:username "admin" :password "secret"})
+
+
+
+

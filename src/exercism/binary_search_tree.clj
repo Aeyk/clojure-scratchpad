@@ -12,9 +12,8 @@
   (cond
     (empty? tree)
     (singleton e)
-    (and
-      (< e (value tree))
-      (nil? (left tree)))
+    (< (value tree) e)
+    (insert e tree)
     (merge tree {:left (singleton e)})
     (and
       (> e (value tree))
@@ -24,7 +23,9 @@
 
 
 (defn from-list [lst] lst)
-(defn to-list [tree] tree)
+(defn to-list [tree] (tree-seq (not seq?) :value tree))
+
+(insert 6 (insert 2  (insert 4 [])))
 
 (singleton 4)
 ;; => {:value 4, :left nil, :right nil}

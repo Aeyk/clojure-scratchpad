@@ -14,12 +14,3 @@
   (into {} (sort-by first school))
   )
 
-
-
-#_
-(sorted (-> db
-          (add "Jennifer" 4)
-          (add "Kareem" 6)
-          (add "Christopher" 4)
-          (add "Kyle" 3)))
-

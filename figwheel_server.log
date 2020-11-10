@@ -1,0 +1,3042 @@
+Compiling build :app to "public/js/app.js" from ["src" "env/dev/cljs"]...
+[31mFailed to compile build :app from ["src" "env/dev/cljs"] in 0.172 seconds.[0m
+[36m----  Exception    ----[0m
+
+  [1menv/dev/cljs (No such file or directory)[0m
+
+[36m----  Exception Stack Trace  ----[0m
+
+java.io.FileNotFoundException: env/dev/cljs (No such file or directory)
+ at java.io.FileInputStream.open0 (FileInputStream.java:-2)
+    java.io.FileInputStream.open (FileInputStream.java:219)
+    java.io.FileInputStream.<init> (FileInputStream.java:157)
+    clojure.java.io$fn__11510.invokeStatic (io.clj:229)
+    clojure.java.io/fn (io.clj:229)
+    clojure.java.io$fn__11423$G__11416__11430.invoke (io.clj:69)
+    clojure.java.io$fn__11484.invokeStatic (io.clj:165)
+    clojure.java.io/fn (io.clj:165)
+    clojure.java.io$fn__11436$G__11412__11443.invoke (io.clj:69)
+    clojure.java.io$reader.invokeStatic (io.clj:102)
+    clojure.java.io$reader.doInvoke (io.clj:86)
+    clojure.lang.RestFn.invoke (RestFn.java:410)
+    cljs.analyzer$parse_ns$fn__2540.invoke (analyzer.cljc:3758)
+    cljs.analyzer$parse_ns.invokeStatic (analyzer.cljc:3741)
+    cljs.analyzer$parse_ns.invoke (analyzer.cljc:3720)
+    cljs.analyzer$parse_ns.invokeStatic (analyzer.cljc:3731)
+    cljs.analyzer$parse_ns.invoke (analyzer.cljc:3720)
+    cljs.compiler$find_source.invokeStatic (compiler.cljc:1625)
+    cljs.compiler$find_source.invoke (compiler.cljc:1624)
+    cljs.closure$fn__5126.invokeStatic (closure.clj:657)
+    cljs.closure/fn (closure.clj:647)
+    cljs.closure$fn__5065$G__5047__5072.invoke (closure.clj:521)
+    cljs.closure$fn__5140.invokeStatic (closure.clj:677)
+    cljs.closure/fn (closure.clj:647)
+    cljs.closure$fn__5065$G__5047__5072.invoke (closure.clj:521)
+    cljs.build.api$inputs$reify__6688$fn__6691.invoke (api.clj:165)
+    clojure.core$map$fn__5874.invoke (core.clj:2755)
+    clojure.lang.LazySeq.sval (LazySeq.java:42)
+    clojure.lang.LazySeq.seq (LazySeq.java:51)
+    clojure.lang.RT.seq (RT.java:535)
+    clojure.core$seq__5409.invokeStatic (core.clj:137)
+    clojure.core$apply.invokeStatic (core.clj:660)
+    clojure.core$mapcat.invokeStatic (core.clj:2785)
+    clojure.core$mapcat.doInvoke (core.clj:2785)
+    clojure.lang.RestFn.invoke (RestFn.java:423)
+    cljs.build.api$inputs$reify__6688._find_sources (api.clj:165)
+    cljs.closure$build.invokeStatic (closure.clj:2753)
+    cljs.closure$build.invoke (closure.clj:2718)
+    cljs.build.api$build.invokeStatic (api.clj:208)
+    cljs.build.api$build.invoke (api.clj:189)
+    figwheel_sidecar.components.cljs_autobuild$cljs_build.invokeStatic (cljs_autobuild.clj:28)
+    figwheel_sidecar.components.cljs_autobuild$cljs_build.invoke (cljs_autobuild.clj:27)
+    figwheel_sidecar.build_middleware.injection$hook$fn__20268.invoke (injection.clj:100)
+    figwheel_sidecar.components.cljs_autobuild$notify_command_hook$fn__20591.invoke (cljs_autobuild.clj:69)
+    figwheel_sidecar.components.cljs_autobuild$figwheel_start_and_end_messages$fn__20581.invoke (cljs_autobuild.clj:48)
+    figwheel_sidecar.build_middleware.notifications$hook$fn__20449.invoke (notifications.clj:179)
+    figwheel_sidecar.build_middleware.clj_reloading$hook$fn__20506.invoke (clj_reloading.clj:111)
+    figwheel_sidecar.build_middleware.javascript_reloading$hook$fn__20540.invoke (javascript_reloading.clj:48)
+    figwheel_sidecar.components.cljs_autobuild$color_output$fn__20595.invoke (cljs_autobuild.clj:80)
+    figwheel_sidecar.components.cljs_autobuild$execute_build$fn__20637.invoke (cljs_autobuild.clj:234)
+    figwheel_sidecar.utils$sync_exec$fn__363$fn__364.invoke (utils.clj:13)
+    figwheel_sidecar.utils$sync_exec$fn__363.invoke (utils.clj:12)
+    clojure.core$binding_conveyor_fn$fn__5762.invoke (core.clj:2035)
+    clojure.lang.AFn.applyToHelper (AFn.java:154)
+    clojure.lang.RestFn.applyTo (RestFn.java:132)
+    clojure.lang.Agent$Action.doRun (Agent.java:114)
+    clojure.lang.Agent$Action.run (Agent.java:163)
+    java.util.concurrent.ThreadPoolExecutor.runWorker (ThreadPoolExecutor.java:1128)
+    java.util.concurrent.ThreadPoolExecutor$Worker.run (ThreadPoolExecutor.java:628)
+    java.lang.Thread.run (Thread.java:834)
+
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.841 seconds.[0m
+notifying browser that file changed:  public/js/out/goog/deps.js
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/rum_counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.833 seconds.[0m
+notifying browser that file changed:  public/js/out/goog/deps.js
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/rum_counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.754 seconds.[0m
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.913 seconds.[0m
+notifying browser that file changed:  public/js/out/goog/deps.js
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:16  column:25  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/state[0m
+
+  [36m12[0m  [36m(enable-console-print!)[0m
+  [36m13[0m  [36m[0m
+  [36m14[0m  [36m(rum/defc app [0m
+  [36m15[0m  [36m  [][0m
+  [33m16[0m  [1m  (let [count (::clicks state)]    [0m
+  [0m  [0m  [33m                        ^--- Use of undeclared Var frontend.counter/state[0m
+  [36m17[0m  [36m    [:div.app [0m
+  [36m18[0m  [36m     {:on-click (fn [_] (swap! count inc))}[0m
+  [36m19[0m  [36m     (pr-str  @count)]))[0m
+  [36m20[0m  [36m[0m
+  [36m21[0m  [36m;; -------------------------[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.88 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.742 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.767 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.523 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.544 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.506 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:14  column:2  ----[0m
+
+  [1mUse of undeclared Var rum.core/defcsx[0m
+
+  [36m10[0m  [36m  (:import cljsjs.react))[0m
+  [36m11[0m  [36m[0m
+  [36m12[0m  [36m(enable-console-print!)[0m
+  [36m13[0m  [36m[0m
+  [33m14[0m  [1m(rum/defcsx app > {}[0m
+  [0m  [0m  [33m ^--- Use of undeclared Var rum.core/defcsx[0m
+  [36m15[0m  [36m  [:div.app [0m
+  [36m16[0m  [36m   {:on-click (fn [_] (swap! count inc))}[0m
+  [36m17[0m  [36m   (pr-str  @count)])[0m
+  [36m18[0m  [36m[0m
+  [36m19[0m  [36m;; -------------------------[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:14  column:13  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/app[0m
+
+  [36m10[0m  [36m  (:import cljsjs.react))[0m
+  [36m11[0m  [36m[0m
+  [36m12[0m  [36m(enable-console-print!)[0m
+  [36m13[0m  [36m[0m
+  [33m14[0m  [1m(rum/defcsx app > {}[0m
+  [0m  [0m  [33m            ^--- Use of undeclared Var frontend.counter/app[0m
+  [36m15[0m  [36m  [:div.app [0m
+  [36m16[0m  [36m   {:on-click (fn [_] (swap! count inc))}[0m
+  [36m17[0m  [36m   (pr-str  @count)])[0m
+  [36m18[0m  [36m[0m
+  [36m19[0m  [36m;; -------------------------[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:22  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/app[0m
+
+  [36m19[0m  [36m;; -------------------------[0m
+  [36m20[0m  [36m;; Initialize app[0m
+  [36m21[0m  [36m(defn init! [][0m
+  [33m22[0m  [1m  (rum/mount (app) (js/document.getElementById "app")))[0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.821 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.505 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.539 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.76 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.839 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.893 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.75 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.725 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.72 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.884 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.814 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.765 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:21  column:37  ----[0m
+
+  [1mUse of undeclared Var rum.core/reactiveb[0m
+
+  [36m17[0m  [36m  [:div.app [0m
+  [36m18[0m  [36m   {:on-click (fn [_] (swap! count inc))}[0m
+  [36m19[0m  [36m   (pr-str state)])[0m
+  [36m20[0m  [36m[0m
+  [33m21[0m  [1m(rum/defcs hello-world-component  < rum/reactiveb[0m
+  [0m  [0m  [33m                                    ^--- Use of undeclared Var rum.core/reactiveb[0m
+  [36m22[0m  [36m  [state _ _][0m
+  [36m23[0m  [36m  [:div.app [0m
+  [36m24[0m  [36m   {:on-click (fn [_] (swap! count inc))}[0m
+  [36m25[0m  [36m   (pr-str state)])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.86 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.811 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.507 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:24 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 22] Unmatched delimiter }.[0m
+
+  [36m22[0m  [36m{:render [0m
+  [36m23[0m  [36m (fn [state][0m
+  [33m24[0m  [1m   (pr-str state)(}[0m
+  [0m  [0m  [33m   /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 22] Unmatched delimiter }.[0m
+  [36m25[0m  [36m[state _ _][0m
+  [36m26[0m  [36m[:div.app [0m
+  [36m27[0m  [36m {:on-click (fn [_] (swap! count inc))}[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.762 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.898 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:26  column:4  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/state[0m
+
+  [36m22[0m  [36m{:render [0m
+  [36m23[0m  [36m (fn [state][0m
+  [36m24[0m  [36m   (pr-str state))} [0m
+  [36m25[0m  [36m[][0m
+  [33m26[0m  [1m[state _ _][0m
+  [0m  [0m  [33m ^--- Use of undeclared Var frontend.counter/state[0m
+  [36m27[0m  [36m[:div.app [0m
+  [36m28[0m  [36m {:on-click (fn [_] (swap! count inc))}[0m
+  [36m29[0m  [36m (pr-str state)])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:26  column:10  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/_[0m
+
+  [36m22[0m  [36m{:render [0m
+  [36m23[0m  [36m (fn [state][0m
+  [36m24[0m  [36m   (pr-str state))} [0m
+  [36m25[0m  [36m[][0m
+  [33m26[0m  [1m[state _ _][0m
+  [0m  [0m  [33m       ^--- Use of undeclared Var frontend.counter/_[0m
+  [36m27[0m  [36m[:div.app [0m
+  [36m28[0m  [36m {:on-click (fn [_] (swap! count inc))}[0m
+  [36m29[0m  [36m (pr-str state)])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:26  column:12  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/_[0m
+
+  [36m22[0m  [36m{:render [0m
+  [36m23[0m  [36m (fn [state][0m
+  [36m24[0m  [36m   (pr-str state))} [0m
+  [36m25[0m  [36m[][0m
+  [33m26[0m  [1m[state _ _][0m
+  [0m  [0m  [33m         ^--- Use of undeclared Var frontend.counter/_[0m
+  [36m27[0m  [36m[:div.app [0m
+  [36m28[0m  [36m {:on-click (fn [_] (swap! count inc))}[0m
+  [36m29[0m  [36m (pr-str state)])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:29  column:12  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/state[0m
+
+  [36m25[0m  [36m  [][0m
+  [36m26[0m  [36m  [state _ _][0m
+  [36m27[0m  [36m  [:div.app [0m
+  [36m28[0m  [36m   {:on-click (fn [_] (swap! count inc))}[0m
+  [33m29[0m  [1m   (pr-str state)])[0m
+  [0m  [0m  [33m           ^--- Use of undeclared Var frontend.counter/state[0m
+  [36m30[0m  [36m[0m
+  [36m31[0m  [36m[0m
+  [36m32[0m  [36m;; -------------------------[0m
+  [36m33[0m  [36m;; Initialize app[0m
+  [36m34[0m  [36m(defn init! [][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.921 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:29  column:12  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/state[0m
+
+  [36m25[0m  [36m  [][0m
+  [36m26[0m  [36m [0m
+  [36m27[0m  [36m  [:div.app [0m
+  [36m28[0m  [36m   {:on-click (fn [_] (swap! count inc))}[0m
+  [33m29[0m  [1m   (pr-str state)])[0m
+  [0m  [0m  [33m           ^--- Use of undeclared Var frontend.counter/state[0m
+  [36m30[0m  [36m[0m
+  [36m31[0m  [36m[0m
+  [36m32[0m  [36m;; -------------------------[0m
+  [36m33[0m  [36m;; Initialize app[0m
+  [36m34[0m  [36m(defn init! [][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.77 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.756 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 2.768 seconds.[0m
+notifying browser that file changed:  public/js/out/goog/deps.js
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.94 seconds.[0m
+notifying browser that file changed:  public/js/out/goog/deps.js
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.858 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.8 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.748 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.77 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.759 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.818 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.742 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.782 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.747 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.909 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:30  column:1  ----[0m
+
+  [1mapp at line 15 is being replaced[0m
+
+  [36m26[0m  [36m  [] [0m
+  [36m27[0m  [36m  [:div.app   [0m
+  [36m28[0m  [36m   (label "goodbye")])[0m
+  [36m29[0m  [36m[0m
+  [33m30[0m  [1m(rum/defcs app < [0m
+  [0m  [0m  [33m^--- app at line 15 is being replaced[0m
+  [36m31[0m  [36m  {:did-mount[0m
+  [36m32[0m  [36m   (fn [state][0m
+  [36m33[0m  [36m     (js/console.log (:rum/react-component state))[0m
+  [36m34[0m  [36m     state)}[0m
+  [36m35[0m  [36m  [state text][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.923 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.772 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.738 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.712 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.76 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.559 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.758 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:32  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/app[0m
+
+  [36m29[0m  [36m;; -------------------------[0m
+  [36m30[0m  [36m;; Initialize app[0m
+  [36m31[0m  [36m(defn init! [][0m
+  [33m32[0m  [1m  (rum/mount (app) (js/document.getElementById "app")))[0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.846 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.75 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.769 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.731 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.705 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.685 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.653 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:25 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 25, col 17] The map literal starting with :on-click on line 25 column 5 contains 1 form(s). Map literals must contain an even number of forms.[0m
+
+  [36m23[0m  [36m[:div [0m
+  [36m24[0m  [36m [:button "BUTTON A"[0m
+  [33m25[0m  [1m  {:on-click }][0m
+  [0m  [0m  [33m  /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 25, col 17] The map literal starting with :on-click on line 25 column 5 contains 1 form(s). Map literals must contain an even number of forms.[0m
+  [36m26[0m  [36m [:button "B BUTTON"[0m
+  [36m27[0m  [36m      {:on-click }]])[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.037 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.728 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.693 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:31  column:24  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/e[0m
+
+  [36m27[0m  [36m       (js/console.log e))}][0m
+  [36m28[0m  [36m   [:button "B BUTTON"[0m
+  [36m29[0m  [36m    {:on-click [0m
+  [36m30[0m  [36m     (fn [_][0m
+  [33m31[0m  [1m       (js/console.log e))}]])[0m
+  [0m  [0m  [33m                       ^--- Use of undeclared Var frontend.counter/e[0m
+  [36m32[0m  [36m[0m
+  [36m33[0m  [36m(rum/defc app[0m
+  [36m34[0m  [36m  [][0m
+  [36m35[0m  [36m  (toggle-button))[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.791 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.787 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.723 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.763 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.706 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.536 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:24 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 25] Unmatched delimiter ).[0m
+
+  [36m22[0m  [36m  [][0m
+  [36m23[0m  [36m  [:div [0m
+  [33m24[0m  [1m   [:button "BUTTON A"])[0m
+  [0m  [0m  [33m   /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 25] Unmatched delimiter ).[0m
+  [36m25[0m  [36m(rum/defc app[0m
+  [36m26[0m  [36m  [][0m
+  [36m27[0m  [36m  toggle-button)[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.476 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:24 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 25] Unmatched delimiter ).[0m
+
+  [36m22[0m  [36m  [][0m
+  [36m23[0m  [36m  [:div [0m
+  [33m24[0m  [1m   [:button "BUTTON A"]))[0m
+  [0m  [0m  [33m   /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 25] Unmatched delimiter ).[0m
+  [36m25[0m  [36m(rum/defc app[0m
+  [36m26[0m  [36m  [][0m
+  [36m27[0m  [36m  toggle-button)[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.476 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:24 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 27] Unmatched delimiter ).[0m
+
+  [36m22[0m  [36m  [][0m
+  [36m23[0m  [36m  [:div [0m
+  [33m24[0m  [1m   [:button "BUTTON A"]]))[0m
+  [0m  [0m  [33m   /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 24, col 27] Unmatched delimiter ).[0m
+  [36m25[0m  [36m(rum/defc app[0m
+  [36m26[0m  [36m  [][0m
+  [36m27[0m  [36m  toggle-button)[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.8 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.72 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.738 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.753 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:24  column:48  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/this[0m
+
+  [36m21[0m  [36m(rum/defc toggle-button < {}[0m
+  [36m22[0m  [36m  [][0m
+  [36m23[0m  [36m  [:div [0m
+  [33m24[0m  [1m   [:button {:on-click  (fn [] (js/console.log this))}"BUTTON A"]])[0m
+  [0m  [0m  [33m                                               ^--- Use of undeclared Var frontend.counter/this[0m
+  [36m25[0m  [36m[0m
+  [36m26[0m  [36m(rum/defc app[0m
+  [36m27[0m  [36m  [][0m
+  [36m28[0m  [36m  toggle-button)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.807 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.744 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.735 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.014 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.725 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.739 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.711 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.849 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.955 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.73 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.749 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.732 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.736 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.761 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.839 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.732 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.83 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.735 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.502 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.522 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:24  column:4  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/let-fn[0m
+
+  [36m22[0m  [36m(rum/defcs toggle-button < (rum/local 0 ::key)[0m
+  [36m23[0m  [36m  [state _][0m
+  [33m24[0m  [1m  (let-fn [(toggle [x][0m
+  [0m  [0m  [33m   ^--- Use of undeclared Var frontend.counter/let-fn[0m
+  [36m25[0m  [36m             (if (zero? x)[0m
+  [36m26[0m  [36m               1[0m
+  [36m27[0m  [36m               0))][0m
+  [36m28[0m  [36m    (let [local-atom (::key state)][0m
+  [36m29[0m  [36m      [:div [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:24  column:13  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/toggle[0m
+
+  [36m22[0m  [36m(rum/defcs toggle-button < (rum/local 0 ::key)[0m
+  [36m23[0m  [36m  [state _][0m
+  [33m24[0m  [1m  (let-fn [(toggle [x][0m
+  [0m  [0m  [33m            ^--- Use of undeclared Var frontend.counter/toggle[0m
+  [36m25[0m  [36m             (if (zero? x)[0m
+  [36m26[0m  [36m               1[0m
+  [36m27[0m  [36m               0))][0m
+  [36m28[0m  [36m    (let [local-atom (::key state)][0m
+  [36m29[0m  [36m      [:div [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:24  column:21  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/x[0m
+
+  [36m22[0m  [36m(rum/defcs toggle-button < (rum/local 0 ::key)[0m
+  [36m23[0m  [36m  [state _][0m
+  [33m24[0m  [1m  (let-fn [(toggle [x][0m
+  [0m  [0m  [33m                    ^--- Use of undeclared Var frontend.counter/x[0m
+  [36m25[0m  [36m             (if (zero? x)[0m
+  [36m26[0m  [36m               1[0m
+  [36m27[0m  [36m               0))][0m
+  [36m28[0m  [36m    (let [local-atom (::key state)][0m
+  [36m29[0m  [36m      [:div [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:25  column:25  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/x[0m
+
+  [36m22[0m  [36m(rum/defcs toggle-button < (rum/local 0 ::key)[0m
+  [36m23[0m  [36m  [state _][0m
+  [36m24[0m  [36m  (let-fn [(toggle [x][0m
+  [33m25[0m  [1m             (if (zero? x)[0m
+  [0m  [0m  [33m                        ^--- Use of undeclared Var frontend.counter/x[0m
+  [36m26[0m  [36m               1[0m
+  [36m27[0m  [36m               0))][0m
+  [36m28[0m  [36m    (let [local-atom (::key state)][0m
+  [36m29[0m  [36m      [:div [0m
+  [36m30[0m  [36m       [:button [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:32  column:41  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/toggle[0m
+
+  [36m28[0m  [36m(let [local-atom (::key state)][0m
+  [36m29[0m  [36m  [:div [0m
+  [36m30[0m  [36m   [:button [0m
+  [36m31[0m  [36m    {:on-click  (fn [_][0m
+  [33m32[0m  [1m                  (swap! local-atom toggle))}[0m
+  [0m  [0m  [33m                                    ^--- Use of undeclared Var frontend.counter/toggle[0m
+  [36m33[0m  [36m    @local-atom][0m
+  [36m34[0m  [36m   [:button [0m
+  [36m35[0m  [36m    {:on-click  (fn [e] (js/console.log e))}[0m
+  [36m36[0m  [36m    "BUTTON B"]])))[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.821 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:24  column:4  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/let-fn[0m
+
+  [36m22[0m  [36m(rum/defcs toggle-button < (rum/local 0 ::key)[0m
+  [36m23[0m  [36m  [state _][0m
+  [33m24[0m  [1m  (let-fn [][0m
+  [0m  [0m  [33m   ^--- Use of undeclared Var frontend.counter/let-fn[0m
+  [36m25[0m  [36m    (let [local-atom (::key state)[0m
+  [36m26[0m  [36m          toggle [0m
+  [36m27[0m  [36m          (fn [x][0m
+  [36m28[0m  [36m            (if (zero? x)[0m
+  [36m29[0m  [36m              1[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.498 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:37 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 37, col 21] Unmatched delimiter ).[0m
+
+  [36m35[0m  [36m     [:button [0m
+  [36m36[0m  [36m      {:on-click  (fn [e] (js/console.log e))}[0m
+  [33m37[0m  [1m      "BUTTON B"]]))[0m
+  [0m  [0m  [33m      /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 37, col 21] Unmatched delimiter ).[0m
+  [36m38[0m  [36m[0m
+  [36m39[0m  [36m(rum/defc app[0m
+  [36m40[0m  [36m  [][0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.713 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.752 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.748 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.705 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.748 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.742 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.742 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.737 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.735 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.832 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.799 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.752 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.934 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:35  column:3  ----[0m
+
+  [1mbutton-row at line 35 is being replaced[0m
+
+  [36m31[0m  [36m   [:button [0m
+  [36m32[0m  [36m    {:on-click  (fn [_][0m
+  [36m33[0m  [36m                  (swap! local-atom toggle))}[0m
+  [36m34[0m  [36m    @local-atom]])[0m
+  [33m35[0m  [1m(rum/defcs button-row < {}[0m
+  [0m  [0m  [33m^--- button-row at line 35 is being replaced[0m
+  [36m36[0m  [36m  [][0m
+  [36m37[0m  [36m  [:ul [0m
+  [36m38[0m  [36m   (for [n (range 12)]     [0m
+  [36m39[0m  [36m     [:li (toggle-button)])]))[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.83 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.756 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.751 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.901 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.762 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.78 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.741 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.762 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.76 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.71 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:55  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/fret-board[0m
+
+  [36m52[0m  [36m;; -------------------------[0m
+  [36m53[0m  [36m;; Initialize app[0m
+  [36m54[0m  [36m(defn init! [][0m
+  [33m55[0m  [1m  (rum/mount (fret-board) (js/document.getElementById "app")))[0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/fret-board[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.735 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.747 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.757 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.748 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.726 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.738 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.744 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.752 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.715 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.811 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.83 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.717 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.744 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.704 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.756 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.742 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.747 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.826 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.909 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.993 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.832 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.928 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.757 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.811 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.827 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.736 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.861 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.759 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.783 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.04 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.765 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.811 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.074 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.753 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.982 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.721 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.806 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.843 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.84 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.708 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.738 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.807 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.822 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.777 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.763 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.096 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.741 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.711 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.719 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.775 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.916 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.746 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.762 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.754 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.873 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.825 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.834 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.74 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.851 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.737 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.71 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.834 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.853 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.704 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.754 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.856 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.896 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.508 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:41 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 41, col 14] Unmatched delimiter ].[0m
+
+  [36m39[0m  [36m(rum/defcs button-row < {}[0m
+  [36m40[0m  [36m  [][0m
+  [33m41[0m  [1m  (let [x 1#][0m
+  [0m  [0m  [33m  /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 41, col 14] Unmatched delimiter ].[0m
+  [36m42[0m  [36m    [:fieldset[0m
+  [36m43[0m  [36m     (for [n (range 12)][0m
+  [36m44[0m  [36m       (toggle-button 1))]))[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.859 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.791 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.904 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.748 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.74 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.77 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.818 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.77 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.779 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.772 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.758 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.778 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.706 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.79 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.749 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.738 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.753 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.774 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.728 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.729 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.832 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.951 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.773 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.794 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:54  column:19  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/text[0m
+
+  [36m51[0m  [36m(rum/defcs sign-up-form < {}[0m
+  [36m52[0m  [36m  [][0m
+  [36m53[0m  [36m  [:form [0m
+  [33m54[0m  [1m   [:input {:type text}][0m
+  [0m  [0m  [33m                  ^--- Use of undeclared Var frontend.counter/text[0m
+  [36m55[0m  [36m   ])[0m
+  [36m56[0m  [36m[0m
+  [36m57[0m  [36m(rum/defc app[0m
+  [36m58[0m  [36m  [][0m
+  [36m59[0m  [36m  (fretboard))[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.853 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.755 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.815 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:54  column:12  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/Username[0m
+
+  [36m51[0m  [36m(rum/defcs sign-up-form < {}[0m
+  [36m52[0m  [36m  [][0m
+  [36m53[0m  [36m  [:form [0m
+  [33m54[0m  [1m   [:label Username [:input {:type :text}]][0m
+  [0m  [0m  [33m           ^--- Use of undeclared Var frontend.counter/Username[0m
+  [36m55[0m  [36m   [0m
+  [36m56[0m  [36m   ])[0m
+  [36m57[0m  [36m[0m
+  [36m58[0m  [36m(rum/defc app[0m
+  [36m59[0m  [36m  [][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.769 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:54  column:12  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/Username[0m
+
+  [36m51[0m  [36m(rum/defcs sign-up-form < {}[0m
+  [36m52[0m  [36m  [][0m
+  [36m53[0m  [36m  [:form [0m
+  [33m54[0m  [1m   [:label Username] [:input {:type :text}][0m
+  [0m  [0m  [33m           ^--- Use of undeclared Var frontend.counter/Username[0m
+  [36m55[0m  [36m   [0m
+  [36m56[0m  [36m   ])[0m
+  [36m57[0m  [36m[0m
+  [36m58[0m  [36m(rum/defc app[0m
+  [36m59[0m  [36m  [][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.741 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.758 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.735 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.114 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.77 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.829 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.782 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:66  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/sign-up-formx[0m
+
+  [36m63[0m  [36m;; -------------------------[0m
+  [36m64[0m  [36m;; Initialize app[0m
+  [36m65[0m  [36m(defn init! [][0m
+  [33m66[0m  [1m  (rum/mount (sign-up-formx) (js/document.getElementById "app")))[0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/sign-up-formx[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.721 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.749 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.76 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.727 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.717 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.848 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.793 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.821 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.767 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.778 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.756 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.754 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.777 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.85 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.817 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.773 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.761 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.777 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.791 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.766 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.708 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.814 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.714 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.761 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.782 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.767 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.72 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.909 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.762 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.732 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.773 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.803 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.786 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:75  column:19  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/comments[0m
+
+  [36m71[0m  [36m(rum/defcs comment-list < {}[0m
+  [36m72[0m  [36m  [][0m
+  [36m73[0m  [36m  [:div.comment-list[0m
+  [36m74[0m  [36m   [:ul[0m
+  [33m75[0m  [1m    (for [comment comments][0m
+  [0m  [0m  [33m                  ^--- Use of undeclared Var frontend.counter/comments[0m
+  [36m76[0m  [36m      [:li comment])]])[0m
+  [36m77[0m  [36m[0m
+  [36m78[0m  [36m(rum/defc app[0m
+  [36m79[0m  [36m  [][0m
+  [36m80[0m  [36m  [(sign-up-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.843 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:65  column:4  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/comment-list[0m
+
+  [36m63[0m  [36m(rum/defcs post-comment-form < {}[0m
+  [36m64[0m  [36m  [][0m
+  [33m65[0m  [1m  [comment-list [0m
+  [0m  [0m  [33m   ^--- Use of undeclared Var frontend.counter/comment-list[0m
+  [36m66[0m  [36m   [:div.sign-up-form-wrapper  [0m
+  [36m67[0m  [36m    [:form.sign-up-form[0m
+  [36m68[0m  [36m     [:h2 "Post  Comment"][0m
+  [36m69[0m  [36m     [:label "Comment"] [:input {:type :textarea}][0m
+  [36m70[0m  [36m     [:button "Submit"]]]])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.816 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:65  column:7  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/comment-list[0m
+
+  [36m63[0m  [36m(rum/defcs post-comment-form < {}[0m
+  [36m64[0m  [36m  [][0m
+  [33m65[0m  [1m  [:p comment-list] [0m
+  [0m  [0m  [33m      ^--- Use of undeclared Var frontend.counter/comment-list[0m
+  [36m66[0m  [36m  [:div.sign-up-form-wrapper  [0m
+  [36m67[0m  [36m   [:form.sign-up-form[0m
+  [36m68[0m  [36m    [:h2 "Post  Comment"][0m
+  [36m69[0m  [36m    [:label "Comment"] [:input {:type :textarea}][0m
+  [36m70[0m  [36m    [:button "Submit"]]])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.759 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:65  column:8  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/comment-list[0m
+
+  [36m63[0m  [36m(rum/defcs post-comment-form < {}[0m
+  [36m64[0m  [36m  [][0m
+  [33m65[0m  [1m  [:p (comment-list)] [0m
+  [0m  [0m  [33m       ^--- Use of undeclared Var frontend.counter/comment-list[0m
+  [36m66[0m  [36m  [:div.sign-up-form-wrapper  [0m
+  [36m67[0m  [36m   [:form.sign-up-form[0m
+  [36m68[0m  [36m    [:h2 "Post  Comment"][0m
+  [36m69[0m  [36m    [:label "Comment"] [:input {:type :textarea}][0m
+  [36m70[0m  [36m    [:button "Submit"]]])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.831 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:65  column:8  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/comment-list[0m
+
+  [36m63[0m  [36m(rum/defcs post-comment-form < {}[0m
+  [36m64[0m  [36m  [][0m
+  [33m65[0m  [1m  [:p (comment-list) [0m
+  [0m  [0m  [33m       ^--- Use of undeclared Var frontend.counter/comment-list[0m
+  [36m66[0m  [36m   [:div.sign-up-form-wrapper  [0m
+  [36m67[0m  [36m    [:form.sign-up-form[0m
+  [36m68[0m  [36m     [:h2 "Post  Comment"][0m
+  [36m69[0m  [36m     [:label "Comment"] [:input {:type :textarea}][0m
+  [36m70[0m  [36m     [:button "Submit"]]]])[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.837 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.773 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.778 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Notifying browser that CSS file changed: public/css/site.css
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.823 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.783 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.798 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.774 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.745 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.803 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.778 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.804 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.825 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.791 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.812 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.56 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:95 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 95, col 2] Unmatched delimiter ).[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.794 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.782 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.829 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.821 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.84 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.75 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.841 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.778 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.81 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.177 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.874 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.768 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.76 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.791 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.731 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.819 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.825 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:75  column:1  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/Hello[0m
+
+  [36m72[0m  [36m(rum/defcs post-comment-form < {}[0m
+  [36m73[0m  [36m  [][0m
+  [36m74[0m  [36m  [:div.sign-up-form-wrapper  [0m
+  [33m75[0m  [1mHello[0m
+  [0m  [0m  [33m^--- Use of undeclared Var frontend.counter/Hello[0m
+  [36m76[0m  [36m   [:form.sign-up-form[0m
+  [36m77[0m  [36m    [:h2 "Post  Comment"][0m
+  [36m78[0m  [36m    [:label "Comment"] [:input {:type :textarea}][0m
+  [36m79[0m  [36m    (comment-list)[0m
+  [36m80[0m  [36m    [:button[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.845 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.767 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.834 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.849 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.814 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:82  column:35  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/updsate[0m
+
+  [36m78[0m  [36m    [:label "Comment"] [:input {:type :textarea}][0m
+  [36m79[0m  [36m    [:button[0m
+  [36m80[0m  [36m     "Submit"[0m
+  [36m81[0m  [36m     {:on-click (fn [_][0m
+  [33m82[0m  [1m                  (swap! comments updsate "new"))}]]])[0m
+  [0m  [0m  [33m                                  ^--- Use of undeclared Var frontend.counter/updsate[0m
+  [36m83[0m  [36m[0m
+  [36m84[0m  [36m[0m
+  [36m85[0m  [36m(rum/defc app[0m
+  [36m86[0m  [36m  [][0m
+  [36m87[0m  [36m  [(sign-up-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.884 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.774 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.801 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.86 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.826 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.808 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.936 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:81  column:20  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/prevent-default[0m
+
+  [36m77[0m  [36m    (comment-list)[0m
+  [36m78[0m  [36m    [:label "Comment"] [:input {:type :textarea}][0m
+  [36m79[0m  [36m    [:button[0m
+  [36m80[0m  [36m     {:on-click (fn [e][0m
+  [33m81[0m  [1m                  (prevent-default e)[0m
+  [0m  [0m  [33m                   ^--- Use of undeclared Var frontend.counter/prevent-default[0m
+  [36m82[0m  [36m                  (swap! comments conj "new"))}[0m
+  [36m83[0m  [36m     "Submit"]]])[0m
+  [36m84[0m  [36m[0m
+  [36m85[0m  [36m[0m
+  [36m86[0m  [36m(rum/defc app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.896 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.824 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.848 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.813 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:97  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/post-comment[0m
+
+  [36m94[0m  [36m;; -------------------------[0m
+  [36m95[0m  [36m;; Initialize app[0m
+  [36m96[0m  [36m(defn init! [][0m
+  [33m97[0m  [1m  (rum/mount (post-comment) (js/document.getElementById "app")))[0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/post-comment[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.972 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.773 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.745 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.823 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.984 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.807 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.762 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.779 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.801 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.817 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.175 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.856 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.765 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.858 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.836 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.977 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.882 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.92 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.873 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.972 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.573 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:82 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 82, col 45] Unmatched delimiter }.[0m
+
+  [36m80[0m  [36m  {:on-click (fn [e][0m
+  [36m81[0m  [36m               (.preventDefault e)[0m
+  [33m82[0m  [1m               (js/console.log comments)}[0m
+  [0m  [0m  [33m               /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 82, col 45] Unmatched delimiter }.[0m
+  [36m83[0m  [36m  "Submit"]][0m
+  [36m84[0m  [36m[:p (rum/react comments)]])[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.877 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.81 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.74 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.852 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.783 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.837 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.83 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.808 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.775 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.729 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.549 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.755 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.794 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.801 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.833 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.873 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.839 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.802 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.878 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.03 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.806 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.8 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.774 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.854 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.087 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.767 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.761 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.553 seconds.[0m
+[36m----  Could not Compile  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mfailed compiling file:src/cljs/frontend/counter.cljs[0m
+
+[36m----  Compiler Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.796 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.77 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.763 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.768 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.854 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.768 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.801 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.975 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.772 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.764 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.786 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.752 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.895 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.902 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.056 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.739 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.524 seconds.[0m
+[36m----  Could not Analyze  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mNo such namespace: datascript.core, could not locate datascript/core.cljs, datascript/core.cljc, or JavaScript source providing "datascript.core" [0m
+
+[36m----  Analysis Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.504 seconds.[0m
+[36m----  Could not Analyze  src/cljs/frontend/counter.cljs  ----[0m
+
+  [1mNo such namespace: datascript.core, could not locate datascript/core.cljs, datascript/core.cljc, or JavaScript source providing "datascript.core" [0m
+
+[36m----  Analysis Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.835 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.813 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.811 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.748 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.837 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.742 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.754 seconds.[0m
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/dom.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.849 seconds.[0m
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.853 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.831 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.907 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.872 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.876 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.855 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.879 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.858 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.743 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.895 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:88  column:22  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/-value[0m
+
+  [36m84[0m  [36m     {:on-click (fn [e][0m
+  [36m85[0m  [36m                  (.preventDefault e)                  [0m
+  [36m86[0m  [36m                  (swap! comments conj "hello world")[0m
+  [36m87[0m  [36m                  (js/console.log [0m
+  [33m88[0m  [1m                    (-value e)))}[0m
+  [0m  [0m  [33m                     ^--- Use of undeclared Var frontend.counter/-value[0m
+  [36m89[0m  [36m     "Submit"]]])[0m
+  [36m90[0m  [36m[0m
+  [36m91[0m  [36m[0m
+  [36m92[0m  [36m(rum/defc app[0m
+  [36m93[0m  [36m  [][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.844 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.881 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.894 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.865 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:89  column:19  ----[0m
+
+  [1mWrong number of args (0) passed to frontend.counter/add-comment[0m
+
+  [36m85[0m  [36m                  (js/console.log [0m
+  [36m86[0m  [36m                    e[0m
+  [36m87[0m  [36m                    )[0m
+  [36m88[0m  [36m                  (.preventDefault e)                  [0m
+  [33m89[0m  [1m                  (add-comment)[0m
+  [0m  [0m  [33m                  ^--- Wrong number of args (0) passed to frontend.counter/add-comment[0m
+  [36m90[0m  [36m                  )}[0m
+  [36m91[0m  [36m     "Submit"]]])[0m
+  [36m92[0m  [36m[0m
+  [36m93[0m  [36m[0m
+  [36m94[0m  [36m(rum/defc app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.811 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.75 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.776 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.849 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.807 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.866 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.851 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.941 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.939 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.89 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.809 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.88 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.797 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.862 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.876 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.803 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.157 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.8 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.806 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.821 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.818 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.937 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.833 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.761 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.783 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.785 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.794 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.783 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.824 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.829 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.88 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.597 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.852 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.793 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.737 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.814 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.066 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.863 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.821 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.177 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.887 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.773 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.846 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.852 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.753 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.841 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.801 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.857 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.103 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.97 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.812 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.78 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.851 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.843 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.814 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.82 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.796 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.841 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.826 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.749 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.782 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.792 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.758 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.807 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.835 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.817 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.777 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.741 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.787 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.771 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.786 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.784 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.787 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.809 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.727 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.79 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.798 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.781 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.799 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.799 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.802 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.963 seconds.[0m
+notifying browser that file changed:  public/js/out/goog/deps.js
+notifying browser that file changed:  public/js/out/cljs_deps.js
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.826 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.883 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.865 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.861 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.881 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.835 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.853 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.834 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.837 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.869 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.854 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/websocket.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.933 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/websocket.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.941 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/websocket.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.795 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.872 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.879 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.836 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.87 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:70  column:24  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/value[0m
+
+  [36m66[0m  [36m    (for [comment @comments][0m
+  [36m67[0m  [36m      [:li (pr-str comment)])]])[0m
+  [36m68[0m  [36m[0m
+  [36m69[0m  [36m(rum/defcs post-comment-form < [0m
+  [33m70[0m  [1m  {:on-change #(reset! value (-> % .-target .-value))} [][0m
+  [0m  [0m  [33m                       ^--- Use of undeclared Var frontend.counter/value[0m
+  [36m71[0m  [36m  [][0m
+  [36m72[0m  [36m  [:div.sign-up-form-wrapper  [0m
+  [36m73[0m  [36m   [:form.sign-up-form[0m
+  [36m74[0m  [36m    [:h2 "Post  Comment"][0m
+  [36m75[0m  [36m    (comment-list comments) [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.931 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.078 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.788 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.841 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:71  column:32  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/%1[0m
+
+  [36m67[0m  [36m      [:li (pr-str comment)])]])[0m
+  [36m68[0m  [36m[0m
+  [36m69[0m  [36m(rum/defcs post-comment-form < [0m
+  [36m70[0m  [36m  {:should-update (not=[0m
+  [33m71[0m  [1m                    (:rum/args %1)[0m
+  [0m  [0m  [33m                               ^--- Use of undeclared Var frontend.counter/%1[0m
+  [36m72[0m  [36m                    (:rum/args %2))}[0m
+  [36m73[0m  [36m  [][0m
+  [36m74[0m  [36m  [:div.sign-up-form-wrapper  [0m
+  [36m75[0m  [36m   [:form.sign-up-form[0m
+  [36m76[0m  [36m    [:h2 "Post  Comment"][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:72  column:32  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/%2[0m
+
+  [36m69[0m  [36m(rum/defcs post-comment-form < [0m
+  [36m70[0m  [36m  {:should-update (not=[0m
+  [36m71[0m  [36m                    (:rum/args %1)[0m
+  [33m72[0m  [1m                    (:rum/args %2))}[0m
+  [0m  [0m  [33m                               ^--- Use of undeclared Var frontend.counter/%2[0m
+  [36m73[0m  [36m  [][0m
+  [36m74[0m  [36m  [:div.sign-up-form-wrapper  [0m
+  [36m75[0m  [36m   [:form.sign-up-form[0m
+  [36m76[0m  [36m    [:h2 "Post  Comment"][0m
+  [36m77[0m  [36m    (comment-list comments) [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.908 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.823 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.892 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.931 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[31mFailed to compile build :app from ["src/cljs"] in 0.541 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:88 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 88, col 62] Unmatched delimiter ).[0m
+
+  [36m86[0m  [36m       (.-value [0m
+  [36m87[0m  [36m         (dom/q [0m
+  [33m88[0m  [1m           "form.sign-up-form>input[type=textarea]")))))[0m
+  [0m  [0m  [33m           /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 88, col 62] Unmatched delimiter ).[0m
+  [36m89[0m  [36m"Submit"]]])[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.838 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:93  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/checker[0m
+
+  [36m89[0m  [36m     "Submit"]]])[0m
+  [36m90[0m  [36m[0m
+  [36m91[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m92[0m  [36m  [text][0m
+  [33m93[0m  [1m   (rum/react checker)          [0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/checker[0m
+  [36m94[0m  [36m  [:input {:type "text"[0m
+  [36m95[0m  [36m           :value (rum/react text)[0m
+  [36m96[0m  [36m           :on-change on-edit}])[0m
+  [36m97[0m  [36m[0m
+  [36m98[0m  [36m(rum/defc app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:23  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/on-edit[0m
+
+  [36m 92[0m  [36m  [text][0m
+  [36m 93[0m  [36m   (rum/react checker)          [0m
+  [36m 94[0m  [36m  [:input {:type "text"[0m
+  [36m 95[0m  [36m           :value (rum/react text)[0m
+  [33m 96[0m  [1m           :on-change on-edit}])[0m
+  [0m   [0m  [33m                      ^--- Use of undeclared Var frontend.counter/on-edit[0m
+  [36m 97[0m  [36m[0m
+  [36m 98[0m  [36m(rum/defc app[0m
+  [36m 99[0m  [36m  [][0m
+  [36m100[0m  [36m  [(sign-up-form)[0m
+  [36m101[0m  [36m   (post-comment-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.888 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:93  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/checker[0m
+
+  [36m89[0m  [36m     "Submit"]]])[0m
+  [36m90[0m  [36m[0m
+  [36m91[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m92[0m  [36m  [text][0m
+  [33m93[0m  [1m   (rum/react checker)          [0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/checker[0m
+  [36m94[0m  [36m  [:input {:type "text"[0m
+  [36m95[0m  [36m           :value (rum/react text)[0m
+  [36m96[0m  [36m           :on-change on-edit}])[0m
+  [36m97[0m  [36m[0m
+  [36m98[0m  [36m(rum/defc app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:23  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/on-edit[0m
+
+  [36m 92[0m  [36m  [text][0m
+  [36m 93[0m  [36m   (rum/react checker)          [0m
+  [36m 94[0m  [36m  [:input {:type "text"[0m
+  [36m 95[0m  [36m           :value (rum/react text)[0m
+  [33m 96[0m  [1m           :on-change on-edit}])[0m
+  [0m   [0m  [33m                      ^--- Use of undeclared Var frontend.counter/on-edit[0m
+  [36m 97[0m  [36m[0m
+  [36m 98[0m  [36m(rum/defc app[0m
+  [36m 99[0m  [36m  [][0m
+  [36m100[0m  [36m  [(sign-up-form)[0m
+  [36m101[0m  [36m   (post-comment-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[31mFailed to compile build :app from ["src/cljs"] in 0.607 seconds.[0m
+[36m----  Could not Read  src/cljs/frontend/counter.cljs   line:103 ----[0m
+
+  [1m/home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 103, col 5] Unmatched delimiter ].[0m
+
+  [36m101[0m  [36m   (post-comment-form)[0m
+  [36m102[0m  [36m   (my-input[0m
+  [33m103[0m  [1m   ])[0m
+  [0m   [0m  [33m   /home/malik/Workspace/clojure-scratchpad/src/cljs/frontend/counter.cljs [line 103, col 5] Unmatched delimiter ].[0m
+  [36m104[0m  [36m[0m
+  [36m105[0m  [36m[0m
+  [36m106[0m  [36m;; -------------------------[0m
+
+[36m----  Reader Error : Please see src/cljs/frontend/counter.cljs  ----[0m
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:93  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/checker[0m
+
+  [36m89[0m  [36m     "Submit"]]])[0m
+  [36m90[0m  [36m[0m
+  [36m91[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m92[0m  [36m  [text][0m
+  [33m93[0m  [1m   (rum/react checker)          [0m
+  [0m  [0m  [33m              ^--- Use of undeclared Var frontend.counter/checker[0m
+  [36m94[0m  [36m  [:input {:type "text"[0m
+  [36m95[0m  [36m           :value (rum/react text)[0m
+  [36m96[0m  [36m           :on-change on-edit}])[0m
+  [36m97[0m  [36m[0m
+  [36m98[0m  [36m(rum/defc app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:23  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/on-edit[0m
+
+  [36m 92[0m  [36m  [text][0m
+  [36m 93[0m  [36m   (rum/react checker)          [0m
+  [36m 94[0m  [36m  [:input {:type "text"[0m
+  [36m 95[0m  [36m           :value (rum/react text)[0m
+  [33m 96[0m  [1m           :on-change on-edit}])[0m
+  [0m   [0m  [33m                      ^--- Use of undeclared Var frontend.counter/on-edit[0m
+  [36m 97[0m  [36m[0m
+  [36m 98[0m  [36m(rum/defc app[0m
+  [36m 99[0m  [36m  [][0m
+  [36m100[0m  [36m  [(sign-up-form)[0m
+  [36m101[0m  [36m   (post-comment-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.274 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:95  column:15  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/checker[0m
+
+  [36m 91[0m  [36m(def checket (atom 0))[0m
+  [36m 92[0m  [36m[0m
+  [36m 93[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m 94[0m  [36m  [text][0m
+  [33m 95[0m  [1m   (rum/react checker)          [0m
+  [0m   [0m  [33m              ^--- Use of undeclared Var frontend.counter/checker[0m
+  [36m 96[0m  [36m  [:input {:type "text"[0m
+  [36m 97[0m  [36m           :value (rum/react text)[0m
+  [36m 98[0m  [36m           :on-change on-edit}])[0m
+  [36m 99[0m  [36m[0m
+  [36m100[0m  [36m(rum/defc app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:98  column:23  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/on-edit[0m
+
+  [36m 94[0m  [36m  [text][0m
+  [36m 95[0m  [36m   (rum/react checker)          [0m
+  [36m 96[0m  [36m  [:input {:type "text"[0m
+  [36m 97[0m  [36m           :value (rum/react text)[0m
+  [33m 98[0m  [1m           :on-change on-edit}])[0m
+  [0m   [0m  [33m                      ^--- Use of undeclared Var frontend.counter/on-edit[0m
+  [36m 99[0m  [36m[0m
+  [36m100[0m  [36m(rum/defc app[0m
+  [36m101[0m  [36m  [][0m
+  [36m102[0m  [36m  [(sign-up-form)[0m
+  [36m103[0m  [36m   (post-comment-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.909 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:98  column:23  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/on-edit[0m
+
+  [36m 94[0m  [36m  [text][0m
+  [36m 95[0m  [36m   (rum/react checker)          [0m
+  [36m 96[0m  [36m  [:input {:type "text"[0m
+  [36m 97[0m  [36m           :value (rum/react text)[0m
+  [33m 98[0m  [1m           :on-change on-edit}])[0m
+  [0m   [0m  [33m                      ^--- Use of undeclared Var frontend.counter/on-edit[0m
+  [36m 99[0m  [36m[0m
+  [36m100[0m  [36m(rum/defc app[0m
+  [36m101[0m  [36m  [][0m
+  [36m102[0m  [36m  [(sign-up-form)[0m
+  [36m103[0m  [36m   (post-comment-form)[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.35 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:13  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/myvalue[0m
+
+  [36m 93[0m  [36m(defn on-edit [e][0m
+  [36m 94[0m  [36m  (let [value (.. e -target -value)][0m
+  [36m 95[0m  [36m    (swap! checker inc)[0m
+  [33m 96[0m  [1m    (reset! myvalue value)[0m
+  [0m   [0m  [33m            ^--- Use of undeclared Var frontend.counter/myvalue[0m
+  [36m 97[0m  [36m    true))[0m
+  [36m 98[0m  [36m[0m
+  [36m 99[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m100[0m  [36m  [text][0m
+  [36m101[0m  [36m   (rum/react checker)          [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.174 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.841 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.996 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.271 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:13  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/myvalue[0m
+
+  [36m 93[0m  [36m(defn on-edit [e][0m
+  [36m 94[0m  [36m  (let [value (.. e -target -value)][0m
+  [36m 95[0m  [36m    (swap! checker inc)[0m
+  [33m 96[0m  [1m    (reset! myvalue value)[0m
+  [0m   [0m  [33m            ^--- Use of undeclared Var frontend.counter/myvalue[0m
+  [36m 97[0m  [36m    true))[0m
+  [36m 98[0m  [36m[0m
+  [36m 99[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m100[0m  [36m  [text][0m
+  [36m101[0m  [36m   (rum/react checker)          [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.859 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:13  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/myvalue[0m
+
+  [36m 93[0m  [36m(defn on-edit [e][0m
+  [36m 94[0m  [36m  (let [value (.. e -target -value)][0m
+  [36m 95[0m  [36m    (swap! checker inc)[0m
+  [33m 96[0m  [1m    (reset! myvalue value)[0m
+  [0m   [0m  [33m            ^--- Use of undeclared Var frontend.counter/myvalue[0m
+  [36m 97[0m  [36m    true))[0m
+  [36m 98[0m  [36m[0m
+  [36m 99[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m100[0m  [36m  [text][0m
+  [36m101[0m  [36m  (rum/react checker)          [0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.041 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:96  column:13  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/myvalue[0m
+
+  [36m 93[0m  [36m(defn on-edit [e][0m
+  [36m 94[0m  [36m  (let [value (.. e -target -value)][0m
+  [36m 95[0m  [36m    (swap! checker inc)[0m
+  [33m 96[0m  [1m    (reset! myvalue value)[0m
+  [0m   [0m  [33m            ^--- Use of undeclared Var frontend.counter/myvalue[0m
+  [36m 97[0m  [36m    true))[0m
+  [36m 98[0m  [36m[0m
+  [36m 99[0m  [36m[0m
+  [36m100[0m  [36m(rum/defc my-input < rum/reactive[0m
+  [36m101[0m  [36m  [text][0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.931 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.927 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[36m----  Compiler Warning on   src/cljs/frontend/counter.cljs   line:95  column:5  ----[0m
+
+  [1mUse of undeclared Var frontend.counter/my-input[0m
+
+  [36m 91[0m  [36m(rum/defc app[0m
+  [36m 92[0m  [36m  [][0m
+  [36m 93[0m  [36m  [(sign-up-form)[0m
+  [36m 94[0m  [36m   (post-comment-form)[0m
+  [33m 95[0m  [1m   (my-input)[0m
+  [0m   [0m  [33m    ^--- Use of undeclared Var frontend.counter/my-input[0m
+  [36m 96[0m  [36m   ])[0m
+  [36m 97[0m  [36m[0m
+  [36m 98[0m  [36m[0m
+  [36m 99[0m  [36m;; -------------------------[0m
+  [36m100[0m  [36m;; Initialize app[0m
+
+[36m----  Compiler Warning : Please see src/cljs/frontend/counter.cljs  ----[0m
+[32mSuccessfully compiled build :app to "public/js/app.js" in 1.16 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "public/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "public/js/app.js" in 0.82 seconds.[0m
+notifying browser that file changed:  public/js/out/frontend/counter.js
+Compiling build :app to "resources/js/app.js" from ["src/cljs"]...
+[32mSuccessfully compiled build :app to "resources/js/app.js" in 2.919 seconds.[0m
+notifying browser that file changed:  resources/js/out/goog/deps.js
+notifying browser that file changed:  resources/js/out/cljs_deps.js
+notifying browser that file changed:  resources/js/out/frontend/counter.js
