@@ -7,9 +7,11 @@
   (:require [octet.core :as buf])
   (:require [octet.spec :as bspec])
   #_(:require [byte-streams.byte-streams] :refer [convert]) ;; ? why ?
-  (:import (java.util BitSet)
-           (java.io File DataOutputStream 
-             ByteArrayOutputStream FileOutputStream)))
+  (:import 
+   (java.lang String)
+   (java.util BitSet)
+   (java.io File DataOutputStream 
+     ByteArrayOutputStream FileOutputStream)))
 
 ;; https://github.com/Engelberg/instaparse
 ;; https://cljdoc.org/d/instaparse/instaparse/1.4.10/doc/abnf-input-format
@@ -252,12 +254,23 @@ closeparen = ')'
 
 ;; <2020-10-13 Tue 18:17>
 ;; http://funcool.github.io/octet/latest/
-(def cafe-babe-spec (bspec/spec buf/int16 buf/int16 buf/int16 buf/int16))
+(def cafe-babe-spec (bspec/spec buf/short buf/short buf/short buf/short))
 (def my-buffer (buf/allocate 8 {:type :direct}))
 (buf/write! my-buffer [0xCA 0xFA 0xBA 0xBE] cafe-babe-spec)
-(buf/read my-buffer cafe-babe-spec)
+(octet.util/hex-dump my-buffer)
 
-(defn hex [b]
-  (symbol (format "0x%02X" b)))
+(defn base [decimal base]
+  (Integer/parseInt  (str (bigint decimal)) base))
+
 
 (map hex (buf/read my-buffer cafe-babe-spec))
+
+(defn hexi [number]
+  (->base number 16))
+
+(defn bini [number]
+  (Integer/toBinaryString number))
+
+(defn deci [number]
+  (->base number 10))
+;;; <2020-10-13 Tue 20:31>

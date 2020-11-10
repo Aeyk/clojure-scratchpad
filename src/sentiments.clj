@@ -111,7 +111,7 @@
                             five-syllabe])))))
 
 (defn haiku-generator*** []
-  (let [aone-syllable
+  (let [one-syllable
         (ffirst (sample (get syllables  "1")))
         two-syllable
         (ffirst (sample (get syllables  "2")))
