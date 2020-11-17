@@ -1,6 +1,6 @@
 # clojure-scratchpad
 
-A clojure-scratch pad for testing and evaluating ideas, libraries, etc.
+A clojure-scratch pad for testing and evaluating ideas, libraries.
 
 ## Usage
 
