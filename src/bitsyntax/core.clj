@@ -12,23 +12,36 @@
 (def parser
   (insta/parser
    "bitSyntax = #'<<' [segment | ws]* #'>>'
-   segment = string | identifier size ? specifierList | number
-   specifierList = #'//' specifier specifierTail
+   segment = string | identifier | specifier | number | unit
+   specifier = number
    string = #'\"' identifier #'\"'
    identifier = #'[a-zA-Z]*'
    number = #'[0-9]+'
-   size = #':' number | #':' identifier
-   specifierTail = #'-' specifier
-   specifier = 'little' / 'big' / 'signed' / 'unsigned'
-    / 'integer' / 'binary' / 'float'
-    / unit
-   unit = #'unit:' number
-   ws = #'[\\s]*'"))
+   unit =  number | number ':' specifier
+   ws = #'[\\s,]*'"))
 
 (def transform-options
-  {:number read-string})
+  {:bitSyntax
+   (fn [& sOrWs]
+     (vec
+      (drop-last 1 (drop 1 sOrWs))))
+   :ws (fn [_])  
+   :number (fn [n] (read-string n))
+   :unit (fn [number & size]
+           [number size])
+   :identifier symbol})
 
 (defn parse [input]
-  (->> (parser input) (insta/transform transform-options)))
+  (->> (parser input) (insta/transform transform-options)
+       (filter
+        (complement nil?))))
 
 (parse "<<1 17 42>>")
+;; => [:bitSyntax "<<" [:segment 1] [:ws " "] [:segment 17] [:ws " "] [:segment 42] ">>"]
+(parse "<<\"abc\">>")
+;; => [:bitSyntax "<<" [:segment [:string "\"" [:identifier "abc"] "\""]] ">>"]
+(parse "<<1 7 43:16>>")
+(parse "<<2,1,0>>")
+
+(parse "<<A>>")
+
