@@ -376,6 +376,10 @@
 
 
 
+(def whitespace
+  (insta/parser
+   "whitespace = #'\\s+'"))
+
 (def prolog-parser
   (insta/parser "program = clauselist query | query
 clauselist = clause | clauselist clause
@@ -396,6 +400,11 @@ digit = #'[0-9]'
 character = lowercaseletter | uppercaseletter | digit
 string = character | stringcharacter
 stringcharacter = numeral | lowercaseletter | uppercaseletter
-nl = '\n'"))
+nl = '\n'"
+                :auto-whitespace  whitespace))
 
-(prolog-parser "likes(fred,beer).likes(fred,cheapcigars).likes(fred,mondaynightfootball).?-consult(basics).")
+(prolog-parser "
+likes(fred,beer).
+likes(fred,cheapcigars).
+likes(fred,mondaynightfootball).
+?-consult(basics).")
