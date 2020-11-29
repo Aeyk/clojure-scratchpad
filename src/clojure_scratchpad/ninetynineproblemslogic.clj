@@ -1,6 +1,7 @@
 (ns clojure-scratchpad.ninetynineproblemslogic
   (:require [clojure.core.logic :refer :all]
-            [instaparse.core :as insta :refer [defparser]]))
+            [instaparse.core :as insta :refer [defparser]]
+            [clojure.core.logic.pldb :refer :all]))
 
 ;; =============================================================================
 ;; TRS
@@ -400,11 +401,37 @@ digit = #'[0-9]'
 character = lowercaseletter | uppercaseletter | digit
 string = character | stringcharacter
 stringcharacter = numeral | lowercaseletter | uppercaseletter
-nl = '\n'"
-                :auto-whitespace  whitespace))
+nl = '\n'" :auto-whitespace whitespace))
 
-(prolog-parser "
-likes(fred,beer).
-likes(fred,cheapcigars).
-likes(fred,mondaynightfootball).
+(def noop-options
+  {:lowercaseletter str
+   :uppercaseletter str
+   :character str
+   :smallatom str
+   :atom str
+   :predicate (fn [rel _ term-list _] [rel term-list])
+   :term str
+   
+   })
+
+(defn parse-prolog [input]
+  (->>
+   (prolog-parser
+    input)
+   (insta/transform noop-options)))
+
+(parse-prolog "likes(malik,pizza).
+likes(fred,cigars).
+likes(fred,football).
 ?-consult(basics).")
+
+(db-rel likes p x)
+(db-rel person p)
+
+(def prolog-facts (db [person 'malik]
+                      [person 'fred]
+                      [likes 'malik 'pizza]
+                      [likes 'fred 'football]
+                      [likes 'fred 'cigars]))
+
+(with-db prolog-facts (run* [p f] (likes p f) (person p)))
