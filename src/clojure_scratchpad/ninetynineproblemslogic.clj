@@ -411,8 +411,21 @@ nl = '\n'" :auto-whitespace whitespace))
    :atom str
    :predicate (fn [rel _ term-list _] [rel term-list])
    :term str
-   
-   })
+   :termlist str
+   :clause (fn [rel _]
+             (let [fact (first (vec (rest rel)))
+                   rel (first rel)
+                   [ffact sfact] (clojure.string/split fact #",")]
+               #_(db rel (quote ffact) (quote sfact))
+               [(symbol rel) (symbol ,ffact)
+                (symbol sfact)]))
+   :clauselist
+   (fn
+     ([f] f)
+     ([f r] [:cl f  r]))
+   :predicatelist (fn ([f] f)
+                    ([f r] [:pl f r]))
+   :query (fn [a pl q] [:query a pl q])})
 
 (defn parse-prolog [input]
   (->>
@@ -426,10 +439,8 @@ likes(fred,football).
 ?-consult(basics).")
 
 (db-rel likes p x)
-(db-rel person p)
 
-(def prolog-facts (db [person 'malik]
-                      [person 'fred]
+(def prolog-facts (db 
                       [likes 'malik 'pizza]
                       [likes 'fred 'football]
                       [likes 'fred 'cigars]))
