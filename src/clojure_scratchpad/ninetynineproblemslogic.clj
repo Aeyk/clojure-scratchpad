@@ -439,10 +439,52 @@ likes(fred,football).
 ?-consult(basics).")
 
 (db-rel likes p x)
+(db-rel likes p x)
+
 
 (def prolog-facts (db 
                       [likes 'malik 'pizza]
-                      [likes 'fred 'football]
-                      [likes 'fred 'cigars]))
 
-(with-db prolog-facts (run* [p f] (likes p f) (person p)))
+                      [likes 'fred 'football]
+                      [likes 'fred 'cigars]
+
+                      [likes 'sue 'jogging]
+                      [likes 'sue 'yogurt]
+                      [likes 'sue 'bicycling]
+                      [likes 'sue 'amy-goodman]))
+
+
+
+(with-db prolog-facts (run* [p f] (likes p f)))
+
+
+;; <2020-11-29 Sun 14:53> MiniKanren
+;; [[https://github.com/webyrd/relational-parsing-with-derivatives/blob/master/clojure-core-logic-version/src/relparsing/regex_derivative.clj][webyrd / relational-parsing-with-derivatives]]
+
+(defn symbolo [x]
+  (predc x symbol? (fn [c v r a] `(~'sym ~(walk* r (walk* a x))))))
+
+
+
+(run 1 [q]
+  (symbolo q))
+;; => ((_0 :- (sym _0)))
+
+
+(run 3 [q]
+  (fresh [x y]
+    (!= q (llist x y))
+    (== y 5)
+    (== x 5)))
+;; => ((_0 :- (!= (_0 (5 . 5)))))
+
+(run 3 [q]
+  (fresh [a b c]
+    (== c 'body)
+    (conde
+     [(== a 'fn)
+      (== q (list a c))]
+     [(== a 'defn)
+      (== b 'name)
+      (== q (list a b c))])))
+;; => ((fn body) (defn name body))
