@@ -1,5 +1,6 @@
 (ns clojure-scratchpad.ninetynineproblemslogic
-  (:require [clojure.core.logic :refer :all]))
+  (:require [clojure.core.logic :refer :all]
+            [instaparse.core :as insta :refer [defparser]]))
 
 ;; =============================================================================
 ;; TRS
@@ -256,6 +257,120 @@
 (run 3 [q]
   (loto q))
 ;; => (() ((_0 _0)) ((_0 _0) (_1 _1)))
-x
+
+
+(defn my-identity [l]
+  (run* [y]
+    (membero y (list l))))
+
+(my-identity 'l)
+;; => ()
+
+(run 10 [q]
+  (membero 'tofu q))
+;; =>
+;; ((tofu . _0)
+;;  (_0 tofu . _1)
+;;  (_0 _1 tofu . _2)
+;;  (_0 _1 _2 tofu . _3)
+;;  (_0 _1 _2 _3 tofu . _4)
+;;  (_0 _1 _2 _3 _4 tofu . _5)
+;;  (_0 _1 _2 _3 _4 _5 tofu . _6)
+;;  (_0 _1 _2 _3 _4 _5 _6 tofu . _7)
+;;  (_0 _1 _2 _3 _4 _5 _6 _7 tofu . _8)
+;;  (_0 _1 _2 _3 _4 _5 _6 _7 _8 tofu . _9))
+
+(defn eq-caro [l x]
+  (firsto l x))
+
+(defn pmembero
+  [x l]
+  (conde
+   [(emptyo l) u#]
+   [(eq-caro l x) (resto l '())]
+   (s# (fresh [d]
+         (resto l d)
+         (pmembero x d)))))
+
+(run 3 [q]
+  (pmembero 'tofu q))
+;; => ((tofu) (_0 tofu) (_0 _1 tofu))
+
+
+
+(run 10 [q]
+  (pmembero 'tofu q))
+;; ((tofu)
+;;  (_0 tofu)
+;;  (_0 _1 tofu)
+;;  (_0 _1 _2 tofu)
+;;  (_0 _1 _2 _3 tofu)
+;;  (_0 _1 _2 _3 _4 tofu)
+;;  (_0 _1 _2 _3 _4 _5 tofu)
+;;  (_0 _1 _2 _3 _4 _5 _6 tofu)
+;;  (_0 _1 _2 _3 _4 _5 _6 _7 tofu)
+;;  (_0 _1 _2 _3 _4 _5 _6 _7 _8 tofu))
+
+
+
+
+(defn pmembero [x l]
+  (conde
+   [(emptyo l) #u]
+   (eq-caro l x) (resto l '())
+   (eq-caro l x)
+   (fresh [a d]
+     (resto
+      l
+      (listo a d)))
+   (u#
+    (fresh [d]
+      (resto l d)
+      (pmembero x d)))))
+
+(defn pmembero [x l]
+  (conde
+   [(emptyo l) u#]
+   [(eq-caro l x) (resto l ())] ;; no quote on nil-list NOTE
+   [(eq-caro l x)
+    (fresh [a d]
+      (resto
+       l
+       (llist a d)))] ;; llist not listo (not sure difference, but llist more common)
+   [s# (fresh [d]
+         (resto l d)
+         (pmembero x d))]))
+
+
+
+(defn pmembero [x l]
+  (conde
+   ;; we can remove first line since it "always fails" (huh?)
+   [(eq-caro l x) (resto l ())] 
+   [(eq-caro l x)
+    (fresh [a d]
+      (resto
+       l
+       (llist a d)))] 
+   [s# (fresh [d]
+         (resto l d)
+         (pmembero x d))]))
+
+(run 10 [q]
+  (pmembero 'tofu q))
+;; => ((tofu) (tofu _0 . _1) (_0 tofu) (_0 tofu _1 . _2) (_0 _1 tofu) (_0 _1 tofu _2 . _3) (_0 _1 _2 tofu) (_0 _1 _2 tofu _3 . _4) (_0 _1 _2 _3 tofu) (_0 _1 _2 _3 tofu _4 . _5))
+
+(defn pmembero [x l]
+  (conde
+   [(eq-caro l x) ;; the ordering of thse clauses changes whether x is even or odd positioned
+    (fresh [a d]  ;; quite subtle.. see page 43 TRS
+      (resto
+       l
+       (llist a d)))] 
+   [(eq-caro l x) (resto l ())] 
+   [s# (fresh [d]
+         (resto l d)
+         (pmembero x d))]))
+
 
 
