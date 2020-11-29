@@ -374,3 +374,28 @@
 
 
 
+
+
+(def prolog-parser
+  (insta/parser "program = clauselist query | query
+clauselist = clause | clauselist clause
+clause = predicate '.' | predicate ':-' predicatelist '.' nl
+predicatelist = predicate | predicatelist , predicate
+predicate = atom | atom '(' termlist ')'
+termlist = term | termlist ',' term
+term = numeral | atom | variable | structure
+structure = atom ( termlist )
+query = '?-' predicatelist '.'
+atom = smallatom | ' string '
+smallatom = lowercaseletter | smallatom character
+variable = uppercaseletter | variable character
+lowercaseletter = #'[a-z]'
+uppercaseletter = #'[A-Z]'
+numeral = digit | numeral digit
+digit = #'[0-9]'
+character = lowercaseletter | uppercaseletter | digit
+string = character | stringcharacter
+stringcharacter = numeral | lowercaseletter | uppercaseletter
+nl = '\n'"))
+
+(prolog-parser "likes(fred,beer).likes(fred,cheapcigars).likes(fred,mondaynightfootball).?-consult(basics).")
