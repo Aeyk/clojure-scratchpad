@@ -25,7 +25,7 @@
    (fn [& sOrWs]
      (vec
       (drop-last 1 (drop 1 sOrWs))))
-   :ws (fn [_])  
+   :ws (fn [_])
    :number (fn [n] (read-string n))
    :unit (fn [number & size]
            [number size])
@@ -37,6 +37,7 @@
         (complement nil?))))
 
 (parse "<<1 17 42>>")
+;; 0x01 0x0C 0x2A
 ;; => [:bitSyntax "<<" [:segment 1] [:ws " "] [:segment 17] [:ws " "] [:segment 42] ">>"]
 (parse "<<\"abc\">>")
 ;; => [:bitSyntax "<<" [:segment [:string "\"" [:identifier "abc"] "\""]] ">>"]
@@ -45,3 +46,38 @@
 
 (parse "<<A>>")
 
+
+(def parser*
+  (insta/parser
+   ""))
+
+(defn parse [input]
+  (->> (parser* input) (insta/transform transform-options)))
+
+(parse "[1]")
+
+
+(def whitespace
+  (insta/parser
+   "whitespace = #'\\s+'"))
+
+(def parser
+  (insta/parser
+   "list = '(' sexpr* ')'
+sexpr = string | list
+string = #'[a-zA-Z]*'
+decimal = decimaldigit+
+decimaldigit = #'[0-9]'"
+   :auto-whitespace  whitespace))
+
+(def noop-options
+  {:string str
+   :sexpr list})
+
+(defn parse [input]
+  (->>
+   (parser
+    input)
+   (insta/transform noop-options)))
+
+(parse "(defn p (x) (y x))")
