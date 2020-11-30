@@ -488,3 +488,62 @@ likes(fred,football).
       (== b 'name)
       (== q (list a b c))])))
 ;; => ((fn body) (defn name body))
+
+;; <2020-11-29 Sun 19:19>
+;; https://www.youtube.com/watch?v=SykxWpFwMGs
+
+(db-rel warm_blooded x)
+(db-rel has_hair x)
+(db-rel has_feathers x)
+(db-rel produce_milk x)
+
+(def animal-facts
+  (db
+   [warm_blooded 'penguin]
+   [warm_blooded 'human]
+   [produce_milk 'human]
+   [produce_milk 'penguin]
+   [has_hair 'human]
+   [has_feathers 'penguin]
+   ))
+
+(with-db animal-facts
+  (run* [x]
+    (warm_blooded x)
+    (produce_milk x)
+    (has_hair x)))
+;; => (penguin human)
+;; => (human)
+
+
+(db-rel parent c p)
+
+(def human-facts
+  (db
+   [parent 'albert 'bob]
+   [parent 'albert 'betsy]
+   [parent 'albert 'bill]
+   [parent 'alice 'bob]
+   [parent 'alice 'betsy]
+   [parent 'alice 'bill]
+   [parent 'bob 'carl]
+   [parent 'bob 'charlie]))
+
+
+(defn children [of]
+  (with-db human-facts
+    (run* [x]
+      (parent x of))))
+
+(children 'bob)
+;; => (albert alice)
+
+(defn parents [of]
+  (with-db human-facts
+    (run* [x]
+      (parent of x))))
+
+(map (juxt identity #(parents %)) (parents 'albert))  ;;#=> [child [any_parents]]
+;; => ([bill ()] [betsy ()] [bob (charlie carl)])
+
+
