@@ -547,3 +547,16 @@ likes(fred,football).
 ;; => ([bill ()] [betsy ()] [bob (charlie carl)])
 
 
+;;; https://www.youtube.com/watch?v=1fDG69_ApFc&list=PLHbIZiLIDu-qbXqhvgkIjyIK0SbqYNcU8&index=5
+;;; 1-+ code below
+;;; 2-+ are equiv to below in prolog
+;;; 3-+    person(name) :- true.
+;;; 4-+    person(X).
+(db-rel person name)
+(def prolog-tutorial-db
+  (db [person 'tom]))
+(with-db prolog-tutorial-db
+  (run* [x]
+    (person x)))
+
+
