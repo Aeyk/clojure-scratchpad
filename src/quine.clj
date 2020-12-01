@@ -3,8 +3,6 @@
    [clojure.core.logic :refer :all]
    [clojure.core.logic.fd :as fd]))
 
-
-
 (defn noto
   "Relational boolean not."
   [a o]
@@ -66,4 +64,4 @@
 (eval
  (last
   (run (rand-int 500) [q]
-    (evalo q false))))
+    (evalo q false)))) ;; quine generation for boolean returns
