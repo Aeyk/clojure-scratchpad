@@ -559,4 +559,25 @@ likes(fred,football).
   (run* [x]
     (person x)))
 
+;; https://youtu.be/lzCIyvFgUVk?t=1089
+(defne membero*
+  [x l]
+  ([_ [x . tail]])
+  ([_ [head . tail]]
+   (membero* x tail)))
+
+(run 3 [q]
+  (membero* 'element q))
+;; => ((element . _0) (_0 element . _1) (_0 _1 element . _2))
+
+(defne appendo*
+  [x y z]
+  ([() _ z])
+  ([[a . d] _ [a . r]]
+   (appendo* d y r)))
+
+(run* [q]
+  (appendo* (range 6) q [0 1 2 3 4 5]))
+;; => (_0)
+;; 
 
