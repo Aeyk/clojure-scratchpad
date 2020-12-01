@@ -8,25 +8,36 @@
 
 (def *db* data)
 
-(defn half-of-singletono [a b]
-  (fn [a]
-    (let [a (walk a a)
-          b (walk a b)]
-      (condp = [(not (lvar? a))
-                (not (lvar? b))]
-        [true true]  (when (= (fd/+ a b 2020))
-                       [a b])))))
-
-(run 1 [q]
-  (membero 0 q))
-;; => ((0 . _0))
-
-
 (apply * (first
-    (run 1 [q r]
-      (membero q data)
-      (membero r data)
-      (fd/in q r (fd/interval 0 2020))
-      (fd/+ q r 2020))))
+          (run 1 [q r s]
+            (membero q data)
+            (membero r data)
+            (fd/in q r (fd/interval 0 2020))
+            (fd/+ q r 2020))))
 ;; => 744475
- 
+
+(defn sumo [vars sum]
+  (fresh [vhead vtail run-sum]
+    (conde
+     [(== vars ()) (== sum 0)]
+     [(conso vhead vtail vars)
+      (fd/+ vhead run-sum sum)
+      (sumo vtail run-sum)])))
+
+(apply
+ *
+ (first
+  (run 1 [q r]
+    (membero q data)
+    (membero r data)
+    (sumo [q r] 2020))))
+
+(run 1 [q r s]
+  (sumo [q r s] 2020)
+  (membero q data)
+  (membero r data)
+  (membero s data))
+;; => ([265 167 1588])
+
+(apply * [265 167 1588])
+;; => 70276940
