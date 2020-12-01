@@ -19,6 +19,8 @@
                  [com.impossibl.pgjdbc-ng/pgjdbc-ng "0.8.5"]
                  [funcool/octet "1.1.2"]
                  [mount "0.1.16"]
+                 [datalevin "0.3.13"]
+                 [datascript "1.0.1"]
                  ;; [byte-streams "0.2.4"]
                  ;; [com.github.sarxos/webcam-capture "0.3.12"]
                  ;; [com.layerware/hugsql "0.5.1"]
