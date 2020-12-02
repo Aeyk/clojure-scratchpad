@@ -2,7 +2,8 @@
   (:require
    [clojure.core.logic :refer :all]
    [clojure.core.logic.fd :as fd]
-   [clojure.math.numeric-tower :as math]))
+   [clojure.math.numeric-tower :as math]
+   [clojure.core.match :refer [match]]))
 
 
 ;; Prolog has | for head tail seperator matching
@@ -126,3 +127,6 @@
   (fresh [f0 f1]
     (fd/in f0 f1 (fd/interval 10))
     (fd/+ f0 f1 q)))
+
+
+;; https://www.youtube.com/watch?v=7kPMFkNm2dw

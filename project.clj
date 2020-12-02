@@ -6,7 +6,7 @@
 
   :dependencies [[org.clojure/clojure "1.10.2-alpha2"]
                  [org.clojure/data.json "1.0.0"]
-                 ;; [org.clojure/core.match "1.0.0"]
+                 [org.clojure/core.match "1.0.0"]
                  [org.clojure/core.logic "1.0.0"]
                  ;; [org.clojure.typed/runtime.jvm "1.0.1"]
                  ;; [org.clojure/algo.monads "0.1.6"]
