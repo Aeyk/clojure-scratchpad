@@ -2,7 +2,8 @@
   (:require [clojure.math.numeric-tower :as math]
             [analemma.svg :as svg]
             [analemma.charts :as charts]
-            [hiccup.core :as html]))
+            [hiccup.core :as html])
+  (:import java.lang.Math))
 
 (spit
  "test-1.svg"
@@ -34,6 +35,7 @@
          [:stop {:offset "25%" :stop-color "#32f"}]
          [:stop {:offset "50%" :stop-color "#03d"}]
          [:stop {:offset "100%" :stop-color "#e1e1"}]]
+        #_(draw-n-circles-m-px-from-point 10 01)
         (map draw-circle-nth-around-circle (range 0 (inc satellite-count) 1))]))
 
 (defn polar->cartesian [cx cy r angle-in-degrees]
@@ -46,7 +48,7 @@
 (def satellite-count 99)
 (def c 200)
 
-(defn draw-circle [x r y]
+(defn draw-circle [x y r]
   [:circle {:cx x :cy y  :r r
             :stroke "white"
             :fill "transparent"}])
@@ -56,6 +58,16 @@
   (let [º-of-seperation (/ 360 satellite-count)
         coords (polar->cartesian c c 100 (* n º-of-seperation))]
     (draw-circle (:x coords) (:y coords) 3)))
+
+(defn draw-n-circles-m-px-from-point [n m]
+  (let [angles (range 0 n)
+        step (/ (* Math/PI 2)
+                m)
+        xs (map #(* c (Math/sin %) angles))
+        ys (map #(* c (Math/cos %) angles))]
+    (map (fn [x y]
+           (draw-circle x y))
+         xs ys)))
 
 ;; for(var n=0; n<number_of_satellite_circles; n++){
 ;;      var degrees_of_separation = 360/number_of_satellite_circles
