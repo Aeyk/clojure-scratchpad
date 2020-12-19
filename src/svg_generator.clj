@@ -23,34 +23,38 @@
       #_(charts/add-points [x y2] :transpose-data?? true
                            :color (svg/rgb 255 0 0))))
 
-
+;;; https://stackoverflow.com/questions/14633363/can-i-apply-a-gradient-along-an-svg-path
 (spit "hello.svg"
       (html/html
        [:svg#artistry-aint-dead
         {:viewBox "-400 -500 800 800" :xmlns "http://www.w3.org/2000/svg"}
-        (map draw-circle-nth-around-circle (range 0 (inc satellite-count) 1))
-        #_[:circle {:cx 50 :cy 50 :r 30
-                  :stroke "white"
-                    :fill "transparent"}]]))
+        [:style "circle { stroke: url(#gradient); }"]
+        [:linearGradient#gradient {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+         [:stop {:offset "0%" :stop-color "#fff"}]        
+         [:stop {:offset "25%" :stop-color "#32f"}]
+         [:stop {:offset "50%" :stop-color "#03d"}]
+         [:stop {:offset "100%" :stop-color "#e1e1"}]]
+        (map draw-circle-nth-around-circle (range 0 (inc satellite-count) 1))]))
 
 (defn polar->cartesian [cx cy r angle-in-degrees]
   (let [angle-in-radians (* angle-in-degrees (/ java.lang.Math/PI 180.0))]
     {:x (* (java.lang.Math/cos angle-in-radians)
            (+ cx r))
      :y (* (java.lang.Math/sin angle-in-radians)
-           (+ cy r))}))
+           (+ cy  r))}))
 
-(def satellite-count 100)
-(def c 100)
+(def satellite-count 99)
+(def c 200)
 
 (defn draw-circle [x r y]
   [:circle {:cx x :cy y  :r r
             :stroke "white"
             :fill "transparent"}])
+
 ;;; https://stackoverflow.com/questions/28992878/svg-a-circle-of-circles
 (defn draw-circle-nth-around-circle [n]
   (let [º-of-seperation (/ 360 satellite-count)
-        coords (polar->cartesian c c 100 (* º-of-seperation n))]
+        coords (polar->cartesian c c 100 (* n º-of-seperation))]
     (draw-circle (:x coords) (:y coords) 3)))
 
 ;; for(var n=0; n<number_of_satellite_circles; n++){
