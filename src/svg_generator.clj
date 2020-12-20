@@ -81,42 +81,6 @@ g > line { stroke: url(#gradient);}
   [:line {#_#_:stroke "black"
           :x1 x1 :y1 y1 :x2 x2 :y2 y2}])
 
-(do (def svg (html/html
-              [:svg#artistry-aint-dead
-               {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}
-               [:style "
-g line {stroke: black;}
-g#a circle {
-stroke: url(#gradientA);
-fill: url(#gradientA);}
-
-g#b circle {
-stroke: url(#gradientB);
-fill: url(#gradientB);}
-
-g#c circle {
-stroke: url(#gradientC);
-fill: url(#gradientC);}
-
-"]
-               [:linearGradient#gradientA {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
-                [:stop {:offset "0%" :stop-color "#fff"}]
-                [:stop {:offset "100%" :stop-color "#e1e"}]]
-
-               [:linearGradient#gradientB {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
-                [:stop {:offset "0%" :stop-color "#b3f"}]
-                [:stop {:offset "100%" :stop-color "#d20"}]]
-
-               [:linearGradient#gradientC {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
-                [:stop {:offset "0%" :stop-color "#FD3"}]
-                [:stop {:offset "100%" :stop-color "#d2D"}]]
-               [:g 
-                (draw-lines)]
-               (draw-n-circles-grouped-around-circle-of-r-radius 2 100 "a")
-               (draw-n-circles-grouped-around-circle-of-r-radius 7 100 "b")
-               (draw-n-circles-grouped-around-circle-of-r-radius 9 100 "c")]))
-    (spit "hello.svg" svg))
-
 (defn draw-lines []
   (map line
        (partition
@@ -130,10 +94,61 @@ fill: url(#gradientC);}
                  #(update % :x (comp (fn [e] (Math/round e)) edn/read-string))
                  #(dissoc % :r)
                  #(dissoc % :fill)
-                 #(set/rename-keys % {:cx :x :cy :y})
-                 #_#(assoc % :fill "black"))
+                 #(set/rename-keys % {:cx :x :cy :y}))
                 (map :attrs (selector/select (selector/html-snippet svg) [:circle])))
                2))))))
+
+
+(draw-lines)
+(do (def svg (html/html
+              [:svg#artistry-aint-dead
+               {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}
+               [:style "
+g line {stroke: black;}
+g#a circle {
+stroke: url(#gradientA);
+fill: url(#gradientA);}
+
+g#b circle {
+stroke: url(#gradientB);
+fill: url(#gradientB);}
+
+g#a circle:hover {
+stroke: black;
+fill: url(#gradientA);
+stroke-width: 4px;
+}
+
+g#b circle:hover {
+stroke: black;
+fill: url(#gradientB);
+stroke-width: 4px;
+}
+
+g#c circle {
+stroke: url(#gradientC);
+fill: url(#gradientC);}
+"]
+               [:linearGradient#gradientA {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+                [:stop {:offset "0%" :stop-color "#fff"}]
+                [:stop {:offset "100%" :stop-color "#e1e"}]]
+
+               [:linearGradient#gradientB {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+                [:stop {:offset "0%" :stop-color "#b3f"}]
+                [:stop {:offset "100%" :stop-color "#d20"}]]
+
+               [:linearGradient#gradientC {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+                [:stop {:offset "0%" :stop-color "#FD3"}]
+                [:stop {:offset "100%" :stop-color "#d2D"}]]
+               [:g {:transform "rotate(90 0 0)"}
+                [:g 
+                 (draw-lines)]
+                (draw-n-circles-grouped-around-circle-of-r-radius 3 100 "a")
+                (draw-n-circles-grouped-around-circle-of-r-radius 4 100 "b")]
+               #_(draw-n-circles-grouped-around-circle-of-r-radius 9 100 "c")]))
+    (spit "hello.svg" svg))
+
+
 
 
 
