@@ -267,3 +267,12 @@ fill: url(#gradientC);}
         [:g {:transform "rotate(90 0 0)"}
          (draw-lines opus-one)]]))
     (spit "opus_one.svg" opus-one))
+
+(def opus-one-lines (slurp "opus_one.svg"))
+
+(spit "opus_one.html"
+      (html/html
+         [:html
+          [:object {:height "100%"
+                    :width "100%"
+                    :data "opus_one.svg"}]]))
