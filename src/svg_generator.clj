@@ -85,7 +85,7 @@ g > line { stroke: url(#gradient);}
 (spit "svg.js"
       (cljs/build '(js/console.log "Hello World")
                   {:optimizations :advanced :pretty-print true}))
-(draw-lines)
+
 
 (do (def svg (html/html
               [:svg#artistry-aint-dead
@@ -178,7 +178,7 @@ fill: url(#gradientC);}
     (spit "hello.html" svg))
 
 
-(defn draw-lines []
+(defn draw-lines [svg]
   (map line
        (partition
         2
@@ -265,6 +265,5 @@ fill: url(#gradientC);}
          [:stop {:offset "0%" :stop-color "#FD3"}]
          [:stop {:offset "100%" :stop-color "#d2D"}]]
         [:g {:transform "rotate(90 0 0)"}
-         [:circle {:cx "0" :cy "0" :r "100" :stroke "red"}]
-         ]]))
+         (draw-lines opus-one)]]))
     (spit "opus_one.svg" opus-one))
