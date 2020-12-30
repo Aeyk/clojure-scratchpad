@@ -26,7 +26,8 @@
                            :color (svg/rgb 255 0 0))))
 (defn draw-circle [x y r]
   [:circle {:cx x :cy y  :r r
-            :fill "transparent"}])
+            :fill "white"
+            :stroke "black"}])
 
 (defn polar->cartesian [cx cy r angle-in-degrees]
   (let [angle-in-radians (* angle-in-degrees (/ java.lang.Math/PI 180.0))]
@@ -44,6 +45,15 @@
         º-of-seperation (/ 360 satellite-count)
         coords (polar->cartesian c c r (* n º-of-seperation))]
     (draw-circle (:x coords) (:y coords) 10)))
+
+(defn rotateX [d what]
+  [:g {:transform (str "rotate(" d " 0 0)")}
+   what])
+
+(defn rotateY [d what]
+  [:g {:transform (str "rotate(0 0 " d ")")}
+   what])
+
 
 (defn draw-n-circles-grouped-around-circle-of-r-radius [n r group-id]
   [(keyword (str "g#" group-id))
@@ -272,7 +282,30 @@ fill: url(#gradientC);}
 
 (spit "opus_one.html"
       (html/html
-         [:html
-          [:object {:height "100%"
-                    :width "100%"
-                    :data "opus_one.svg"}]]))
+       [:html
+        [:header
+         [:style
+          "*, *~*, *+*, *>*, g:hover { fill: red; stroke: red; } "]]
+        [:body 
+         [:object {:height "100%"
+                   :width "100%"
+                   :data "opus_one.svg"}]]]))
+
+
+
+;; * SVG 02
+(do (def opus-two
+      (html/html
+       [:svg
+        {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}        
+        [:g {:transform "rotate(90 0 0)"}
+         (draw-n-circles-grouped-around-circle-of-r-radius 100 200 "a")
+         (rotateX 90
+                  (draw-n-circles-grouped-around-circle-of-r-radius 1 200 "a"))
+         (for [x (range 1 300)]
+           (rotateX
+            x
+            (draw-n-circles-grouped-around-circle-of-r-radius x 10 "a")))]]))
+
+    (spit "opus_two.3.svg" opus-two))
+
