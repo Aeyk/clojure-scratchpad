@@ -6,6 +6,7 @@
             [hiccup.core :as html]
             [net.cgrand.enlive-html :as selector]
             [clojure.set :as set]
+            [garden.core :as css]
             [clojure.edn :as edn]
             [cljs.closure :as cljs]))
 
@@ -194,6 +195,7 @@ fill: url(#gradientC);}
         2
         (map vals
              (flatten
+
               (combo/combinations
                (map
                 (comp
@@ -201,9 +203,13 @@ fill: url(#gradientC);}
                  #(update % :x (comp (fn [e] (Math/round e)) edn/read-string))
                  #(dissoc % :r)
                  #(dissoc % :fill)
+                 #(dissoc % :stroke)
                  #(set/rename-keys % {:cx :x :cy :y}))
-                (map :attrs (selector/select (selector/html-snippet svg) [:circle])))
-               2))))))
+                (map :attrs (selector/select (selector/html-snippet opus-two) [:circle])))
+               2))))
+       ))
+
+
 
 (defn get-coordinates [doc elem]
   (mapcat
@@ -265,20 +271,23 @@ fill: url(#gradientC);}
        [:svg#artistry-aint-dead
         {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}
         [:style opus-one-styles]
-        [:linearGradient#gradientA {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
-         [:stop {:offset "0%" :stop-color "#fff"}]
-         [:stop {:offset "100%" :stop-color "#e1e"}]]
-        [:linearGradient#gradientB {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
-         [:stop {:offset "0%" :stop-color "#b3f"}]
-         [:stop {:offset "100%" :stop-color "#d20"}]]
-        [:linearGradient#gradientC {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
-         [:stop {:offset "0%" :stop-color "#FD3"}]
-         [:stop {:offset "100%" :stop-color "#d2D"}]]
         [:g {:transform "rotate(90 0 0)"}
          (draw-lines opus-one)]]))
     (spit "opus_one.svg" opus-one))
 
 (def opus-one-lines (slurp "opus_one.svg"))
+
+(def opus-one-gradients
+  [:g
+   [:linearGradient#gradientA {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+    [:stop {:offset "0%" :stop-color "#fff"}]
+    [:stop {:offset "100%" :stop-color "#e1e"}]]
+   [:linearGradient#gradientB {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+    [:stop {:offset "0%" :stop-color "#b3f"}]
+    [:stop {:offset "100%" :stop-color "#d20"}]]
+   [:linearGradient#gradientC {:x1 "0%" :y1 "0%" :x2 "100%" :y2 "100%"}
+    [:stop {:offset "0%" :stop-color "#FD3"}]
+    [:stop {:offset "100%" :stop-color "#d2D"}]]])
 
 (spit "opus_one.html"
       (html/html
@@ -297,19 +306,17 @@ fill: url(#gradientC);}
 (do (def opus-two
       (html/html
        [:svg
-        {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}        
+        {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}
+        [:style (css/css [:line {:stroke "black"}])]
         [:g {:transform "rotate(90 0 0)"}
          [:animateTransform {:attributeName "transform"
                              :type "rotate"
                              :from "0 0 0"
                              :to "360 0 0"
-                             :dur "30s"
+                             :dur "60s"
                              :repeatCount "indefinite"}]
-         (for [y (range 1 10)]
-           (for [x (range 1 10)]
-             (rotateY
-              x
-              (draw-n-circles-grouped-around-circle-of-r-radius 40 (* 30 y x) "a"))))]]))
+         [:g (draw-lines opus-two)]
+         (draw-n-circles-grouped-around-circle-of-r-radius 10 100 "a")]]))
 
-    (spit "rotating_sun.svg" opus-two))
+    (spit "opus_three.svg" opus-two))
 
