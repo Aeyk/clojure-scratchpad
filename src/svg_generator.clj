@@ -299,13 +299,17 @@ fill: url(#gradientC);}
        [:svg
         {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}        
         [:g {:transform "rotate(90 0 0)"}
-         (draw-n-circles-grouped-around-circle-of-r-radius 100 200 "a")
-         (rotateX 90
-                  (draw-n-circles-grouped-around-circle-of-r-radius 1 200 "a"))
-         (for [x (range 1 300)]
-           (rotateX
-            x
-            (draw-n-circles-grouped-around-circle-of-r-radius x 10 "a")))]]))
+         [:animateTransform {:attributeName "transform"
+                             :type "rotate"
+                             :from "0 0 0"
+                             :to "360 0 0"
+                             :dur "30s"
+                             :repeatCount "indefinite"}]
+         (for [y (range 1 10)]
+           (for [x (range 1 10)]
+             (rotateY
+              x
+              (draw-n-circles-grouped-around-circle-of-r-radius 40 (* 30 y x) "a"))))]]))
 
-    (spit "opus_two.3.svg" opus-two))
+    (spit "rotating_sun.svg" opus-two))
 
