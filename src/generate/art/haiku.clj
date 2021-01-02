@@ -7,8 +7,7 @@
 ;; 	author       = "F. {\AA}. Nielsen",
 ;;      title        = "AFINN",
 ;;      year         = "2011",
-
-(ns sentiments
+(ns clojure-scratchpad.generate.art.haiku
   (:require
    [clojure.data.csv :as csv]
    [clojure.java.io :as io]
@@ -33,6 +32,56 @@
 (def syllables 
   (let [words-only  (map first syllable-map)]
     (group-by #(get syllable-map %) words-only)))
+
+(count (sort (get syllables "1")))
+
+(defn get-syllable-count-per-word [s]
+  (map (comp #(Integer/parseInt %)
+             #(get syllable-map %)
+             str/upper-case
+             #(str/replace % "," "")
+             #(str/replace % "." "") ;; Why can't I remember a way to discard multiple things at once.
+             )
+       (str/split s #" ")))
+
+(defn haiku-count? [s]
+  (= (+ 5 7 5)
+     (apply +
+            (get-syllable-count-per-word s))))
+
+(defn haiku? [s]
+  (and (haiku-count? s)
+       ))
+
+(def)
+
+(defn take-n-syllables [n syllable-count]
+  (if (< n (first syllable-count))
+    (throw (Exception.
+            "Tried taking `n` but `(first syllable-count)` is larger."))
+    (let [acc (atom [])
+          na (atom n)]
+      (for [syllable syllable-count]
+        (if (>@ na syllable)
+          @acc
+          (do
+            (swap! na #(- % syllable))
+            (swap! acc #(conj % syllable))
+            #_(conj! acc syllable)))))))
+
+(take-n-syllables
+ 5
+ (get-syllable-count-per-word
+  "I am a short word, but there are indescribable sensations and phenomena."))
+
+(take-while #(< % 4)
+ )
+
+(syllable-check
+
+ 5
+ 0)
+
 
 (defn sample [coll]
   (take 1 (shuffle coll)))

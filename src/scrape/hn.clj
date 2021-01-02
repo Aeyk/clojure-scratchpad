@@ -1,4 +1,4 @@
-(ns scrapy
+(ns scrape.hn
   (:require [reaver :refer [parse extract-from text attr]])
   (:require [net.cgrand.enlive-html :as html]))
 ;; (def html-data

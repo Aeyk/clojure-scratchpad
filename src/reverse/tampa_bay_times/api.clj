@@ -1,4 +1,4 @@
-(ns reverse_engineer_api
+(ns clojure-scratchpad.reverse.tampa-bay-times.api
   (:require
    [clojure.edn :as edn]
    [cheshire.core :as json]

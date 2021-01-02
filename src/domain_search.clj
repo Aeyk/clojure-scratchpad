@@ -1,5 +1,5 @@
-(ns domain-search
-  )
+(ns domain-search)
+
 (def dict-file "/usr/share/dict/american-english")
 (def gtld-list-uri "https://data.iana.org/TLD/tlds-alpha-by-domain.txt")
 (def gtld-list

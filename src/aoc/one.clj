@@ -22,7 +22,7 @@
      [(== vars ()) (== sum 0)]
      [(conso vhead vtail vars)
       (fd/+ vhead run-sum sum)
-      (sumo vtail run-sum)])))
+      (sumo vtail run-sum)]))) ;; logical relations remind me of a reduce
 
 (apply
  *

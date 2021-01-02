@@ -1,4 +1,4 @@
-(ns mp3scrape
+(ns clojure-scratchpad.mp3scrape
   (:require [net.cgrand.enlive-html :as html]))
 
 (comment 

@@ -1,4 +1,4 @@
-(ns svg-generator
+(ns clojure-scratchpad.generate.art.svg
   (:require [clojure.math.numeric-tower :as math]
             [clojure.math.combinatorics :as combo]
             [analemma.svg :as svg]
@@ -64,10 +64,11 @@
         (repeat n))])
 
 (defn draw-n-circles-around-circle-of-r-radius [n r]
-  (map draw-nth-circle-around-circle-of-r-radius
-       (range 0 n)
-       (repeat r)
-       (repeat n)))
+  (rotateX 90
+           (map draw-nth-circle-around-circle-of-r-radius
+                (range 0 n)
+                (repeat r)
+                (repeat n))))
 
 ;;; https://stackoverflow.com/questions/14633363/can-i-apply-a-gradient-along-an-svg-path
 (spit "hello.svg"
@@ -92,6 +93,28 @@ g > line { stroke: url(#gradient);}
              [x2 y2]]]
   [:line {#_#_:stroke "black"
           :x1 x1 :y1 y1 :x2 x2 :y2 y2}])
+
+(defn draw-lines [svg]
+  (map line
+       (partition
+        2
+        (map vals
+             (flatten
+
+              (combo/combinations
+               (map
+                (comp
+                 #(update % :y (comp (fn [e] (Math/round e)) edn/read-string))
+                 #(update % :x (comp (fn [e] (Math/round e)) edn/read-string))
+                 #(dissoc % :r)
+                 #(dissoc % :fill)
+                 #(dissoc % :stroke)
+                 #(set/rename-keys % {:cx :x :cy :y}))
+                (map :attrs (selector/select (selector/html-snippet svg) [:circle])))
+               2))))
+       ))
+
+
 
 (spit "svg.js"
       (cljs/build '(js/console.log "Hello World")
@@ -187,28 +210,6 @@ fill: url(#gradientC);}
                  (draw-n-circles-grouped-around-circle-of-r-radius 4 100 "b")]
                 #_(draw-n-circles-grouped-around-circle-of-r-radius 9 100 "c")]]))
     (spit "hello.html" svg))
-
-
-(defn draw-lines [svg]
-  (map line
-       (partition
-        2
-        (map vals
-             (flatten
-
-              (combo/combinations
-               (map
-                (comp
-                 #(update % :y (comp (fn [e] (Math/round e)) edn/read-string))
-                 #(update % :x (comp (fn [e] (Math/round e)) edn/read-string))
-                 #(dissoc % :r)
-                 #(dissoc % :fill)
-                 #(dissoc % :stroke)
-                 #(set/rename-keys % {:cx :x :cy :y}))
-                (map :attrs (selector/select (selector/html-snippet opus-two) [:circle])))
-               2))))
-       ))
-
 
 
 (defn get-coordinates [doc elem]
@@ -307,16 +308,20 @@ fill: url(#gradientC);}
       (html/html
        [:svg
         {:viewBox "-400 -400 800 800" :xmlns "http://www.w3.org/2000/svg"}
-        [:style (css/css [:line {:stroke "black"}])]
+        [:style (css/css [:circle {:stroke "black"}]
+                         [:line {:stroke "black"}])]
         [:g {:transform "rotate(90 0 0)"}
          [:animateTransform {:attributeName "transform"
                              :type "rotate"
                              :from "0 0 0"
                              :to "360 0 0"
                              :dur "60s"
-                             :repeatCount "indefinite"}]
-         [:g (draw-lines opus-two)]
-         (draw-n-circles-grouped-around-circle-of-r-radius 10 100 "a")]]))
+                             :repeatCount "indefinite"}
+          (for [x [9 13]]
+            [:g
+             (draw-n-circles-grouped-around-circle-of-r-radius
+              x 300 "a")])
+]]]))
 
-    (spit "opus_three.svg" opus-two))
+    (spit "opus_wow.svg" opus-two))
 

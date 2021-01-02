@@ -1,4 +1,4 @@
-(ns readera-extractor
+(ns extractor.readera
   (:require [clojure.data.json :as json]))
 
 (def readera-json-data (json/read-str (slurp "/home/malik/Downloads/library.json")))
