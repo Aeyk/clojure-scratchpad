@@ -1,0 +1,14 @@
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+
+#app > div{
+    padding: 10px;
+    margin: 15px;
+}
+
+input,
+button {
+  width: 100%;
+}
+
+
