@@ -82,7 +82,7 @@
    :builds
    {:frontend
     {:target :browser
-     :modules {:main {:init-fn clojure-scratchpad.frontend.counter/init}}}}}
+     :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}}}
   
   :cljsbuild
   {:builds
@@ -98,7 +98,7 @@
       :pretty-print  true}
      :figwheel
      {:on-jsload "frontend.counter/init"
-     f :open-urls ["http://localhost:3449/index.html"]}}
+      :open-urls ["http://localhost:3449/index.html"]}}
 
     :release
     {:source-paths ["src/cljs"]
