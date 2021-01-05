@@ -97,8 +97,8 @@
       :optimizations :none
       :pretty-print  true}
      :figwheel
-ca     {:on-jsload "frontend.counter/init"
-      :open-urls ["http://localhost:3449/index.html"]}}
+     {:on-jsload "frontend.counter/init"
+     f :open-urls ["http://localhost:3449/index.html"]}}
 
     :release
     {:source-paths ["src/cljs"]

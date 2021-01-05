@@ -19,8 +19,7 @@
         (fn [x]
           (if (zero? x)
             1
-            0))]
-    
+            0))]    
     [:input 
      {:name row
       :type "radio"      
@@ -46,11 +45,11 @@
   [:div.sign-up-form-wrapper 
    [:form.sign-up-form
     [:h2 "Sign Up"]
-    [:label "Username"] [:input {:type :text}]
-    [:label "Email"] [:input {:type :text}]
-    [:label "Password"] [:input {:type :password}]
-    [:label "Confirm Password"] [:input {:type :password}]
-    [:button "Sign Up"]]])
+    [:label.label "Username"] [:input.input {:type :text}]
+    [:label.label "Email"] [:input {:type :text}]
+    [:label.label "Password"] [:input {:type :password}]
+    [:label.label "Confirm Password"] [:input {:type :password}]
+    [:button.button "Sign Up"]]])
 
 
 (def comments (atom ["I am a comment"]))
@@ -76,8 +75,8 @@
    [:form.sign-up-form
     [:h2 "Post  Comment"]
     (comment-list comments) 
-    [:label "Comment"] [:input {:type :textarea}]
-    [:button
+    [:label.label "Comment"] [:input.input {:type :textarea}]
+    [:button.button.is-primary
      {:on-click 
       (fn [e]
         (.preventDefault e)                  
