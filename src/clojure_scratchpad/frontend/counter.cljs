@@ -1,15 +1,14 @@
-(ns frontend.counter
+(ns clojure-scratchpad.frontend.counter
   (:require
    ;; [reagent.core :as r]
    ;; [reagent.dom :as d]
-   [frontend.dom :as dom]
-   [frontend.websocket :as ws]
+   [clojure-scratchpad.frontend.dom :as dom]
+   [clojure-scratchpad.frontend.websocket :as ws]
    [rum.core :as rum]
    [reitit.frontend :as rf]
    [reitit.frontend.easy :as rfe]
    [reitit.coercion.spec :as rss]
-   [spec-tools.data-spec :as ds])
-  (:import cljsjs.react))
+   [spec-tools.data-spec :as ds]))
 
 (enable-console-print!)
 

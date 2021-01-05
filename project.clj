@@ -9,6 +9,7 @@
                  [org.clojure/core.match "1.0.0"]
                  [org.clojure/core.logic "1.0.0"]
                  [net.mikera/vectorz-clj "0.48.0"]
+                 [thheller/shadow-cljs "2.11.7"]
                  [dali "1.0.2"]
                  [analemma "1.1.0"]
                  ;; [org.clojure.typed/runtime.jvm "1.0.1"]
@@ -51,7 +52,7 @@
                  ;; [cider/orchard "0.6.0"] ;; enhanced cider options
                  ;; [incanter "1.9.3"] ;; datascience
                  ;;[quil "3.1.0" :excluisions [bouncycastle/bctsp-jdk14]
-                  ;; [bouncycastle/bctsp-jdk14]] ;; processingjs interface
+                 ;; [bouncycastle/bctsp-jdk14]] ;; processingjs interface
                  ;; [yogthos/config "1.1.7"]
                  ;; [pez/clerk "1.0.0"]
                  ;; [metosin/reitit-ring "0.5.5"]
@@ -67,6 +68,7 @@
                  [provisdom/spectomic "0.7.11"]
                  ]
   :plugins [[lein-cljsbuild "1.1.7"]
+            [lein-shadow "0.3.1"]
             [lein-figwheel "0.5.20"]]
 
   :figwheel {:http-server-root "."
@@ -74,27 +76,36 @@
              :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
              :css-dirs ["public/css"]}
 
-  :cljsbuild {:builds {:app
-                       {:source-paths ["src/cljs"]
-                        :compiler
-                        {:main "frontend.counter"
-                         :output-to "public/js/app.js"
-                         :output-dir "public/js/out"
-                         :asset-path   "js/out"
-                         :source-map true
-                         :optimizations :none
-                         :pretty-print  true}
-                        :figwheel
-                        {:on-jsload "frontend.counter/init!"
-                         :open-urls ["http://localhost:3449/index.html"]}}
-                       :release
-                       {:source-paths ["src/cljs"]
-                        :compiler
-                        {:output-to "public/js/app.js"
-                         :output-dir "target/release"
-                         :optimizations :advanced
-                         :infer-externs true
-                         :pretty-print false}}}}
-  :main backend.websocket
-  :repl-options
-  {:init-ns backend.websocket})
+  :shadow-cljs
+  {:source-paths ["src"]
+   :dev-http {3000 "public"}
+   :builds
+   {:frontend
+    {:target :browser
+     :modules {:main {:init-fn clojure-scratchpad.frontend.counter/init}}}}}
+  
+  :cljsbuild
+  {:builds
+   {:app
+    {:source-paths ["src/cljs"]
+     :compiler
+     {:main "frontend.counter"
+      :output-to "public/js/app.js"
+      :output-dir "public/js/out"
+      :asset-path   "js/out"
+      :source-map true
+      :optimizations :none
+      :pretty-print  true}
+     :figwheel
+     {:on-jsload "frontend.counter/init!"
+      :open-urls ["http://localhost:3449/index.html"]}}
+
+    :release
+    {:source-paths ["src/cljs"]
+     :compiler
+     {:output-to "public/js/app.js"
+      :output-dir "target/release"
+      :optimizations :advanced
+      :infer-externs true
+      :pretty-print false}}}}
+)

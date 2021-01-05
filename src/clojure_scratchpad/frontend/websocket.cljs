@@ -1,4 +1,4 @@
-(ns frontend.websocket
+(ns clojure-scratchpad.frontend.websocket
   (:require [cognitect.transit :as t]))
 
 (defonce ws-chan (atom nil))

@@ -1,4 +1,4 @@
-(ns frontend.dom
+(ns clojure-scratchpad.frontend.dom
   (:require
     [clojure.string :as str]))
 
