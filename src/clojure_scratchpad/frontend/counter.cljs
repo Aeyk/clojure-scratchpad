@@ -46,9 +46,9 @@
    [:form.sign-up-form
     [:h2 "Sign Up"]
     [:label.label "Username"] [:input.input {:type :text}]
-    [:label.label "Email"] [:input {:type :text}]
-    [:label.label "Password"] [:input {:type :password}]
-    [:label.label "Confirm Password"] [:input {:type :password}]
+    [:label.label "Email"] [:input.input {:type :text}]
+    [:label.label "Password"] [:input.input {:type :password}]
+    [:label.label "Confirm Password"] [:input.input {:type :password}]
     [:button.button "Sign Up"]]])
 
 
@@ -94,8 +94,8 @@
    ])
 
 
-;; -------------------------
-;; Initialize app
-(defn init []
-  (rum/mount (post-comment-form) (js/document.getElementById "app")))
+;; ;; -------------------------
+;; ;; Initialize app
+;; (defn init []
+;;   (rum/mount (post-comment-form) (js/document.getElementById "app")))
 

@@ -1,9 +1,15 @@
 (ns clojure-scratchpad.frontend
-  (:require [clojure-scratchpad.frontend.counter]
-            ))
+  (:require
+   [rum.core :as rum]
+   [clojure-scratchpad.frontend.counter :as counter]))
+
+(rum/defc app
+  []
+  [(counter/sign-up-form)
+   (counter/post-comment-form)
+   ])
 
 (defn init []
   (rum/mount
-   [#_(counter/post-comment-form)
-    (counter/sign-up-form)]
+   [(app)]
    (js/document.getElementById "app")))
