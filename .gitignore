@@ -1,4 +1,5 @@
-
+/public
+/.shadow-cljs
 /out
 /target
 /classes
