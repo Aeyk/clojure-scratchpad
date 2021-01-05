@@ -97,7 +97,7 @@
       :optimizations :none
       :pretty-print  true}
      :figwheel
-     {:on-jsload "frontend.counter/init!"
+ca     {:on-jsload "frontend.counter/init"
       :open-urls ["http://localhost:3449/index.html"]}}
 
     :release

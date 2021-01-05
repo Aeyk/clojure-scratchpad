@@ -97,6 +97,6 @@
 
 ;; -------------------------
 ;; Initialize app
-(defn init! []
+(defn init []
   (rum/mount (post-comment-form) (js/document.getElementById "app")))
 
