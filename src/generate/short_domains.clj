@@ -1,4 +1,4 @@
-(ns domain-search)
+(ns generate.short-domains)
 
 (def dict-file "/usr/share/dict/american-english")
 (def gtld-list-uri "https://data.iana.org/TLD/tlds-alpha-by-domain.txt")
