@@ -89,7 +89,7 @@
    {:app
     {:source-paths ["src/cljs"]
      :compiler
-     {:main "frontend.counter"
+     {:main "frontend"
       :output-to "public/js/app.js"
       :output-dir "public/js/out"
       :asset-path   "js/out"
@@ -97,7 +97,7 @@
       :optimizations :none
       :pretty-print  true}
      :figwheel
-     {:on-jsload "frontend.counter/init"
+     {:on-jsload "clojure-scratchpad.frontend/init"
       :open-urls ["http://localhost:3449/index.html"]}}
 
     :release
