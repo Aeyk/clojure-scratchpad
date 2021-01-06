@@ -10,7 +10,38 @@
 
 (defonce todos (r/atom ["Clean house" "Walk dog" "See friend"]))
 
-(defn map-container []
+(defn polar->cartesian [cx cy r angle-in-degrees]
+  (let [angle-in-radians (* angle-in-degrees (/ java.lang.Math/PI 180.0))]
+    {:x (* (java.lang.Math/cos angle-in-radians)
+           (+ cx r))
+     :y (* (java.lang.Math/sin angle-in-radians)
+           (+ cy  r))}))
+
+(defn draw-circle [x y r]
+  [:circle {:cx x :cy y  :r r
+            :fill "white"
+            :stroke "black"}])
+
+;;; https://stackoverflow.com/questions/28992878/svg-a-circle-of-circles
+(defn draw-nth-circle-around-circle-of-r-radius [n r c]
+  (let [satellite-count c
+        º-of-seperation (/ 360 satellite-count)
+        coords (polar->cartesian c c r (* n º-of-seperation))]
+    (draw-circle (:x coords) (:y coords) 10)))
+
+(defn art-one []
+  [:svg {:width "100%"
+         :height "100%"
+         :href "art-one"
+         :id "art-one"
+         #_#_:style #js {:display "none"}}
+   [:g
+    (for [x (range 20)]
+      (draw-circle (* x x x)
+                   (* x x x)
+                   (* x x x)))]])
+
+#_(defn map-container []
   (let [center (atom [27.77 -82.63])
         [lat lng] @center]
     #_(fn [])
@@ -54,15 +85,15 @@
 
 (defn navigation []
   (make-dropdown-navigation
-   "mksybr"
-   [["home"
-     (rfe/href :router/frontpage)]
-    ["about"
-     (rfe/href :router/about)]
-    ["portfolio"
-     (rfe/href :router/portfolio)]
-    ["login"
-     (rfe/href :router/login)]]))
+     "mksybr"
+     [["home"
+       (rfe/href :router/frontpage)]
+      ["about"
+       (rfe/href :router/about)]
+      ["portfolio"
+       (rfe/href :router/portfolio)]
+      ["login"
+       (rfe/href :router/login)]]))
 
 (defn input
   [label id type]
@@ -79,8 +110,7 @@
 (defn home-page []
   [:div
    [:h1.title "Welcome"]
-   [:p.subtitle (str  "Hello ")]
-   [map-container]])
+   [:p.subtitle (str  "Hello ")]])
 
 (defn input-field [label]
   (let [state (r/atom "")

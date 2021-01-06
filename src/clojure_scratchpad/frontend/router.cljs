@@ -34,6 +34,7 @@
 
 (defn current-page []
   [:div
+   [views/art-one]
    [views/navigation]
    (if @match
      (let [view (:view (:data @match))]
