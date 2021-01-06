@@ -11,7 +11,7 @@
 
 (defn current-page []
   [:div
-   #_[views/navigation]
+   [views/navigation]
    (if @match
      (let [view (:view (:data @match))]
        [view @match]))])

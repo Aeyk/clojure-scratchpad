@@ -80,7 +80,7 @@
 
 (defn home-page []
   [:div
-   [navigation]
+   
    [:h1.title "Welcome"]
    [:p.subtitle (str  "Hello ")]
    [test-component]
@@ -131,7 +131,6 @@
 
 (defn portfolio-page []
   [:div
-   [navigation]
    [:div.card.is-half
     [:div.card-content
      [:p.subtitle "Twains uWu 🤪🤪"]
@@ -144,7 +143,6 @@
 
 (defn about-page []
   [:div
-   [navigation]
    #_[:input {:type :text
             :default-value (:name @state)
             :on-change (fn [e] (swap! name :name (.. e -target -value)))}]
@@ -172,7 +170,7 @@
   []
   (let [submit-handler #(.preventDefault %)]
     [:div
-     [navigation]
+    
      [:form
       {:on-submit submit-handler}
       [input "name:" "username" :text]
