@@ -5,15 +5,39 @@
    [reitit.frontend :as rf]
    [reitit.frontend.easy :as rfe]
    [reitit.coercion.spec :as rss]
-   [spec-tools.data-spec :as ds]
-   [fipp.edn :as fedn]))
+   [spec-tools.data-spec :as ds]))
+
+(def state (r/atom {:name ""}))
+(def name-var (r/cursor state [:name]))
+
+;; --
+(defn navigation []
+  (let [state (r/atom {:navbar-hidden true})]
+    (fn []
+      (let [is-hidden? (get @state :navbar-hidden)]
+        [:nav.navbar {:role "navigation"
+                      :aria-label "dropdown navigation"}
+         [:div.navbar-item.has-dropdown.is-hoverable
+          [:a.navbar-link
+           {:on-click #(swap! state update :navbar-hidden not)}
+           "A"]
+          [:div.navbar-dropdown (if is-hidden?
+                                  {:class "is-hidden"})
+           [:a.navbar-item "B"]
+           [:a.navbar-item "C"]]]]))))
+;; --
 
 (defn home-page []
-  [:div
-   [:h2 "Welcome to frontend"]])
+  (let [name name-var]
+    [:div 
+     [:h2 "Welcome to frontend"]
+     [:p (str  "Hello, " name)]]))
 
 (defn about-page []
   [:div
+   [:input {:type :text
+            :default-value (:name @state)
+            :on-change (fn [e] (swap! name :name (.. e -target -value)))}]
    [:h2 "About frontend"]
    [:ul
     [:li [:a {:href "http://google.com"} "external link"]]
@@ -37,11 +61,13 @@
 
 (defn current-page []
   [:div
-   [:ul
+   [navigation]
+   #_[:ul
     [:li [:a {:href (rfe/href ::frontpage)} "Frontpage"]]
     [:li [:a {:href (rfe/href ::about)} "About"]]
     [:li [:a {:href (rfe/href ::item {:id 1})} "Item 1"]]
-    [:li [:a {:href (rfe/href ::item {:id 2} {:foo "bar"})} "Item 2"]]]
+      [:li [:a {:href (rfe/href ::item {:id 2} {:foo "bar"})} "Item 2"]]]
+   
    (if @match
      (let [view (:view (:data @match))]
        [view @match]))])
