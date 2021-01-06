@@ -7,6 +7,12 @@
    [reitit.coercion.spec :as rss]
    [spec-tools.data-spec :as ds]))
 
+;; (def url "https://lftzhklytmxclipatzas.supabase.co")
+;; (def api-key (System/getenv "SUPABASE_API_CLIENT_KEY"))
+
+(defonce todos (r/atom []))
+
+
 ;; --
 (defn navigation []
   (let [state (r/atom {:navbar-hidden true})]
@@ -37,12 +43,38 @@
    [:h1.title "Welcome"]
    [:p.subtitle (str  "Hello ")]])
 
+(defn input-field [label]
+  (let [state (r/atom "")
+        reset-state (fn [e]
+                      (e.preventDefault)
+                      (swap! todos conj @state)
+                      (reset! state ""))]
+    (fn []
+      [:div
+       [:ul
+        (for [todo @todos]
+          [:p {:key (gensym todo)}
+           todo])]
+       [:form.field.control
+        {:on-submit
+         reset-state}
+        [:label.label label]
+        [:p @state]
+        [:input.input
+         {:type :text
+          :on-change
+          (fn [e] (reset! state (.. e -target -value)))}]
+        [:button.button.is-primary.submit
+         {:on-click
+          reset-state}]]])))
+
 (defn about-page []
   [:div
    #_[:input {:type :text
             :default-value (:name @state)
             :on-change (fn [e] (swap! name :name (.. e -target -value)))}]
    [:h2.title "About frontend"]
+   [input-field "name: "]
    #_[:ul
     [:li [:a {:href "http://google.com"} "external link"]]
     [:li [:a {:href (rfe/href ::foobar)} "Missing route"]]
