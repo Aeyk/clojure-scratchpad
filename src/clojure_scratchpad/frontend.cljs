@@ -7,9 +7,6 @@
    [reitit.coercion.spec :as rss]
    [spec-tools.data-spec :as ds]))
 
-(def state (r/atom {:name ""}))
-(def name-var (r/cursor state [:name]))
-
 ;; --
 (defn navigation []
   (let [state (r/atom {:navbar-hidden true})]
@@ -17,33 +14,35 @@
       (let [is-hidden? (get @state :navbar-hidden)]
         [:nav.navbar {:role "navigation"
                       :aria-label "dropdown navigation"}
+         [:div.navbar-start
+          [:img {:src "logo.svg"}]]
          [:div.navbar-item.has-dropdown.is-hoverable
           [:a.navbar-link
-           {:on-click #(swap! state update :navbar-hidden not)}
-           "A"]
+           {:on-click #(swap! state update :navbar-hidden not)}]
           [:div.navbar-dropdown (if is-hidden?
                                   {:class "is-hidden"})
-           [:a.navbar-item "B"]
-           [:a.navbar-item "C"]]]]))))
+           [:a.navbar-item {:href (rfe/href ::about)}
+            "about"]
+           [:a.navbar-item #_{:href "#"}
+            "source"]]]]))))
 ;; --
 
 (defn home-page []
-  (let [name name-var]
-    [:div 
-     [:h2 "Welcome to frontend"]
-     [:p (str  "Hello, " name)]]))
+  [:div 
+   [:h1.title "Welcome"]
+   [:p.subtitle (str  "Hello ")]])
 
 (defn about-page []
   [:div
-   [:input {:type :text
+   #_[:input {:type :text
             :default-value (:name @state)
             :on-change (fn [e] (swap! name :name (.. e -target -value)))}]
    [:h2 "About frontend"]
-   [:ul
+   #_[:ul
     [:li [:a {:href "http://google.com"} "external link"]]
     [:li [:a {:href (rfe/href ::foobar)} "Missing route"]]
     [:li [:a {:href (rfe/href ::item)} "Missing route params"]]]
-   [:div
+   #_[:div
     {:content-editable true
      :suppressContentEditableWarning true}
     [:p "Link inside contentEditable element is ignored."]
@@ -62,12 +61,6 @@
 (defn current-page []
   [:div
    [navigation]
-   #_[:ul
-    [:li [:a {:href (rfe/href ::frontpage)} "Frontpage"]]
-    [:li [:a {:href (rfe/href ::about)} "About"]]
-    [:li [:a {:href (rfe/href ::item {:id 1})} "Item 1"]]
-      [:li [:a {:href (rfe/href ::item {:id 2} {:foo "bar"})} "Item 2"]]]
-   
    (if @match
      (let [view (:view (:data @match))]
        [view @match]))])
