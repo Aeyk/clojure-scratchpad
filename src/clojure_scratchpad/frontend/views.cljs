@@ -17,9 +17,9 @@
      :y (* (java.lang.Math/sin angle-in-radians)
            (+ cy  r))}))
 
-(defn draw-circle [x y r]
+(defn draw-circle [x y r & fill]
   [:circle {:cx x :cy y  :r r
-            :fill "white"
+            :fill (or fill "white")
             :stroke "black"}])
 
 ;;; https://stackoverflow.com/questions/28992878/svg-a-circle-of-circles
@@ -35,11 +35,22 @@
          :href "art-one"
          :id "art-one"
          #_#_:style #js {:display "none"}}
-   [:g
-    (for [x (range 20)]
+   (for [x (range 20)]
+     [:g 
       (draw-circle (* x x x)
                    (* x x x)
-                   (* x x x)))]])
+                   (* x x x)
+                   "#d1d1d1")
+      (draw-circle (* x x x)
+                     (* x x)
+                     (* x x)
+                     "#b1b1b1") 
+      (draw-circle (* x x x)
+                   (* 2 x)
+                   (* 3 x)
+                   "#717171")
+      
+      ])])
 
 #_(defn map-container []
   (let [center (atom [27.77 -82.63])
