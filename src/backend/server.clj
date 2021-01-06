@@ -7,13 +7,21 @@
             [ring.adapter.jetty :as jetty]
             [mount.core :as mount]))
 
+(defn no-op-handler [request]
+  {:status 200})
+
+(def hello-world
+  (fn [req]
+    {:body "<img alt=\"\" src=\"logo.svg\"/>Hello World!"
+     :status 200}))
 (def routes
   [""
-   {:middleware [;; todo middleware
-                 ;; middleware/wrap-csrf
-                 ;; middleware/wrap-formats
-                 ]}                     
-   ["/" {:get (constantly "Hello world!")}]
+   {:middleware [wrap-reload]}
+   ["/" {:get hello-world}]
+   ["/logo.svg"
+    {:get
+     (fn [_]
+       {:body (slurp "resources/logo.svg")})}]
    #_["/ws" {:get about-page}]])
 
 (def app
