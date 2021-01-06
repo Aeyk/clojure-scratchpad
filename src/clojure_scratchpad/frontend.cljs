@@ -1,5 +1,6 @@
 (ns clojure-scratchpad.frontend
   (:require
+   ["react-leaflet" :as react-leaflet]
    [reagent.core :as r]
    [reagent.dom :as rd]
    [reitit.frontend :as rf]
@@ -11,7 +12,6 @@
 ;; (def api-key (System/getenv "SUPABASE_API_CLIENT_KEY"))
 
 (defonce todos (r/atom ["Clean house" "Walk dog" "See friend"]))
-
 
 ;; --
 (defn navigation []
@@ -37,11 +37,19 @@
             {:href "https://github.com/aeyk/clojure-scratchpad/"}
             "source"]]]]))))
 ;; --
+(def MapContainer (r/adapt-react-class react-leaflet/MapContainer))
+(def TileLayer (r/adapt-react-class react-leaflet/TileLayer))
 
 (defn home-page []
   [:div 
    [:h1.title "Welcome"]
-   [:p.subtitle (str  "Hello ")]])
+   [:p.subtitle (str  "Hello ")]
+   [MapContainer
+    {:center [27.77 -82.63] :zoom 13
+     :scrollWheelZoom false}
+    [TileLayer
+     {:attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
+      :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]]])
 
 (defn input-field [label]
   (let [state (r/atom "")
