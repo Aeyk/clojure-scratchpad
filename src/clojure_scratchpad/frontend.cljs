@@ -15,7 +15,8 @@
         [:nav.navbar {:role "navigation"
                       :aria-label "dropdown navigation"}
          [:div.navbar-start
-          [:img {:src "logo.svg"}]]
+          [:a.navbar-brand {:href (rfe/href ::frontpage)}
+           [:img {:src "logo.svg"}]]]
          [:div.navbar-item.has-dropdown.is-hoverable
           [:a.navbar-link
            {:on-click
