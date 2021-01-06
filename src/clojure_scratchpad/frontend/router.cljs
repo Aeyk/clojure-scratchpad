@@ -9,13 +9,6 @@
 
 (defonce match (r/atom nil))
 
-(defn current-page []
-  [:div
-   [views/navigation]
-   (if @match
-     (let [view (:view (:data @match))]
-       [view @match]))])
-
 (def routes
   [["/"
     {:name :router/frontpage

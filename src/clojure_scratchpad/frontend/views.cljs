@@ -178,3 +178,10 @@
       [:input.button {:type :submit
                       :on-submit submit-handler}]]]))
 
+
+(defn current-page []
+  [:div
+   [navigation]
+   (if @router/match
+     (let [view (:view (:data @router/match))]
+       [view @router/match]))])
