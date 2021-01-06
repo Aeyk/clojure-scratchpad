@@ -32,6 +32,13 @@
      :parameters {:path {:id int?}
                   :query {(ds/opt :foo) keyword?}}}]])
 
+(defn current-page []
+  [:div
+   [views/navigation]
+   (if @match
+     (let [view (:view (:data @match))]
+       [view @match]))])
+
 (defn init-router []
   (rfe/start!
    (rf/router routes {:data {:coercion rss/coercion}})
