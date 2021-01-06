@@ -11,21 +11,25 @@
 (defonce todos (r/atom ["Clean house" "Walk dog" "See friend"]))
 
 (defn map-container []
-  (let [center (atom [27.77 -82.63])]
+  (let [center (atom [27.77 -82.63])
+        [lat lng] @center]
     #_(fn [])
-    [:div
+    [:div 
      [:input.input
-      {:type :text
-       :default-value @center}]
+      {:type :number
+       :default-value lat}]
+     [:input.input
+      {:type :number
+       :default-value lng}]
      [:> react-leaflet/MapContainer
-      {:center @center
+      {:center [lat lng]
        :zoom 13
        :scrollWheelZoom false
        :on-change #(js/console.log %)
        :on-click #(js/console.log %)}
       [:> react-leaflet/TileLayer
        {:on-change #(js/console.log %)
-        :on-click js/console.log
+        :on-click #(js/console.log)
         :attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
         :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]]]))
 
