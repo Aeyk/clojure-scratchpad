@@ -29,6 +29,10 @@
     {:name ::portfolio
      :view views/portfolio-page}]
 
+   ["/login"
+    {:name ::login
+     :view views/login-form}]
+
    
    ["/item/:id"
     {:name ::item

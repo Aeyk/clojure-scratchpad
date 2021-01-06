@@ -16,8 +16,8 @@
   [:div
    [:h1.title "Welcome"]
    [:p.subtitle (str  "Hello ")]
-   (let [])
-   [MapContainer
+   [test-component]
+   #_[MapContainer
     {:center [27.77 -82.63] :zoom 13
      :scrollWheelZoom false
      :onClick (fn [e] (js/console.log e))}
@@ -97,3 +97,36 @@
      [:h2 "Selected item " id]
      (if (:foo query)
        [:p "Optional foo query param: " (:foo query)])]))
+
+(defn input
+  [label id type]
+  (let [state (atom "")]
+    [:div.field
+     [:div.control
+      [:label.label label]
+      [:input.input
+       {:type type
+        :id id
+        :value @state
+        :on-change (fn [e] (reset! state (.. e -target -value)))}]]]))
+
+(defn login-form
+  []
+  (let [submit-handler #(.preventDefault %)]
+    [:form
+     {:on-submit submit-handler}
+     [input "name:" "username" :text]
+     [input "password:" "password" :password]
+     [:input.button {:type :submit
+                     :on-submit submit-handler}]]))
+
+
+(defn test-component
+  []
+  (let [submit-handler #(.preventDefault %)]
+    [:form
+     {:on-submit submit-handler}
+     [input "name:" "username" :text]
+     [input "password:" "password" :password]
+     [:input.button {:type :submit
+                     :on-submit submit-handler}]]))
