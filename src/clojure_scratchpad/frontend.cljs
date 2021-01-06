@@ -45,10 +45,10 @@
 
 (defn input-field [label]
   (let [state (r/atom "")
-        reset-state (fn [e]
-                      (e.preventDefault)
-                      (swap! todos conj @state)
-                      (reset! state ""))]
+        submit-handler (fn [e]
+                         (e.preventDefault)
+                         (swap! todos conj @state)
+                         (reset! state ""))]
     (fn []
       [:div
        [:ul
@@ -57,16 +57,17 @@
            todo])]
        [:form.field.control
         {:on-submit
-         reset-state}
+         submit-handler}
         [:label.label label]
-        [:p @state]
         [:input.input
-         {:type :text
+         {:value @state
+          :type :text
           :on-change
-          (fn [e] (reset! state (.. e -target -value)))}]
+          (fn [e]
+            (reset! state (.. e -target -value)))}]
         [:button.button.is-primary.submit
          {:on-click
-          reset-state}]]])))
+          submit-handler}]]])))
 
 (defn about-page []
   [:div
