@@ -10,7 +10,7 @@
 ;; (def url "https://lftzhklytmxclipatzas.supabase.co")
 ;; (def api-key (System/getenv "SUPABASE_API_CLIENT_KEY"))
 
-(defonce todos (r/atom []))
+(defonce todos (r/atom ["Clean house" "Walk dog" "See friend"]))
 
 
 ;; --
@@ -45,16 +45,27 @@
 
 (defn input-field [label]
   (let [state (r/atom "")
-        submit-handler (fn [e]
-                         (e.preventDefault)
-                         (swap! todos conj @state)
-                         (reset! state ""))]
+        submit-handler
+        (fn [e]
+          (e.preventDefault)
+          (swap! todos conj @state)
+          (reset! state ""))]
     (fn []
       [:div
-       [:ul
-        (for [todo @todos]
-          [:p {:key (gensym todo)}
-           todo])]
+       (for [todo @todos]
+         (let [sym (gensym todo)]
+           [:div.card {:key sym
+                       :id sym}
+            [:div.card-content
+             todo
+             [:span.delete
+              {:on-click
+               (fn [e]
+                 #_(js/console.log) 
+                 (.toggle
+                  (.-classList
+                   (js/document.getElementById sym))
+                  "is-complete"))}]]]))
        [:form.field.control
         {:on-submit
          submit-handler}
