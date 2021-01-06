@@ -18,12 +18,16 @@
           [:img {:src "logo.svg"}]]
          [:div.navbar-item.has-dropdown.is-hoverable
           [:a.navbar-link
-           {:on-click #(swap! state update :navbar-hidden not)}]
-          [:div.navbar-dropdown (if is-hidden?
+           {:on-click
+            #(swap! state update :navbar-hidden not)}]
+          [:div.navbar-dropdown
+           (if is-hidden?
                                   {:class "is-hidden"})
-           [:a.navbar-item {:href (rfe/href ::about)}
+           [:a.navbar-item
+            {:href (rfe/href ::about)}
             "about"]
-           [:a.navbar-item #_{:href "#"}
+           [:a.navbar-item
+            {:href "https://github.com/aeyk/clojure-scratchpad/"}
             "source"]]]]))))
 ;; --
 
@@ -37,7 +41,7 @@
    #_[:input {:type :text
             :default-value (:name @state)
             :on-change (fn [e] (swap! name :name (.. e -target -value)))}]
-   [:h2 "About frontend"]
+   [:h2.title "About frontend"]
    #_[:ul
     [:li [:a {:href "http://google.com"} "external link"]]
     [:li [:a {:href (rfe/href ::foobar)} "Missing route"]]
