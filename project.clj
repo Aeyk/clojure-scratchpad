@@ -68,6 +68,8 @@
                  [music-theory "0.3.1"]
                  [djblue/portal "0.6.4"]
                  [provisdom/spectomic "0.7.11"]
+                 [ring/ring-core "1.8.2"]
+                 [ring/ring-jetty-adapter "1.8.2"]
                  ]
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-shadow "0.3.1"]
