@@ -82,11 +82,12 @@
 
   :shadow-cljs
   {:source-paths ["src"]
-   :dev-http {3000 "public"}
+   :dev-http {3000 ":frontend"}
    :builds
    {:frontend
     {:target :browser
-     :output-dir "public/"
+     :output-dir "resources/public/"
+     #_#_:output-dir "public/"
      :compiler-options {:output-feature-set :es5}
      :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}}}
   
