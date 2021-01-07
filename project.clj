@@ -56,7 +56,8 @@
                  ;; [bouncycastle/bctsp-jdk14]] ;; processingjs interface
                  ;; [yogthos/config "1.1.7"]
                  ;; [pez/clerk "1.0.0"]
-                 ;; [metosin/reitit-ring "0.5.5"]
+                 [ring-middleware-format "0.7.4"]
+                 [metosin/reitit-ring "0.5.5"]
                  [metosin/reitit "0.5.5"]
                  ;; [reaver "0.1.3"]
                  ;; [cider/orchard "0.6.0"]
@@ -83,6 +84,8 @@
    :builds
    {:frontend
     {:target :browser
+     :output-dir "public/"
+     :compiler-options {:output-feature-set :es5}
      :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}}}
   
   :cljsbuild
