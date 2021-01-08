@@ -28,7 +28,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-fretboard": "0.0.12",
-    "react-leaflet": "^3.0.2",
+    "react-leaflet": "^3.0.5",
     "react-piano": "^3.1.3",
     "react-piano-component": "^0.1.4",
     "simple-encryptor": "^4.0.0",
@@ -41,12 +41,13 @@
     "xregexp": "^4.4.1"
   },
   "devDependencies": {
-    "@supabase/supabase-js": "^1.1.3",
+    "@supabase/supabase-js": "^1.1.4",
     "bulma": "^0.9.1",
     "karma": "^2.0.0",
     "karma-chrome-launcher": "^2.2.0",
     "karma-cljs-test": "^0.1.0",
     "node-sass": "^5.0.0",
-    "shadow-cljs": "^2.11.7"
+    "shadow-cljs": "^2.11.7",
+    "source-map-support": "^0.5.19"
   }
 }
