@@ -7,7 +7,7 @@
 (def routes
   [""
    {:middleware []}
-   ["/" (fn [req] {:status 200
+   #_["/" (fn [req] {:status 200
                    :body "Hello"})]])
 
 (def app
@@ -15,14 +15,15 @@
    (ring/router
     routes)
    (ring/routes
-    (ring/create-resource-handler {:path "/"})
+    (ring/create-resource-handler {:path ""})
     (ring/create-default-handler))))
 
 
 (defn init []
   (defonce server
     (http/run-server
-     app)))
+     app
+     {:port 3000})))
 
 (defn -main []
   (init))

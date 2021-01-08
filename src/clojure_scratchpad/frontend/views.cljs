@@ -246,7 +246,8 @@
    [chromatic-scale]
    [:h1.title "Flute Chart"]
    [:h1.subtitle "C"]
-   [:object.image.is-128x128
+   [:p (slurp "flute-chart.svg")]
+   #_[:object.image.is-128x128
     {:style {:transform "rotate(90deg)"}
      :data "flute-chart.svg"}]
    #_[:img {:width "250px"
