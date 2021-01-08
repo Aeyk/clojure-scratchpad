@@ -8,11 +8,12 @@
    [reitit.coercion.spec :as rss]
    [spec-tools.data-spec :as ds]))
 
-
+;; * Fingering Chart
 (def blank-finger-chart
   [:svg {:height "750px"
          :fill "white"
-         :stroke "black"}
+         :stroke "black"
+         :id "flute"}
    [:g
      {:id "layer1"}
      [:circle
@@ -79,7 +80,7 @@
        :d "m 111.37902,114.35801 c -0.0402,-1.42381 -0.12048,-4.27171 1.6146,-5.70586 1.73509,-1.43416 5.28518,-1.45429 7.13774,0.19738 1.85257,1.65167 2.00778,4.97473 1.28267,8.99776 -0.7251,4.02302 -2.33041,8.74587 -8.0406,10.2031 -5.71019,1.45723 -15.5252,-0.35108 -16.187711,-1.75249 -0.662511,-1.40141 7.827411,-2.39575 11.725081,-4.08045 3.89766,-1.68469 3.20308,-4.05996 2.85573,-5.24777 -0.34735,-1.18782 -0.34735,-1.18786 -0.38751,-2.61167 z",
        :id "pinky-r"}]]])
 
-
+;; * Circle Stuff
 (defonce todos (r/atom ["Clean house" "Walk dog" "See friend"]))
 
 (defn polar->cartesian [cx cy r angle-in-degrees]
@@ -100,7 +101,7 @@
         º-of-seperation (/ 360 satellite-count)
         coords (polar->cartesian c c r (* n º-of-seperation))]
     (draw-circle (:x coords) (:y coords) 10)))
-
+;; * Circle Art
 (defn art-one []
   [:svg {:width "100%"
          :height "100%"
@@ -121,7 +122,7 @@
                    (* 2 x)
                    (* 3 x)
                    "#717171")])])
-
+;; * Leaflet Stuff
 #_(defn map-container []
   (let [center (atom [27.77 -82.63])
         [lat lng] @center]
@@ -144,7 +145,7 @@
         :on-click #(js/console.log)
         :attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
         :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]]]))
-
+;; * Navigation Stuff
 (defn make-dropdown-navigation [label dropdowns]
   (let [state (r/atom {:navbar-hidden true})]
     (fn []
@@ -177,7 +178,7 @@
        (rfe/href :router/login)]
       ["flute"
        (rfe/href :router/flute)]]))
-
+;; * Inputs and Forms
 (defn input
   [label id type state]
   [:div.field
@@ -188,11 +189,6 @@
       :id id
       :value @state
       :on-change (fn [e] (reset! state (.. e -target -value)))}]]])
-
-(defn home-page []
-  [:div
-   [:h1.title "Welcome"]
-   [:p.subtitle (str  "Hello " )]])
 
 (defn input-field [label]
   (let [state (r/atom "")
@@ -229,6 +225,11 @@
         [:button.button.is-primary.submit
          {:on-click
           submit-handler}]]])))
+;; * Pages
+(defn home-page []
+  [:div
+   [:h1.title "Welcome"]
+   [:p.subtitle (str  "Hello " )]])
 
 (defn portfolio-page []
   [:div
@@ -254,7 +255,7 @@
      [:h2 "Selected item " id]
      (if (:foo query)
        [:p "Optional foo query param: " (:foo query)])]))
-
+;; * UI Helpers
 (defn set-button-to-spinner [el]
   (.add (.-classList (js/document.querySelector el)) "is-loading"))
 
@@ -277,7 +278,7 @@
        [input "password:" "password" :password password]
        [:input.button {:type :submit
                        :on-submit submit-handler}]]])))
-
+;; * Flute and Music Stuff
 (defn number->note-name [n]
   (let [n (mod n 12)]
     (case n
@@ -297,19 +298,21 @@
 
 (defn make-C
   []
-  (let [svg (js/document.getElementById "svg833")
-        bb (.getElementById svg "path957")
+  (let [svg (js/document.querySelector "#flute")
+        bb (.getElementById svg "B")
         b (.getElementById svg  "path991")
         c (js/document.getElementById "path859-6-7-5-2")
         a (js/document.getElementById "path859-6-7-5-3-9")
         g (js/document.getElementById "path859-6-7-5-3-5-1")
         gs (js/document.getElementById "path1054")]
-    (.setAttribute b "fill" "black")))
+    (js/console.log svg (.setAttribute bb "fill" "black"))
+    #_(.setAttribute b "fill" "black")))
 
 (defn chromatic-scale []
   [:div
    (for [note (range 0 12)]
-     [:li.button.is-inline {:on-click (fn [e] (make-C))}
+     [:li.button.is-inline
+      {:on-click (fn [e] (make-C))}
       (str (number->note-name note))])])
 
 (defn flute
