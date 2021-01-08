@@ -1,13 +1,14 @@
 (ns clojure-scratchpad.frontend.supabase
-  (:require [rum.core :as rum]
+  (:require ;; [rum.core :as rum]
             ;; [reitit.frontend :as rf]
             ;; [reitit.frontend.easy :as rfe]
             ;; [reitit.coercion.spec :as rss]
             ["@supabase/supabase-js" :as supabase]))
 
 (declare refresh)
-(def url "https://lftzhklytmxclipatzas.supabase.co")
-(def api-key (System/getenv "SUPABASE_API_CLIENT_KEY"))
+;; (def url "https://lftzhklytmxclipatzas.supabase.co")
+;; (def api-url "https://lftzhklytmxclipatzas.supabase.co")
+#_(def api-key (System/getenv "SUPABASE_API_CLIENT_KEY"))
 
 (def form-data (atom {:email "" :password ""
                       :password_confirmation "" :notify ""
@@ -56,7 +57,7 @@
    (js/setTimeout #(flash "") timeout)
    (reset! notify e)))
 
-(defonce client (supabase/createClient url  api-key))
+#_(defonce client (supabase/createClient api-url  api-key))
 
 (defn logged-in? [])
 
@@ -72,7 +73,7 @@
        (clj->js [@email @password @password_confirmation]))
       (if-not (== @password @password_confirmation)
         (passwords-dont-match)
-        (.then
+        #_(.then
          (.signUp client.auth
                   #js
                   {:email @email
@@ -107,7 +108,7 @@
      (fn [e]
        (.preventDefault e)
        #_(set-button-to-spinner "#signup")
-       (.then
+       #_(.then
         (.signIn client.auth
                  #js
                  {:email @email
@@ -127,6 +128,22 @@
      "Sign Up"]
     [:button.button.is-fullwidth "Cancel"]]])
 
+(defn login-handler [email password]
+  (js/console.log @email @password)
+  #_(.then
+   (.signIn client.auth
+            #js
+            {:email @email
+             :password @password})
+   (fn [res]
+     (js/console.log
+      res)
+     (if res.error
+       (error res.error)
+       (do
+         (if (and res.data.user res.data.user.email)
+           (flash (str "Logged in as: " res.data.user.email) 10000)))))))
+
 
 
 (rum/defc todos-form < rum/reactive
@@ -137,13 +154,13 @@
      (fn [e]
        (.preventDefault e)
 
-       (let [res
+       #_(let [res
              (.select
               (.from client "todos")
               "user_id")]
          (reset! todos res.data))
 
-       (let [res
+       #_(let [res
              (.insert
               (.from client "todos")
               {:task @todo})]

@@ -1,17 +1,17 @@
 (ns backend.middleware
-  (:require [backend.env :refer [defaults]]
+  (:require #_[backend.env :refer [defaults]]
             [clojure.tools.logging :as log]
-            [backend.layout :refer [*app-context* error-page]]
+            #_[backend.layout :refer [*app-context* error-page]]
             [ring.middleware.anti-forgery :refer [wrap-anti-forgery]]
-            [ring.middleware.webjars :refer [wrap-webjars]]
+            #_[ring.middleware.webjars :refer [wrap-webjars]]
             [ring.middleware.format :refer [wrap-restful-format]]
-            [backend.config :refer [env]]
+            #_[backend.config :refer [env]]
             [ring.middleware.flash :refer [wrap-flash]]
-            [immutant.web.middleware :refer [wrap-session]]
+            #_[immutant.web.middleware :refer [wrap-session]]
             [ring.middleware.defaults :refer [site-defaults wrap-defaults]])
   (:import [javax.servlet ServletContext]))
 
-(defn wrap-context [handler]
+#_(defn wrap-context [handler]
   (fn [request]
     (binding [*app-context*
               (if-let [context (:servlet-context request)]
@@ -26,7 +26,7 @@
                 (:app-context env))]
       (handler request))))
 
-(defn wrap-internal-error [handler]
+#_(defn wrap-internal-error [handler]
   (fn [req]
     (try
       (handler req)
@@ -36,7 +36,7 @@
                      :title "Something very bad has happened!"
                      :message "We've dispatched a team of highly trained gnomes to take care of the problem."})))))
 
-(defn wrap-csrf [handler]
+#_(defn wrap-csrf [handler]
   (wrap-anti-forgery
     handler
     {:error-response
@@ -53,7 +53,7 @@
       ;; since they're not compatible with this middleware
       ((if (:websocket? request) handler wrapped) request))))
 
-(defn wrap-base [handler]
+#_(defn wrap-base [handler]
   (-> handler
       wrap-webjars
       wrap-flash
