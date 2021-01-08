@@ -1,0 +1,28 @@
+(ns backend.server
+  (:require [reitit.ring :as ring]
+            [org.httpkit.server :as http]
+            [ring.middleware.reload :refer [wrap-reload]]
+            [taoensso.timbre :refer [info]]))
+
+(def routes
+  [""
+   {:middleware []}
+   ["/" (fn [req] {:status 200
+                   :body "Hello"})]])
+
+(def app
+  (ring/ring-handler
+   (ring/router
+    routes)
+   (ring/routes
+    (ring/create-resource-handler {:path "/"})
+    (ring/create-default-handler))))
+
+
+(defn init []
+  (defonce server
+    (http/run-server
+     app)))
+
+(defn -main []
+  (init))
