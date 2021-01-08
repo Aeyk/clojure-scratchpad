@@ -14,16 +14,20 @@ frontend:
 	lein shadow watch frontend
 	@echo -e "\033[0m"
 
-backend:
+cljs-backend:
 	@echo -e "\033[36m"
 	lein shadow watch backend
 	@echo -e "\033[0m"
 
-server: backend
-	@echo -e "\033[33m"
+cljs-server:  cljs-backend
 	node target/main.js
-#	lein run
+
+server: #_ 
+	@echo -e "\033[33m"
+	lein run
 	@echo -e "\033[0m"
+
+
 
 clean:
 	rm -rf "($CSS_DEST)"
