@@ -26,6 +26,11 @@
     {:name :router/login
      :view views/login-form}]
 
+
+   ["/flute"
+    {:name :router/flute
+     :view views/flute}]
+
    ["/item/:id"
     {:name ::item
      :view views/item-page
@@ -36,9 +41,10 @@
   [:div
    [views/art-one]
    [views/navigation]
-   (if @match
-     (let [view (:view (:data @match))]
-       [view @match]))])
+   [:div
+    (if @match
+      (let [view (:view (:data @match))]
+        [view @match]))]])
 
 (defn init-router []
   (rfe/start!

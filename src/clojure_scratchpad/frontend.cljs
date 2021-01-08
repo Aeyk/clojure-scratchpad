@@ -1,5 +1,6 @@
 (ns clojure-scratchpad.frontend
   (:require
+   #_["@fingerprintjs/fingerprintjs" :as fingerprint]
    [clojure-scratchpad.frontend.views :as views]
    [clojure-scratchpad.frontend.router :as router]
    ["react-leaflet" :as react-leaflet]
@@ -13,6 +14,17 @@
 ;; (def url "https://lftzhklytmxclipatzas.supabase.co")
 ;; (def api-key (System/getenv "SUPABASE_API_CLIENT_KEY"))
 
+#_(defn init-fingerprint []
+  (.then
+   (fingerprint/load)
+   (fn
+     [d]
+     (.then
+      (.get d)
+      (fn [r]
+        (js/console.log r.visitorId))))))
+
 (defn init []
+  #_(init-fingerprint)
   (router/init-router)
   (rd/render [router/current-page] (.getElementById js/document "app")))
