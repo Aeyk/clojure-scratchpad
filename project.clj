@@ -72,6 +72,7 @@
                  [ring/ring-jetty-adapter "1.8.2"]
                  [macchiato/core "0.2.16"]
                  [com.taoensso/timbre "4.10.0"]
+                 [clj-tagsoup "0.3.0"]
                  ]
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-shadow "0.3.1"]
