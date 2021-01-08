@@ -23,4 +23,4 @@
  ;;
  ;; >>>>>>>>>>>>>>>>>>>>>>>> YOUR CHANGES WILL BE LOST <<<<<<<<<<<<<<<<<<<<<<<<<
  ;;
- {:source-paths ["src"], :dev-http {3000 "public"}, :builds {:frontend {:target :browser, :output-dir "resources/public/", :compiler-options {:output-feature-set :es5}, :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}}, :lein true}
+ {:source-paths ["src"], :dev-http {3000 ":frontend"}, :builds {:frontend {:target :browser, :output-dir "resources/public/", :compiler-options {:output-feature-set :es5}, :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}, :backend {:target :node-script, :output-dir "target/", :output-to "target/main.js", :exports {:server backend.server/server}, :compiler-options {:output-feature-set :es6, :optimizations :simple}, :main backend.server/init}}, :lein true}

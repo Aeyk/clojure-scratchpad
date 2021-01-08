@@ -70,6 +70,8 @@
                  [provisdom/spectomic "0.7.11"]
                  [ring/ring-core "1.8.2"]
                  [ring/ring-jetty-adapter "1.8.2"]
+                 [macchiato/core "0.2.16"]
+                 [com.taoensso/timbre "4.10.0"]
                  ]
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-shadow "0.3.1"]
@@ -89,7 +91,16 @@
      :output-dir "resources/public/"
      #_#_:output-dir "public/"
      :compiler-options {:output-feature-set :es5}
-     :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}}}
+     :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}
+    :backend
+    {:target :node-script
+     :output-dir "target/"
+     :output-to "target/main.js"
+     :exports {:server backend.server/server}
+
+     :compiler-options {:output-feature-set :es6
+                        :optimizations :simple}
+     :main backend.server/init}}}
   
   :cljsbuild
   {:builds
