@@ -316,13 +316,7 @@
 
 (defn make-middle-C
   []
-  (make-fingering (:C note-fingering))
-  #_(let [svg (js/document.querySelector "#flute")
-        unpressed-buttons (.querySelectorAll svg "circle, path, ellipse")
-        pressed-buttons #js [(.querySelector svg "#B")
-                             (.querySelector svg "#pinky-b")]]
-    (.forEach unpressed-buttons #(.setAttribute % "fill" "white"))
-    (.forEach pressed-buttons #(.setAttribute % "fill" "black"))))
+  (make-fingering (:C note-fingering)))
 
 (defn make-fingering [pressed-buttons]
   (let [svg (js/document.querySelector "#flute")
@@ -348,15 +342,7 @@
    [chromatic-scale]
    [:h1.title "Flute Chart"]
    [:h1.subtitle "C"]
-    blank-finger-chart
-   #_[:object.image.is-128x128
-    {:style {:transform "rotate(90deg)"}
-     :data "flute-chart.svg"}]
-   #_[:img {:width "250px"
-          :height "750px"
-          :top "30px"
-          :style {:transform "translate(0px, 90px) rotate(90deg)"}
-          :src "./flute-chart.svg"}]])
+    blank-finger-chart])
 ;; * TicTacToe
 (defn tictactoe
   []
