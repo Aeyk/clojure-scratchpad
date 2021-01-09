@@ -299,19 +299,46 @@
       11 "B"
       n)))
 
-(defn make-C
+
+(def note-fingering
+  {:C ["#B" "#pinky-b"]
+   :CsDb ["#pinky-b"]
+   :D ["#B" "#A" "#G" "#F" "#E" "#D" "#thumb-b"]
+   :DsEb []
+   :E ["#B" "#A" "#G" "#F" "#E" "#thumb-b"]
+   :F ["#B" "#A" "#G" "#F" "#thumb-b"]
+   :FsGb []
+   :G ["#B" "#A" "#G" "#thumb-b"]
+   :GsAb []
+   :A ["#B" "#A" "#thumb-b"]
+   :AsBb []
+   :B ["#B" "#thumb-b"]})
+
+(defn make-middle-C
   []
+  (make-fingering (:C note-fingering))
+  #_(let [svg (js/document.querySelector "#flute")
+        unpressed-buttons (.querySelectorAll svg "circle, path, ellipse")
+        pressed-buttons #js [(.querySelector svg "#B")
+                             (.querySelector svg "#pinky-b")]]
+    (.forEach unpressed-buttons #(.setAttribute % "fill" "white"))
+    (.forEach pressed-buttons #(.setAttribute % "fill" "black"))))
+
+(defn make-fingering [pressed-buttons]
   (let [svg (js/document.querySelector "#flute")
-        buttons (.querySelectorAll svg "circle, path, ellipse")
-        b (.querySelector svg "#B")]
-    (.forEach buttons #(.setAttribute % "fill" "white"))))
+        unpressed-buttons (.querySelectorAll svg "circle, path, ellipse")
+        pressed-buttons (.querySelectorAll svg (clj->js pressed-buttons))]
+    (.forEach unpressed-buttons
+              #(.setAttribute % "fill" "white"))
+    (.forEach pressed-buttons
+              #(.setAttribute % "fill" "black"))))
 
 (defn chromatic-scale []
   [:div
    (for [note (range 0 12)]
      [:li.button.is-inline
-      {:on-click (fn [e] (make-C))}
-      (str (number->note-name note))])])
+      {:on-click (fn [e] (make-fingering (nth (vals note-fingering) note)))}
+      (str   #_(nth (vals note-fingering) note) (number->note-name note))])])
 
 (defonce state-name (atom ""))
 
@@ -321,8 +348,6 @@
    [chromatic-scale]
    [:h1.title "Flute Chart"]
    [:h1.subtitle "C"]
-   [:p "Hello"]
-   [input-field "name"]
     blank-finger-chart
    #_[:object.image.is-128x128
     {:style {:transform "rotate(90deg)"}
