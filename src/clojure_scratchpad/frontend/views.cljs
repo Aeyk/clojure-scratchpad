@@ -327,17 +327,21 @@
   [:div
    (for [note (range 0 12)]
      [:li.button.is-inline
-      {:on-click (fn [e] (make-fingering (get note-fingering (number->note-name note))))}
+      {:on-click (fn [e]
+                   (reset!
+                    current-note
+                    (number->note-name note))
+                   (make-fingering (get note-fingering (number->note-name note))))}
       (str (number->note-name note))])])
 
-(defonce state-name (atom ""))
+(defonce current-note (r/atom "º"))
 
 (defn flute
   []
   [:div
    [chromatic-scale]
    [:h1.title "Flute Chart"]
-   [:h1.subtitle "C"]
+   [:h1.subtitle.note-name @current-note]
     blank-finger-chart])
 ;; * TicTacToe
 (defn tictactoe
