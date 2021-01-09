@@ -13,14 +13,19 @@
 ;; * Quil / Processing
 (defn draw [{:keys [circles]}]
   (q/background 255)
-  (doseq [{[x y] :pos [r g b] :color} circles]
+  (let [{[x y] :pos [r g b] :color} (last circles)]
     (q/fill r g b)
-    (q/ellipse x y 10 10)))
+    (q/ellipse x y x x)))
 
 (defn update-state [{:keys [width height] :as state}]
-  (update state :circles conj {:pos   [(+ 20 (rand-int (- width 40)))
-                                       (+ 20 (rand-int (- height 40)))]
-                               :color (repeatedly 3 #(rand-int 250))}))
+  (update state :circles conj {:pos   [(q/mouse-x)
+                                       (q/mouse-y)
+                                       (/ height 2)]
+                               :color [250 250 250]})
+
+  #_(update state :circles conj {:pos   [(/ width 2)
+                                       (/ height 2)]
+                               :color [250 250 250]}))
 
 (defn init [width height]
   (fn []
@@ -389,8 +394,8 @@
 (defn circle []
   (r/with-let [running? (r/atom false)]
     [:div
-     [:h3 "circles demo"]
-     [:div>button
+     [:h3.title "circles"]
+     [:div>button.button
       {:on-click #(swap! running? not)}
       (if @running? "stop" "start")]
      (when @running?
