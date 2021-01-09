@@ -177,7 +177,10 @@
       ["login"
        (rfe/href :router/login)]
       ["flute"
-       (rfe/href :router/flute)]]))
+       (rfe/href :router/flute)]
+      ["tictactoe"
+       (rfe/href :router/tictactoe)]]))
+
 ;; * Inputs and Forms
 (defn input
   [label id type state]
@@ -299,14 +302,9 @@
 (defn make-C
   []
   (let [svg (js/document.querySelector "#flute")
-        bb (.getElementById svg "B")
-        b (.getElementById svg  "path991")
-        c (js/document.getElementById "path859-6-7-5-2")
-        a (js/document.getElementById "path859-6-7-5-3-9")
-        g (js/document.getElementById "path859-6-7-5-3-5-1")
-        gs (js/document.getElementById "path1054")]
-    (js/console.log svg (.setAttribute bb "fill" "black"))
-    #_(.setAttribute b "fill" "black")))
+        buttons (.querySelectorAll svg "circle, path, ellipse")
+        b (.querySelector svg "#B")]
+    (.forEach buttons #(.setAttribute % "fill" "white"))))
 
 (defn chromatic-scale []
   [:div
@@ -315,13 +313,17 @@
       {:on-click (fn [e] (make-C))}
       (str (number->note-name note))])])
 
+(defonce state-name (atom ""))
+
 (defn flute
   []
   [:div
    [chromatic-scale]
    [:h1.title "Flute Chart"]
    [:h1.subtitle "C"]
-   blank-finger-chart
+   [:p "Hello"]
+   [input-field "name"]
+    blank-finger-chart
    #_[:object.image.is-128x128
     {:style {:transform "rotate(90deg)"}
      :data "flute-chart.svg"}]
@@ -330,3 +332,14 @@
           :top "30px"
           :style {:transform "translate(0px, 90px) rotate(90deg)"}
           :src "./flute-chart.svg"}]])
+;; * TicTacToe
+(defn tictactoe
+  []
+  [:h1.title "TicTacToe"]
+  [:div
+   {:style
+    {:display "grid"
+     :grid-template-row "1fr 1fr 1fr"
+     :grid-template-columns "1fr 1fr 1fr"}}
+   (for [x (range 0 9)]
+     [:div "_"])])

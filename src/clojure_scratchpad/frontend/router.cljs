@@ -31,6 +31,10 @@
     {:name :router/flute
      :view views/flute}]
 
+   ["/tictactoe"
+    {:name :router/tictactoe
+     :view views/tictactoe}]
+   
    ["/item/:id"
     {:name ::item
      :view views/item-page
