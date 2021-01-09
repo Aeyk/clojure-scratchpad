@@ -31,10 +31,14 @@
     {:name :router/flute
      :view views/flute}]
 
+   ["/circle"
+    {:name :router/circle
+     :view views/circle}]
+
    ["/tictactoe"
     {:name :router/tictactoe
      :view views/tictactoe}]
-   
+
    ["/item/:id"
     {:name ::item
      :view views/item-page
