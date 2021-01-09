@@ -408,11 +408,15 @@
   (r/with-let [running? (r/atom false)]
     [:div
      [:h3.title "circles"]
-     [:div>button.button
-      {:on-click #(swap! running? not)}
-      (if @running? "stop" "start")]
-     (when @running?
-       [canvas])]))
+     [:div
+      [:button.button {:on-click
+                #(set! js/window.location (.toDataURL (js/document.querySelector "canvas#defaultCanvas0") "image/jpeg"))}
+       "Save"]
+      [:button.button.is-primary
+       {:on-click #(swap! running? not)}
+       (if @running? "Cancel" "Start")]
+      (when @running?
+        [canvas])]]))
 
 ;; * TicTacToe
 (defn tictactoe
