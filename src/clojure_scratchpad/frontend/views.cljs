@@ -14,7 +14,6 @@
 (defn draw [{:keys [circles p-circles]}]
   (q/background 255)
   (doseq [{[x y] :pos [r g b] :color}  p-circles]
-    (js/console.log p-circles)
     (q/fill r g b)
     (q/ellipse x y x x))
   (let [{[x y] :pos [r g b] :color} (last circles)]
