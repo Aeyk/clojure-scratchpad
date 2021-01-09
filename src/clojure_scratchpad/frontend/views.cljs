@@ -285,34 +285,34 @@
 (defn number->note-name [n]
   (let [n (mod n 12)]
     (case n
-      0 "C"
-      1 "C# / Db"
-      2 "D"
-      3 "D# / Eb"
-      4 "E"
-      5 "F"
-      6 "F# / Gb"
-      7 "G"
-      8 "G# / Ab"
-      9 "A"
-      10 "A# / Bb"
-      11 "B"
+      0 :C
+      1 :CsDb
+      2 :D
+      3 :DsEb
+      4 :E
+      5 :F
+      6 :FsGb
+      7 :G
+      8 :GsAb
+      9 :A
+      10 :AsBb
+      11 :B
       n)))
 
 
 (def note-fingering
-  {:C ["#B" "#pinky-b"]
-   :CsDb ["#pinky-b"]
+  {:C ["#B" "#pinky-a"]
+   :CsDb ["#pinky-a"]
    :D ["#B" "#A" "#G" "#F" "#E" "#D" "#thumb-b"]
-   :DsEb []
-   :E ["#B" "#A" "#G" "#F" "#E" "#thumb-b"]
-   :F ["#B" "#A" "#G" "#F" "#thumb-b"]
-   :FsGb []
-   :G ["#B" "#A" "#G" "#thumb-b"]
-   :GsAb []
-   :A ["#B" "#A" "#thumb-b"]
-   :AsBb []
-   :B ["#B" "#thumb-b"]})
+   :DsEb ["#B" "#A" "#G" "#F" "#E" "#D" "#thumb-b" "#pinky-a"]
+   :E ["#B" "#A" "#G" "#F" "#E" "#thumb-b"  "#pinky-a"]
+   :F ["#B" "#A" "#G" "#F" "#thumb-b"  "#pinky-a"]
+   :FsGb ["#B" "#A" "#G" "#D" "#thumb-b"  "#pinky-a"]
+   :G ["#B" "#A" "#G" "#thumb-b"  "#pinky-a"]
+   :GsAb  ["#B" "#A" "#G" "#thumb-b" "#pinky-r"  "#pinky-a"]
+   :A ["#B" "#A" "#thumb-b"  "#pinky-a"]
+   :AsBb ["#B" "#thumb-a"  "#pinky-a"]
+   :B ["#B" "#thumb-b"  "#pinky-a"]})
 
 (defn make-middle-C
   []
@@ -337,8 +337,8 @@
   [:div
    (for [note (range 0 12)]
      [:li.button.is-inline
-      {:on-click (fn [e] (make-fingering (nth (vals note-fingering) note)))}
-      (str   #_(nth (vals note-fingering) note) (number->note-name note))])])
+      {:on-click (fn [e] (make-fingering (get note-fingering (number->note-name note))))}
+      (str (number->note-name note))])])
 
 (defonce state-name (atom ""))
 
