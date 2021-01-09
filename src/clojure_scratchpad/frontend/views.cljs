@@ -11,27 +11,39 @@
    [quil.middleware :as m]))
 
 ;; * Quil / Processing
-(defn draw [{:keys [circles]}]
+(defn draw [{:keys [circles p-circles]}]
   (q/background 255)
+  (doseq [{[x y] :pos [r g b] :color}  p-circles]
+    (js/console.log p-circles)
+    (q/fill r g b)
+    (q/ellipse x y x x))
   (let [{[x y] :pos [r g b] :color} (last circles)]
     (q/fill r g b)
     (q/ellipse x y x x)))
 
-(defn update-state [{:keys [width height] :as state}]
-  (update state :circles conj {:pos   [(q/mouse-x)
-                                       (q/mouse-y)
-                                       (/ height 2)]
-                               :color [250 250 250]})
+(defn click-handler [{:keys [width height] :as state}]
+  (update state :p-circles conj
+          {:pos   [(q/mouse-x)
+                   (q/mouse-y)]
+           :color [(mod (+ (q/mouse-x)
+                           (q/mouse-x)) 255)
+                   (mod (+ (q/mouse-x)
+                           (q/mouse-y)) 255)
+                   (mod (+ (q/mouse-y)
+                           (q/mouse-y)) 255)]}))
 
-  #_(update state :circles conj {:pos   [(/ width 2)
-                                       (/ height 2)]
-                               :color [250 250 250]}))
+(defn update-state [{:keys [width height] :as state}]
+  (update state :circles conj
+          {:pos   [(q/mouse-x)
+                   (q/mouse-y)]
+           :color [250 250 250]}))
 
 (defn init [width height]
   (fn []
     {:width   width
      :height  height
-     :circles []}))
+     :circles []
+     :p-circles []}))
 
 (defn canvas []
   (r/create-class
@@ -46,7 +58,9 @@
          :setup (init width height)
          :update update-state
          :size [width height]
-         :middleware [m/fun-mode])))
+         :middleware [m/fun-mode]
+         :mouse-clicked click-handler
+         )))
     :render
     (fn [] [:div])}))
 
