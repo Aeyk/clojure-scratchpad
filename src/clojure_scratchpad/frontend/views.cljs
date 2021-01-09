@@ -314,10 +314,6 @@
    :AsBb ["#B" "#thumb-a"  "#pinky-a"]
    :B ["#B" "#thumb-b"  "#pinky-a"]})
 
-(defn make-middle-C
-  []
-  (make-fingering (:C note-fingering)))
-
 (defn make-fingering [pressed-buttons]
   (let [svg (js/document.querySelector "#flute")
         unpressed-buttons (.querySelectorAll svg "circle, path, ellipse")
