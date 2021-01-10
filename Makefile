@@ -1,11 +1,12 @@
 SASS_SOURCE=css/style.scss
-CSS_DEST=public/css/site.css
+CSS_DEST=resources/public/css/site.css
 .PHONY: all
 .DEFAULT_GOAL: all
 all: css frontend backend server
 
 css:
-	@echo -e "\033[32m"
+	cp -r node_modules/leaflet/dist/images resources/public/css
+	echo -e "\033[32m"
 	npx node-sass "$(SASS_SOURCE)" "$(CSS_DEST)" --watch
 	@echo -e "\033[0m"
 
