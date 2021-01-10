@@ -7,6 +7,8 @@
    [reitit.frontend.easy :as rfe]
    [reitit.coercion.spec :as rss]
    [spec-tools.data-spec :as ds]
+   [datascript.core :as d]
+   [datascript.transit :as dt]
    [quil.core :as q]
    [quil.middleware :as m]))
 
@@ -136,7 +138,7 @@
        :id "pinky-r"}]]])
 
 ;; * Circle Stuff
-(defonce todos (r/atom ["Clean house" "Walk dog" "See friend"]))
+(defonce todos-list (r/atom ["Clean house" "Walk dog" "See friend"]))
 
 (defn polar->cartesian [cx cy r angle-in-degrees]
   (let [angle-in-radians (* angle-in-degrees (/ Math/PI 180.0))]
@@ -235,6 +237,8 @@
        (rfe/href :router/flute)]
       ["circle"
        (rfe/href :router/circle)]
+      ["todos"
+       (rfe/href :router/todos)]
       ["tictactoe"
        (rfe/href :router/tictactoe)]]))
 
@@ -255,11 +259,11 @@
         submit-handler
         (fn [e]
           (e.preventDefault)
-          (swap! todos conj @state)
+          (swap! todos-list conj @state)
           (reset! state ""))]
     (fn []
       [:div
-       (for [todo @todos]
+       (for [todo @todos-list]
          (let [sym (gensym todo)]
            [:div.card {:key sym
                        :id sym}
@@ -429,3 +433,66 @@
      :grid-template-columns "1fr 1fr 1fr"}}
    (for [x (range 0 9)]
      [:div "_"])])
+
+;; * Todos
+(def schema {:todo/tags    {:db/cardinality :db.cardinality/many}
+             :todo/project {:db/valueType :db.type/ref}
+             :todo/done    {:db/index true}
+             :todo/due     {:db/index true}})
+
+(defonce conn (d/create-conn schema))
+(def fixtures [
+  #_[:db/add 0 :system/group :all]
+  {:db/id -1
+   :project/name "datascript"}
+  {:db/id -2
+   :project/name "nyc-webinar"}
+  {:db/id -3
+   :project/name "shopping"}
+  {:todo/text "Displaying list of todos"
+   :todo/tags ["listen" "query"]
+   :todo/project -2
+   :todo/done true
+   :todo/due  #inst "2014-12-13"}
+  {:todo/text "Persisting to localStorage"
+   :todo/tags ["listen" "serialization" "transact"]
+   :todo/project -2
+   :todo/done true
+   :todo/due  #inst "2014-12-13"}
+  {:todo/text "Make task completable"
+   :todo/tags ["transact" "funs"]
+   :todo/project -2
+   :todo/done false
+   :todo/due  #inst "2014-12-13"}
+  {:todo/text "Fix fn calls on emtpy rels"
+   :todo/tags ["bug" "funs" "query"]
+   :todo/project -1
+   :todo/done false
+   :todo/due  #inst "2015-01-01"}
+  {:todo/text "Add db filtering"
+   :todo/project -1
+   :todo/done false
+   :todo/due  #inst "2015-05-30"}
+  {:todo/text "Soap"
+   :todo/project -3
+   :todo/done false
+   :todo/due  #inst "2015-05-01"}
+  {:todo/text "Cake"
+   :todo/done false
+   :todo/project -3}
+  {:todo/text "Just a task" :todo/done false}
+  {:todo/text "Another incomplete task" :todo/done false}])
+
+(d/transact! conn fixtures)
+
+(defn todos []
+  [:div
+   [:h1.title "Todo List"]
+   (for [entry (d/q
+                '[:find ?t
+                  :where
+                  [?e :todo/text ?t]]
+                @conn)]
+     (do (js/console.log entry)
+         [:p (str entry)]))
+   ])

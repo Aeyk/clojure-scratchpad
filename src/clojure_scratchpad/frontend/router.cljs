@@ -26,7 +26,6 @@
     {:name :router/login
      :view views/login-form}]
 
-
    ["/flute"
     {:name :router/flute
      :view views/flute}]
@@ -34,6 +33,11 @@
    ["/circle"
     {:name :router/circle
      :view views/circle}]
+
+
+   ["/todos"
+    {:name :router/todos
+     :view views/todos}]
 
    ["/tictactoe"
     {:name :router/tictactoe

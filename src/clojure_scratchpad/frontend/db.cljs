@@ -1,8 +1,19 @@
 (ns clojure-scratchpad.frontend.db
   (:require
+   [clojure-scratchpad.frontend.dom :as dom]
    [datascript.core :as d]
-   [datascript.transit :as dt]))
+   [datascript.transit :as dt]
+   [clojure.string :as str] ))
 
+#_(defmacro profile [k & body]
+  `(let [k# ~k]
+     (.time js/console k#)
+     (let [res# (do ~@body)]
+       (.timeEnd js/console k#)
+       res#)))
+
+(defn profile [s ex]
+  (ex))
 
 (enable-console-print!)
 
@@ -19,7 +30,6 @@
   (reset! conn db)
   (render db)
   (persist db))
-
 
 (defn remove-vals [f m]
   (reduce-kv (fn [m k v] (if (f v) m (assoc m k v))) (empty m) m))
@@ -88,7 +98,6 @@
    :project/name "nyc-webinar"}
   {:db/id -3
    :project/name "shopping"}
-               
   {:todo/text "Displaying list of todos"
    :todo/tags ["listen" "query"]
    :todo/project -2
@@ -145,7 +154,7 @@
 (defonce history (atom []))
 (def ^:const history-limit 10)
 
-
+p
 ;; * Todos
 ;; Rules are used to implement OR semantic of a filter
 ;; ?term must match either :project/name OR :todo/tags
@@ -162,8 +171,8 @@
   (d/q '[:find [?e ...]
          :in $ % [?term ...]
          :where [?e :todo/text]
-                (match ?e ?term)]
-    db filter-rule terms))
+         (match ?e ?term)]
+       db filter-rule terms))
 
 (defn filter-terms [db]
   (not-empty
@@ -179,7 +188,6 @@
     db))
 
 ;; Groups
-
 (defmulti todos-by-group (fn [db group item] group))
 
 ;; Datalog has no negative semantic (NOT IN), we emulate it
@@ -292,9 +300,9 @@
       (when (and db-before db-after)
         (swap! history (fn [h]
           (-> h
-            (u/drop-tail #(identical? % db-before))
+            (drop-tail #(identical? % db-before))
             (conj db-after)
-            (u/trim-head history-limit))))))))
+            (trim-head history-limit))))))))
 
 ;; transit serialization
 
@@ -317,13 +325,14 @@
       (js/setTimeout #(persist db) 0))))
 
 ;; restoring once persisted DB on page load
-(or
-  (when-let [stored (js/localStorage.getItem "datascript-todo/DB")]
-    (let [stored-db (string->db stored)]
-      (when (= (:schema stored-db) schema) ;; check for code update
-        (reset-conn! stored-db)
-        (swap! history conj @conn)
-        true)))
-  (d/transact! conn u/fixtures))
+(defn seed-db []
+  (or
+   (when-let [stored (js/localStorage.getItem "datascript-todo/DB")]
+     (let [stored-db (string->db stored)]
+       (when (= (:schema stored-db) schema) ;; check for code update
+         (reset-conn! stored-db)
+         (swap! history conj @conn)
+         true)))
+   (d/transact! conn fixtures)))
 
 #_(js/localStorage.clear)
