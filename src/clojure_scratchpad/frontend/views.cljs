@@ -489,9 +489,11 @@
   [:div
    [:h1.title "Todo List"]
    (for [entry (d/q
-                '[:find ?t
+                '[:find ?text ?project
                   :where
-                  [?e :todo/text ?t]]
+                  [?e :todo/text ?text]
+                  [?e :todo/project ?pid]
+                  [?pid :project/name ?project]]
                 @conn)]
      (do (js/console.log entry)
          [:p (str entry)]))
