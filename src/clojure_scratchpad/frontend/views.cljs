@@ -10,7 +10,69 @@
    [datascript.core :as d]
    [datascript.transit :as dt]
    [quil.core :as q]
-   [quil.middleware :as m]))
+   [quil.middleware :as m]
+   [clojure-scratchpad.frontend.dom :as dom]))
+
+;; * DataScript Utils
+(defn remove-vals [f m]
+  (reduce-kv (fn [m k v] (if (f v) m (assoc m k v))) (empty m) m))
+
+(defn find-prev [xs pred]
+  (last (take-while #(not (pred %)) xs)))
+
+(defn find-next [xs pred]
+  (fnext (drop-while #(not (pred %)) xs)))
+
+(defn drop-tail [xs pred]
+  (loop [acc []
+         xs  xs]
+    (let [x (first xs)]
+      (cond
+        (nil? x) acc
+        (pred x) (conj acc x)
+        :else  (recur (conj acc x) (next xs))))))
+
+(defn trim-head [xs n]
+  (vec (drop (- (count xs) n) xs)))
+
+(defn index [xs]
+  (map vector xs (range)))
+
+(defn e-by-av [db a v]
+  (-> (d/datoms db :avet a v) first :e))
+
+(defn date->month [date]
+  [(.getFullYear date)
+   (inc (.getMonth date))])
+
+(defn format-month [month year]
+  (str (get ["January"
+             "February"
+             "March"
+             "April"
+             "May"
+             "June"
+             "July"
+             "August"
+             "September"
+             "October"
+             "November"
+             "December"] (dec month))
+       " " year))
+
+(defn month-start [month year]
+  (js/Date. year (dec month) 1))
+
+(defn month-end [month year]
+  (let [[month year] (if (< month 12)
+                       [(inc month) year]
+                       [1 (inc year)])]
+    (-> (js/Date. year (dec month) 1)
+        .getTime
+        dec
+        js/Date.
+        )))
+
 
 ;; * Quil / Processing
 (defn draw [{:keys [circles p-circles]}]
@@ -441,6 +503,7 @@
              :todo/due     {:db/index true}})
 
 (defonce conn (d/create-conn schema))
+
 (def fixtures [
   #_[:db/add 0 :system/group :all]
   {:db/id -1
@@ -485,6 +548,48 @@
 
 (d/transact! conn fixtures)
 
+(defn extract-todo []
+  (when-let [text (dom/value (dom/q ".add-text"))]
+    {:text    text
+     :project (dom/value (dom/q ".add-project"))
+     :due     (dom/date-value  (dom/q ".add-due"))
+     :tags    (dom/array-value (dom/q ".add-tags"))}))
+
+(defn clean-todo []
+  (dom/set-value! (dom/q ".add-text") nil)
+  (dom/set-value! (dom/q ".add-project") nil)
+  (dom/set-value! (dom/q ".add-due") nil)
+  (dom/set-value! (dom/q ".add-tags") nil))
+
+(defn add-view []
+  [:form.add-view {:on-submit (fn [_] (add-todo) false)}
+   [:input.add-text    {:type "text" :placeholder "New task"}]
+   [:input.add-project {:type "text" :placeholder "Project"}]
+   [:input.add-tags    {:type "text" :placeholder "Tags"}]
+   [:input.add-due     {:type "text" :placeholder "Due date"}]
+   [:input.add-submit  {:type "submit" :value "Add task"}]])
+
+(defn add-todo []
+  (when-let [todo (extract-todo)]
+    ;; This is slightly complicated logic where we need to identify
+    ;; if a project with such name already exist. If yes, we need its
+    ;; id to reference from entity, if not, we need to create it first
+    ;; and then use its id to reference. We’re doing both in a single
+    ;; transaction to avoid inconsistencies
+    (let [project    (:project todo)
+          project-id (when project (e-by-av @conn :project/name project))
+          project-tx (when (and project (nil? project-id))
+                       [[:db/add -1 :project/name project]])
+          entity (->> {:todo/text (:text todo)
+                       :todo/done false
+                       :todo/project (when project (or project-id -1)) 
+                       :todo/due  (:due todo)
+                       :todo/tags (:tags todo)}
+                      (remove-vals nil?))]
+      (d/transact! conn (concat project-tx [entity])))
+    (clean-todo)))
+
+
 (defn todos []
   [:div
    [:h1.title "Todo List"]
@@ -503,7 +608,7 @@
            (e.preventDefault)
            (js/console.log
             @todo)
-           (d/transact! conn [{:todo/text @todo}])
+           (d/transact! conn [{:db/add -1 :todo/text @todo}])
            (js/console.log @conn)
            (reset! todo ""))]
      [:form
@@ -518,7 +623,7 @@
          (e.preventDefault)
          (js/console.log
           @group)
-         (d/transact! conn [{:project/name @group}])
+         (d/transact! conn [{:db/add -1 :project/name @group}])
          (reset! group ""))}
       [input "group-name:" "group-name" :text group]
       [:button.button
