@@ -1,5 +1,7 @@
 (ns clojure-scratchpad.frontend.views
   (:require
+   ["react" :as react]
+   ["leaflet" :as leaflet]
    ["react-leaflet" :as react-leaflet]
    [reagent.core :as r]
    [reagent.dom :as rd]
@@ -242,11 +244,10 @@
                    (* 3 x)
                    "#717171")])])
 ;; * Leaflet Stuff
-#_(defn map-container []
+(defn map-container []
   (let [center (atom [27.77 -82.63])
         [lat lng] @center]
-    #_(fn [])
-    [:div 
+    [:div
      [:input.input
       {:type :number
        :default-value lat}]
@@ -256,14 +257,17 @@
      [:> react-leaflet/MapContainer
       {:center [lat lng]
        :zoom 13
-       :scrollWheelZoom false
+       :scroll-wheel-zoom false
        :on-change #(js/console.log %)
-       :on-click #(js/console.log %)}
+       :on-click
+       (fn [e])}
       [:> react-leaflet/TileLayer
        {:on-change #(js/console.log %)
         :on-click #(js/console.log)
         :attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
-        :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]]]))
+        :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]
+      [:> react-leaflet/Marker {:position @center}
+       [:> react-leaflet/Popup "Hello world!"]]]]))
 ;; * Navigation Stuff
 (defn make-dropdown-navigation [label dropdowns]
   (let [state (r/atom {:navbar-hidden true})]
@@ -560,15 +564,6 @@
   (dom/set-value! (dom/q ".add-project") nil)
   (dom/set-value! (dom/q ".add-due") nil)
   (dom/set-value! (dom/q ".add-tags") nil))
-
-(defn add-view []
-  [:form.add-view {:on-submit (fn [_] (add-todo) false)}
-   [:input.add-text    {:type "text" :placeholder "New task"}]
-   [:input.add-project {:type "text" :placeholder "Project"}]
-   [:input.add-tags    {:type "text" :placeholder "Tags"}]
-   [:input.add-due     {:type "text" :placeholder "Due date"}]
-   [:input.add-submit  {:type "submit" :value "Add task"}]])
-
 (defn add-todo []
   (when-let [todo (extract-todo)]
     ;; This is slightly complicated logic where we need to identify
@@ -588,6 +583,15 @@
                       (remove-vals nil?))]
       (d/transact! conn (concat project-tx [entity])))
     (clean-todo)))
+
+(defn add-view []
+  [:form.add-view {:on-submit (fn [_] (add-todo) false)}
+   [:input.add-text    {:type "text" :placeholder "New task"}]
+   [:input.add-project {:type "text" :placeholder "Project"}]
+   [:input.add-tags    {:type "text" :placeholder "Tags"}]
+   [:input.add-due     {:type "text" :placeholder "Due date"}]
+   [:input.add-submit  {:type "submit" :value "Add task"}]])
+
 
 
 (defn todos []

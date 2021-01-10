@@ -34,6 +34,9 @@
     {:name :router/circle
      :view views/circle}]
 
+   ["/map"
+    {:name :router/map
+     :view views/map-container}]
 
    ["/todos"
     {:name :router/todos
