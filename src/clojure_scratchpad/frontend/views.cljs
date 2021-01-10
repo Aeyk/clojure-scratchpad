@@ -497,4 +497,30 @@
                 @conn)]
      (do (js/console.log entry)
          [:p (str entry)]))
+   (let [todo (r/atom "")
+         submit-handler 
+         (fn [e]
+           (e.preventDefault)
+           (js/console.log
+            @todo)
+           (d/transact! conn [{:todo/text @todo}])
+           (js/console.log @conn)
+           (reset! todo ""))]
+     [:form
+      {:on-submit submit-handler}
+      [input "todo-name:" "todo-name" :text todo]
+      [:button.button
+       "New Task"]])
+   (let [group (r/atom "")]
+     [:form
+      {:on-submit
+       (fn [e]
+         (e.preventDefault)
+         (js/console.log
+          @group)
+         (d/transact! conn [{:project/name @group}])
+         (reset! group ""))}
+      [input "group-name:" "group-name" :text group]
+      [:button.button
+       "New Group"]])
    ])
