@@ -244,6 +244,13 @@
                    (* 3 x)
                    "#717171")])])
 ;; * Leaflet Stuff
+(defn location-component []
+  (let [map
+        (react-leaflet/useMapEffects
+         {:dragend (fn [e]
+                     (js/console.log (e.target.getCenter)
+                                     (e.target.getBounds)))})]))
+
 (defn map-container []
   (let [center (atom [27.77 -82.63])
         [lat lng] @center]
@@ -256,18 +263,13 @@
        :default-value lng}]
      [:> react-leaflet/MapContainer
       {:center [lat lng]
-       :zoom 13
-       :scroll-wheel-zoom false
-       :on-change #(js/console.log %)
-       :on-click
-       (fn [e])}
+       :zoom 13}
       [:> react-leaflet/TileLayer
-       {:on-change #(js/console.log %)
-        :on-click #(js/console.log)
-        :attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
+       {:attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"
         :url "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}]
       [:> react-leaflet/Marker {:position @center}
-       [:> react-leaflet/Popup "Hello world!"]]]]))
+       [:> react-leaflet/Popup "Hello world!"]]
+      [:location-component]]]))
 ;; * Navigation Stuff
 (defn make-dropdown-navigation [label dropdowns]
   (let [state (r/atom {:navbar-hidden true})]
