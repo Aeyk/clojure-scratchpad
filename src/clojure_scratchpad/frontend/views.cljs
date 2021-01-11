@@ -498,7 +498,7 @@
 
 ;; * TicTacToe
 (def tictactoe-board (r/atom (vec (range 0 9))))
-(def current-player (atom "X"))
+(def current-player (r/atom "X"))
 
 ;; TODO finish
 (defn is-winner? []
@@ -516,18 +516,21 @@
      :justify-items "center"
      :align-items "center"
      :grid-template-columns "1fr 1fr 1fr"}}
-   (for [x @tictactoe-board #_(range 0 9)]
+   (for [x @tictactoe-board]
      [:div
       {:key x
        :id  x
        :on-click
        (fn [e]
          (let [id-num (-> e .-target .-id)]
+           (js/console.log @current-player @tictactoe-board)
            (if (int? (nth @tictactoe-board (int id-num)))
-             (swap! tictactoe-board assoc (int id-num) (gensym @current-player))
-             (if (== "X"  (first @current-player))
-               (reset! current-player "O")
-               (reset! current-player "X")))))
+             (do
+               (if (== "X" @current-player)
+                 (reset! current-player "O")
+                 (reset! current-player "X"))
+               (swap! tictactoe-board assoc (int id-num) (gensym @current-player)))))
+         (js/console.log @current-player @tictactoe-board))
        :style {:width "100%"
                :justify-self "center"
                :align-self "center"
