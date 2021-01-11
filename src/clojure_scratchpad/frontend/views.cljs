@@ -498,7 +498,13 @@
 
 ;; * TicTacToe
 (def tictactoe-board (r/atom (vec (range 0 9))))
-(def                current-player (atom "X"))
+(def current-player (atom "X"))
+
+;; TODO finish
+(defn is-winner? []
+  (let [board (partition 3 @tictactoe-board)]
+    board))
+
 (defn tictactoe
   []
   [:h1.title "TicTacToe"]
@@ -516,10 +522,9 @@
        :id  x
        :on-click
        (fn [e]
-         #_(reset! tictactoe-board ["X" 1 2 3 4 5 6 7 8])
          (let [id-num (-> e .-target .-id)]
            (swap! tictactoe-board assoc (int id-num) (gensym @current-player))
-           (if (== "X"  @current-player)
+           (if (js/=== "X"  @current-player)
              (reset! current-player "O")
              (reset! current-player "X"))))
        :style {:width "100%"
