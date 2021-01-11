@@ -673,6 +673,8 @@
        "New Group"]])
    ])
 ;; * Calculator
+(defonce calculator-stack (atom []))
+
 (defn calculator []
   [:div
    {:style
@@ -682,8 +684,12 @@
      :grid-template-columns "1fr 1fr 1fr 1fr"}}
    (for [button ["AC" "-/+" "%" "÷" 7 8 9 "X" 4 5 6 "-" 1 2 3 "+" 0  "." "="]]
      [:button.button
-      (if (zero? button)
-        (merge {:style {:grid-column "1/3"}}
-               {:id button       
-                :key (gensym button)}))
+      (merge (if (zero? button)
+               {:style {:grid-column "1/3"}}
+               {})
+             {:id button
+              :key (gensym button)
+              :on-click
+              (fn [e]
+                (js/console.log e))})
       button])])
