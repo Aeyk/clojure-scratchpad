@@ -110,7 +110,7 @@
      :circles []
      :p-circles []}))
 
-(defn canvas []
+(defn circle-canvas []
   (r/create-class
    {:component-did-mount
     (fn [component]
@@ -475,20 +475,19 @@
    [:h1.subtitle.note-name @current-note]
    blank-finger-chart])
 
-
 (defn circle []
-  (r/with-let [running? (r/atom false)]
+  (r/with-let [running? (r/atom true)]
     [:div
      [:h3.title "circles"]
      [:div
       [:button.button {:on-click
-                #(set! js/window.location (.toDataURL (js/document.querySelector "canvas#defaultCanvas0") "image/jpeg"))}
+                       #(set! js/window.location (.toDataURL (js/document.querySelector "canvas#defaultCanvas0") "image/jpeg"))}
        "Save"]
       [:button.button.is-primary
        {:on-click #(swap! running? not)}
        (if @running? "Cancel" "Start")]
       (when @running?
-        [canvas])]]))
+        [circle-canvas])]]))
 
 ;; * TicTacToe
 (defn tictactoe
