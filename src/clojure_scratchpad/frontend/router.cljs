@@ -46,6 +46,10 @@
     {:name :router/tictactoe
      :view views/tictactoe}]
 
+   ["/calculator"
+    {:name :router/calculator
+     :view views/calculator}]
+
    ["/item/:id"
     {:name ::item
      :view views/item-page

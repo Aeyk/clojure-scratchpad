@@ -672,3 +672,18 @@
       [:button.button
        "New Group"]])
    ])
+;; * Calculator
+(defn calculator []
+  [:div
+   {:style
+    {:display "grid"
+     :justify-items "center"
+     :align-items "center"
+     :grid-template-columns "1fr 1fr 1fr 1fr"}}
+   (for [button ["AC" "-/+" "%" "÷" 7 8 9 "X" 4 5 6 "-" 1 2 3 "+" 0  "." "="]]
+     [:button.button
+      (if (zero? button)
+        (merge {:style {:grid-column "1/3"}}
+               {:id button       
+                :key (gensym button)}))
+      button])])
