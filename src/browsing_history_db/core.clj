@@ -1,7 +1,8 @@
 (ns browsing-history-db.core
+  (:require [cheshire.core :as json]
+            [hiccup.core :as html]
+            [clojure.java.jdbc :refer :all])
   (:refer-clojure :exclude [pprint])
-  (:require [clojure.java.jdbc :refer :all])
-  (:require [cheshire.core :as json])
   (:gen-class))
 ;;; https://stackoverflow.com/questions/15715546/clojure-how-to-ignore-exceptions-that-may-be-thrown-from-an-expression
 
@@ -107,7 +108,7 @@ FROM urls;")))
 ;; (chrome-history-visit-sources)
 ;; (take 1 (chrome-visits-output))
 
-(def google-history-memory-db
+(def *google-history-memory-db*
   (get (json/parse-stream (clojure.java.io/reader "db/google-history.json")) "Browser History"))
 
 (def *google-history-urls*
@@ -183,7 +184,7 @@ FROM urls;")))
 
 chrome-history
 (reverse (sort (group-by second unique-domain-names)))
-(map)
+
 
 (spit "resources/chrome.dat"
   (apply str 
@@ -208,19 +209,12 @@ chrome-history
        :data (map second popularity-contest)
        :backgroundColor ["#ff00ff"]
        :borderWidth 1]}}
-    {:pretty true})q
+    {:pretty true})
 
 (spit "resources/browsing_history_db/chart-chrome.json"
-  (json/generate-string
-    {:data 
-     {:labels (map first popularity-contest),
-      :datasets
-      [{:label "Website"
-        :data (map second popularity-contest)
-        :backgroundColor ["#ff00ff"]
-        :borderWidth 1}]}}
-    {:pretty true})
-    )
+      
+      )
+    
 
   (zipmap
     (flatten 
@@ -228,4 +222,26 @@ chrome-history
         [(first x)]))
     (flatten 
       (for [x (partition 2 popularity-contest)]
-        [(second x)]))
+        [(second x)])))
+
+(spit "resources/browsing_history_db/main_chart.js" (str "var ctx = document.getElementById('myChart').getContext('2d');
+      var myBarChart = new Chart(ctx, {
+	type: 'pie',
+	data: top_sites,
+	options: {}
+      });
+var top_sites =" (json/generate-string
+                  {:data 
+                   {:labels (map first popularity-contest),
+                    :datasets
+                    [{:label "Website"
+                      :data (map second popularity-contest)
+                      :backgroundColor ["#ff00ff"]
+                      :borderWidth 1}]}}
+                  {:pretty true}) ";"))
+(spit "resources/browsing_history_db/chart.1.html"
+      (html/html
+       [:html [:body [:canvas#myChart]
+               [:script {:src "Chart.bundle.js"}]
+               [:script {:src "main_chart.js"}]
+               ]]))

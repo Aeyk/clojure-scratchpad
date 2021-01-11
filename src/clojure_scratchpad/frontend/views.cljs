@@ -535,7 +535,6 @@
       (if (int? x)
         "_"
         (subs (str x) 0 1))])])
-
 ;; * Todos
 (def schema {:todo/tags    {:db/cardinality :db.cardinality/many}
              :todo/project {:db/valueType :db.type/ref}
