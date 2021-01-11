@@ -10,6 +10,7 @@
     "@fingerprintjs/fingerprintjs": "^3.0.4",
     "@tonejs/piano": "^0.2.1",
     "@tonejs/ui": "^0.1.5",
+    "beet.js": "^1.8.0",
     "bootstrap": "^4.5.3",
     "concat-stream": "^2.0.0",
     "content-type": "^1.0.4",
