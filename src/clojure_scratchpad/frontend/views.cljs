@@ -77,9 +77,15 @@
 
 
 ;; * Quil / Processing
-(defn draw [{:keys [circles p-circles]}]
+(defn draw [{:keys [keys]}]
   (q/background 255)
-  (doseq [{[x y] :pos [r g b] :color}  p-circles]
+  (q/fill 0 255 0)
+  (q/text-size 32)
+  #_x(map #(q/text % 30 30) keys)
+  (doseq [key keys]
+    (q/text key 30 30))
+  
+  #_#_(doseq [{[x y] :pos [r g b] :color}  p-circles]
     (q/fill r g b)
     (q/ellipse x y x x))
   (let [{[x y] :pos [r g b] :color} (last circles)]
@@ -87,7 +93,7 @@
     (q/ellipse x y x x)))
 
 (defn click-handler [{:keys [width height] :as state}]
-  (update state :p-circles conj
+  #_(update state :p-circles conj
           {:pos   [(q/mouse-x)
                    (q/mouse-y)]
            :color [(mod (+ (q/mouse-x)
@@ -98,7 +104,8 @@
                            (q/mouse-y)) 255)]}))
 
 (defn update-state [{:keys [width height] :as state}]
-  (update state :circles conj
+  (update state :keys conj "C" "Db" "D" "Eb" "E" "F" "Gb" "G" "Ab" "A" "Bb" "B" )
+  #_(update state :circles conj
           {:pos   [(q/mouse-x)
                    (q/mouse-y)]
            :color [250 250 250]}))
@@ -107,16 +114,15 @@
   (fn []
     {:width   width
      :height  height
-     :circles []
-     :p-circles []}))
+     :keys ["C" "Db" "D" "Eb" "E" "F" "Gb" "G" "Ab" "A" "Bb" "B" ]}))
 
 (defn circle-canvas []
   (r/create-class
    {:component-did-mount
     (fn [component]
       (let [node (rd/dom-node component)
-            width (/ (.-innerWidth js/window) 2)
-            height (/ (.-innerHeight js/window) 2)]
+            width  (.-innerWidth js/window)
+            height (.-innerHeight js/window)]
         (q/sketch
          :host node
          :draw draw
