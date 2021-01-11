@@ -511,8 +511,8 @@
   [:div
    {:style
     {:display "grid"
-     :font-size "6em"
-     :min-height "17vh"
+     :font-size "3em"
+     :min-height "12vh"
      :justify-items "center"
      :align-items "center"
      :grid-template-columns "1fr 1fr 1fr"}}
