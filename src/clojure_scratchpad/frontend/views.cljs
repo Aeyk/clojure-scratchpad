@@ -523,14 +523,15 @@
        :on-click
        (fn [e]
          (let [id-num (-> e .-target .-id)]
-           (swap! tictactoe-board assoc (int id-num) (gensym @current-player))
-           (if (js/=== "X"  @current-player)
-             (reset! current-player "O")
-             (reset! current-player "X"))))
+           (if (int? (nth @tictactoe-board (int id-num)))
+             (swap! tictactoe-board assoc (int id-num) (gensym @current-player))
+             (if (== "X"  (first @current-player))
+               (reset! current-player "O")
+               (reset! current-player "X")))))
        :style {:width "100%"
-                    :justify-self "center"
-                    :align-self "center"
-                    :padding "5% 12% 5% 12%"
+               :justify-self "center"
+               :align-self "center"
+               :padding "5% 12% 5% 12%"
                :border "1px solid black"}}
       (if (int? x)
         "_"
