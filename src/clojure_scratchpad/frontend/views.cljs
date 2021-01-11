@@ -13,7 +13,8 @@
    [datascript.transit :as dt]
    [quil.core :as q]
    [quil.middleware :as m]
-   [clojure-scratchpad.frontend.dom :as dom]))
+   [clojure-scratchpad.frontend.dom :as dom]
+   [goog.dom :as gdom]))
 
 ;; * DataScript Utils
 (defn remove-vals [f m]
@@ -81,7 +82,7 @@
   (q/background 255)
   (q/fill 0 255 0)
   (q/text-size 32)
-  #_x(map #(q/text % 30 30) keys)
+  #_(map #(q/text % 30 30) keys)
   (doseq [key keys]
     (q/text key 30 30))
   
@@ -496,16 +497,39 @@
         [circle-canvas])]]))
 
 ;; * TicTacToe
+(def tictactoe-board (r/atom (vec (range 0 9))))
+(def                current-player (atom "X"))
 (defn tictactoe
   []
   [:h1.title "TicTacToe"]
   [:div
    {:style
     {:display "grid"
-     :grid-template-row "1fr 1fr 1fr"
+     :font-size "6em"
+     :min-height "17vh"
+     :justify-items "center"
+     :align-items "center"
      :grid-template-columns "1fr 1fr 1fr"}}
-   (for [x (range 0 9)]
-     [:div "_"])])
+   (for [x @tictactoe-board #_(range 0 9)]
+     [:div
+      {:key x
+       :id  x
+       :on-click
+       (fn [e]
+         #_(reset! tictactoe-board ["X" 1 2 3 4 5 6 7 8])
+         (let [id-num (-> e .-target .-id)]
+           (swap! tictactoe-board assoc (int id-num) (gensym @current-player))
+           (if (== "X"  @current-player)
+             (reset! current-player "O")
+             (reset! current-player "X"))))
+       :style {:width "100%"
+                    :justify-self "center"
+                    :align-self "center"
+                    :padding "5% 12% 5% 12%"
+               :border "1px solid black"}}
+      (if (int? x)
+        "_"
+        (subs (str x) 0 1))])])
 
 ;; * Todos
 (def schema {:todo/tags    {:db/cardinality :db.cardinality/many}
