@@ -37,7 +37,7 @@ clean:
 GAME_STATIC=index.html scene.js css/main.css models/assets.glb
 
 build/js/app.js: $(shell find src) package.json shadow-cljs.edn public/models/assets.glb
-	npx shadow-cljs compile prod
+	npx shadow-cljs compile game-client-prod
 
 build/%: public/%
 	@mkdir -p `dirname $@`
@@ -50,7 +50,7 @@ public/models/assets.glb: public/models/assets.blend
 
 game_watch:
 	./bin/watch-and-build-assets.sh &
-	npx shadow-cljs watch app
+	npx shadow-cljs watch game-client-dev
 
 game_clean:
 	rm -rf build/*
