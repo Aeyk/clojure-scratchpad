@@ -75,6 +75,7 @@
                  [com.taoensso/timbre "4.10.0"]
                  [hickory "0.7.1"]
                  [quil "3.1.0"]
+                 [keybind "2.2.0"]
                  [org.xerial/sqlite-jdbc "3.23.1"]]
   
   :plugins [[lein-cljsbuild "1.1.7"]
