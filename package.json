@@ -35,6 +35,7 @@
     "simple-encryptor": "^4.0.0",
     "soundfont-player": "^0.12.0",
     "styled-components": "^5.2.1",
+    "three": "^0.124.0",
     "tone": "^14.7.68",
     "url": "^0.11.0",
     "webmidi": "^2.5.1",
