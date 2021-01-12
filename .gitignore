@@ -110,3 +110,5 @@ s
 /image_table.html
 /node_modules/
 /resources/cljs-runtime/
+/emojis.html
+redbox*.html
