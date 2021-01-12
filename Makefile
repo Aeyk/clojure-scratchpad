@@ -32,3 +32,26 @@ server: #_
 
 clean:
 	rm -rf "($CSS_DEST)"
+
+
+GAME_STATIC=index.html scene.js css/main.css models/assets.glb
+
+build/js/app.js: $(shell find src) package.json shadow-cljs.edn public/models/assets.glb
+	npx shadow-cljs compile prod
+
+build/%: public/%
+	@mkdir -p `dirname $@`
+	cp $< $@
+
+public/models/assets.glb: public/models/assets.blend
+	PROD=1 bin/watch-and-build-assets.sh
+
+.PHONY: game_watch game_clean
+
+game_watch:
+	./bin/watch-and-build-assets.sh &
+	npx shadow-cljs watch app
+
+game_clean:
+	rm -rf build/*
+	lein clean

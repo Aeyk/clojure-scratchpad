@@ -5,7 +5,10 @@ A clojure-scratch pad for testing and evaluating ideas, libraries.
 1. browsing-history-db.core
    You must copy your chrome and firefox history databases to
    db/{firefox,chrome}-history.db
-   
+
+
+2. 3d voxel engine
+   This is based on the work of infinitelives https://github.com/infinitelives/px3d
 ** Usage
 Please don't, no warranty, no use. Learning project.
 

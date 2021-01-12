@@ -94,30 +94,30 @@
     {:target :browser
      :output-dir "resources/public/game_js"
      :asset-path "js/"
-     :modules {:main {:init-fn game.client/main}}
+     :modules {:main {:init-fn game.client/main}}}
      ;;:devtools {:after-load app.main/reload!}}
 
-     :game-client-prod
-     {:target :browser
-      :output-dir "build/js"
-      :asset-path "js"
-      :modules {:main {:init-fn game.client/main}}}
-     
-     :frontend
-     {:target :browser
-      :output-dir "resources/public/"
-      #_#_:output-dir "public/"
-      :compiler-options {:output-feature-set :es5}
-      :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}
-     :backend
-     {:target :node-script
-      :output-dir "target/"
-      :output-to "target/main.js"
-      :exports {:server backend.server/server}
+    :game-client-prod
+    {:target :browser
+     :output-dir "build/js"
+     :asset-path "js"
+     :modules {:main {:init-fn game.client.core/main}}}
+    
+    :frontend
+    {:target :browser
+     :output-dir "resources/public/"
+     #_#_:output-dir "public/"
+     :compiler-options {:output-feature-set :es5}
+     :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}
+    :backend
+    {:target :node-script
+     :output-dir "target/"
+     :output-to "target/main.js"
+     :exports {:server backend.server/server}
 
-      :compiler-options {:output-feature-set :es6
-                         :optimizations :simple}
-      :main backend.server/init}}}
+     :compiler-options {:output-feature-set :es6
+                        :optimizations :simple}
+     :main backend.server/init}}}
   
   :cljsbuild
   {:builds
