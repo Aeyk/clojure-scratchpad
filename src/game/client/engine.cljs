@@ -99,7 +99,8 @@
     (set! (.. light -shadow -camera -far) 400)
     (set! (.. light -shadow -mapSize -width) 1024)
     (set! (.. light -shadow -mapSize -height) 1024)
-    (set! (.-angle light) (/ (.-PI js/Math)     (.add scene light))
+    (set! (.-angle light) (/ (.-PI js/Math) 12))
+    (.add scene light))
 
   (let [light (THREE/DirectionalLight. 0xffffff 0.5)]
     (.set (.-position light) 200 200 200)

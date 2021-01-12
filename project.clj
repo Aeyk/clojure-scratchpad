@@ -88,11 +88,11 @@
 
   :shadow-cljs
   {:source-paths ["src"]
-   :dev-http {3000 ":frontend"}
+   :dev-http {3000 "resources/public/"}
    :builds
    {:game-client-dev
     {:target :browser
-     :output-dir "resources/public/game_js"
+     :output-dir "resources/public/"
      :asset-path "js/"
      :modules {:main {:init-fn game.client/main}}}
      ;;:devtools {:after-load app.main/reload!}}
@@ -102,13 +102,14 @@
      :output-dir "build/js"
      :asset-path "js"
      :modules {:main {:init-fn game.client.core/main}}}
-    
+
     :frontend
     {:target :browser
      :output-dir "resources/public/"
      #_#_:output-dir "public/"
      :compiler-options {:output-feature-set :es5}
      :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}
+
     :backend
     {:target :node-script
      :output-dir "target/"
@@ -118,7 +119,8 @@
      :compiler-options {:output-feature-set :es6
                         :optimizations :simple}
      :main backend.server/init}}}
-  
+
+
   :cljsbuild
   {:builds
    {:app

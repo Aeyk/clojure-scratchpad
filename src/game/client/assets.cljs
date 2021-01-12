@@ -1,2 +1,2 @@
 (ns game.client.assets)
-(def checksum 0x4df99933)
+(def checksum 0xe557c18b)
