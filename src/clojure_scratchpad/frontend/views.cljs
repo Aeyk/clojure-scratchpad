@@ -670,26 +670,57 @@
          (reset! group ""))}
       [input "group-name:" "group-name" :text group]
       [:button.button
-       "New Group"]])
-   ])
-;; * Calculator
-(defonce calculator-stack (atom []))
+       "New Group"]])])
 
+;; * Calculator
+(defonce calculator-value (r/atom 0))
+(def calculator-operator (atom ""))
+(def calc-stack (r/atom []))
 (defn calculator []
   [:div
-   {:style
-    {:display "grid"
-     :justify-items "center"
-     :align-items "center"
-     :grid-template-columns "1fr 1fr 1fr 1fr"}}
-   (for [button ["AC" "-/+" "%" "÷" 7 8 9 "X" 4 5 6 "-" 1 2 3 "+" 0  "." "="]]
-     [:button.button
-      (merge (if (zero? button)
-               {:style {:grid-column "1/3"}}
-               {})
-             {:id button
-              :key (gensym button)
-              :on-click
-              (fn [e]
-                (js/console.log e))})
-      button])])
+   [:input.input {:value @calculator-value
+                  :on-change #(reset! @calculator-value %)}] 
+   [:div
+    {:style
+     {:display "grid"
+      :justify-items "center"
+      :align-items "center"
+      :grid-template-columns "1fr 1fr 1fr 1fr"}}
+    (for [button ["AC" "-/+" "%" "÷" 7 8 9 "X" 4 5 6 "-" 1 2 3 "+" 0 "." "="]
+          :let [operators ["AC" "-/+" "%" "÷" "X" "-" "+" "." "="]]]
+      [:button.button
+       (merge (if (zero? button)
+                {:style {:grid-column "1/3"}}
+                {})
+              {:id button
+               :key (gensym button)
+               :on-click
+               (fn [e]
+                 (let [v (-> e .-target .-innerText)]
+                   (if (.includes (clj->js operators) (str v))
+                     (do
+                       (swap! calc-stack conj @calculator-value)
+                       (reset! calculator-value 0)
+                       (reset! calculator-operator v))
+                     (if (.includes #js ["="] v)
+                       (do
+                         (swap! calc-stack conj @calculator-value)
+                         (reset! calculator-value
+                                 (apply
+                                  (symbol 'clojure.core @calculator-operator)
+                                  (map int @calc-stack)))
+                         (js/console.log
+                          @calculator-operator
+                          #_(clj->js
+                           (
+                            (symbol 'clojure.core @calculator-operator)
+                            (map int @calc-stack))
+                           @calc-stack
+                           (symbol 'clojure.core @calculator-operator)
+                           (symbol @calculator-operator)
+                           @calculator-operator)))
+                       (if (zero? @calculator-value)
+                         (reset! calculator-value (str v))
+                         (reset! calculator-value
+                                 (str @calculator-value v)))))))})
+       button])]])
