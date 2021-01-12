@@ -1,0 +1,21 @@
+<svg id="artistry-aint-dead" viewBox="-400 -400 800 800" xmlns="http://www.w3.org/2000/svg"><style>g line {stroke: black;}
+g#a circle {
+stroke: url(#gradientA);
+fill: url(#gradientA);}
+g#b circle {
+stroke: url(#gradientB);
+fill: url(#gradientB);}
+g#a circle:hover {
+stroke: black;
+fill: url(#gradientA);
+stroke-width: 4px;
+}
+g#b circle:hover {
+stroke: black;
+fill: url(#gradientB);
+stroke-width: 4px;
+}
+g#c circle {
+stroke: url(#gradientC);
+fill: url(#gradientC);}
+</style><linearGradient id="gradientA" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#fff"></stop><stop offset="100%" stop-color="#e1e"></stop></linearGradient><linearGradient id="gradientB" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#b3f"></stop><stop offset="100%" stop-color="#d20"></stop></linearGradient><linearGradient id="gradientC" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#FD3"></stop><stop offset="100%" stop-color="#d2D"></stop></linearGradient><g transform="rotate(90 0 0)"></g></svg>
