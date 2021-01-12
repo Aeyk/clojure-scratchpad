@@ -20,7 +20,16 @@
  "emojis.html"
 
  (html/html
-  (for [emoji emojis]
-    [:p (apply str (:content emoji))])))
+  [:html 
+   [:div
+    {:style
+     (css/style
+      {:display "grid"
+       :justify-items "center"
+       :align-items "center"
+       :font-size "3em"
+       :grid-template-columns "repeat(5, 1fr)"})}
+    (for [emoji emojis]
+      [:div (apply str (:content emoji))])]]))
 
 
