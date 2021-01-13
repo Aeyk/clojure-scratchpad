@@ -93,7 +93,7 @@
    :builds
    {:game-client-dev
     {:target :browser
-     :output-dir "resources/public/"
+     :output-dir "resources/public/game/"
      :asset-path "js/"
      :modules {:main {:init-fn game.client/main}}}
      ;;:devtools {:after-load app.main/reload!}}
