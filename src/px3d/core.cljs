@@ -1,11 +1,11 @@
-(ns game.client
-  (:require
-   ["three/build/three.module.js" :as THREE]
-   [game.client.engine :as engine]
-   [game.client.picker :as picker]
-   [game.client.procgen :as procgen]
-   [game.client.animation :as animation]
-   [game.client.assets :as assets]))
+(ns px3d.core
+    (:require
+      ["three/build/three.module.js" :as THREE]
+      [px3d.engine :as engine]
+      [px3d.picker :as picker]
+      [px3d.procgen :as procgen]
+      [px3d.animation :as animation]
+      [px3d.assets :as assets]))
 
 (js/console.log "assets" assets/checksum)
 
@@ -154,7 +154,7 @@
             (.add camera-pos camera-move)
             (swap! state assoc :camera-lock false))))
       ; turn the sky pink when the rock and player come close together
-      (let [d (.distanceTo ^Object (.-position rock) pos)
+      (let [d (.distanceTo (.-position rock) pos)
             r (if (< d 5) 0.99 0.125)]
         (aset scene "background" "r" r)
         (aset scene "fog" "color" "r" r))

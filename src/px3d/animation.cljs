@@ -1,7 +1,7 @@
-(ns game.client.animation
-   (:require ["three/build/three.module.js" :as THREE]))
+(ns px3d.animation
+  (:require ["three/build/three.module.js" :as THREE]))
 
-                                        ; parent the Blender mesh to an empty so it can be moved around
+; parent the Blender mesh to an empty so it can be moved around
 (defn animator [gltf scene mesh-name]
   (let [container (THREE/Mesh.)
         mesh (.clone (.getObjectByName (.-scene gltf) mesh-name))
@@ -12,7 +12,7 @@
     container))
 
 (defn stop-clip [container]
-  (-> ^Object container .-mixer (.setTime 0) .stopAllAction))
+  (-> container .-mixer (.setTime 0) .stopAllAction))
 
 (defn play-clip [container animation-name gltf scene]
   (let [clip (THREE/AnimationClip.findByName (aget gltf "animations") animation-name)]

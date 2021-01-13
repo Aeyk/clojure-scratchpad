@@ -89,19 +89,19 @@
 
   :shadow-cljs
   {:source-paths ["src"]
-   :dev-http {3000 "resources/public/"}
+   :dev-http {3000 "public/"}
    :builds
    {:game-client-dev
     {:target :browser
-     :output-dir "resources/public/game/"
-     :asset-path "js/"
-     :modules {:main {:init-fn game.client/main}}}
+     :output-dir "public/js"
+     :asset-path "js"
+     :modules {:main {:init-fn px3d.core/main}}}
      ;;:devtools {:after-load app.main/reload!}}
 
     :game-client-prod
     {:target :browser
-     :output-dir "build/js"
-     :asset-path "js"
+     :output-dir "resources/public"
+     :asset-path "."
      :modules {:main {:init-fn game.client.core/main}}}
 
     :frontend

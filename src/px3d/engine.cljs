@@ -1,4 +1,4 @@
-(ns game.client.engine
+(ns px3d.engine
   (:require ["three/build/three.module.js" :as THREE]
             ["three/examples/jsm/libs/stats.module.js" :as Stats]
             ["three/examples/jsm/controls/OrbitControls.js" :as OrbitControls]
@@ -68,7 +68,7 @@
       (.remove scene c))))
 
 (defn animate [eng callback clock]
-  (let [delta (.getDelta ^Object clock)
+  (let [delta (.getDelta clock)
         {:keys [camera scene renderer controls stats]} @eng]
     (js/requestAnimationFrame (partial animate eng callback clock))
     (.traverse
