@@ -1,4 +1,4 @@
-(ns giggin.components.gig-editor)
+(ns clojure-scratchpad.frontend.components.gig-editor)
 
 (defn form-group
   [{:keys [id type value values]}]

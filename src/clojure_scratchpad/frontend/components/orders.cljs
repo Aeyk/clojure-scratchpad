@@ -1,7 +1,7 @@
-(ns giggin.components.orders
-  (:require [giggin.state :as state]
-            [giggin.helpers :refer [format-price]]
-            [giggin.components.checkout-modal :refer [checkout-modal]]))
+(ns clojure-scratchpad.frontend.components.orders
+  (:require [clojure-scratchpad.frontend.state :as state]
+            [clojure-scratchpad.frontend.helpers :refer [format-price]]
+            [clojure-scratchpad.frontend.components.checkout-modal :refer [checkout-modal]]))
 
 (defn total
   []

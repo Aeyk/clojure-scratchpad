@@ -1,4 +1,4 @@
-(ns giggin.components.footer)
+(ns clojure-scratchpad.frontend.components.footer)
 
 (defn footer
   []

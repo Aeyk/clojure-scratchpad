@@ -1,4 +1,4 @@
-(ns giggin.components.checkout-modal
+(ns clojure-scratchpad.frontend.components.checkout-modal
   (:require [reagent.core :as r]))
 
 (defn checkout-modal

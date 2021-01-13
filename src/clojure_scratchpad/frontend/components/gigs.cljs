@@ -1,7 +1,7 @@
-(ns giggin.components.gigs
-  (:require [giggin.state :as state]
-            [giggin.helpers :refer [format-price]]
-            [giggin.components.gig-editor :refer [gig-editor]]
+(ns clojure-scratchpad.frontend.components.gigs
+  (:require [clojure-scratchpad.frontend.state :as state]
+            [clojure-scratchpad.frontend.helpers :refer [format-price]]
+            [clojure-scratchpad.frontend.components.gig-editor :refer [gig-editor]]
             [reagent.core :as r]
             [clojure.string :as str]))
 

@@ -1,4 +1,4 @@
-(ns giggin.components.header)
+(ns clojure-scratchpad.frontend.components.header)
 
 (defn header
   []
