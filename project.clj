@@ -89,16 +89,9 @@
 
   :shadow-cljs
   {:source-paths ["src"]
-   :dev-http {3000 "public/"}
+   :dev-http {3000 "resources/public/"}
    :builds
-   {:game-client-dev
-    {:target :browser
-     :output-dir "public/js"
-     :asset-path "js"
-     :modules {:main {:init-fn my.game/main}}}
-    ;;:devtools {:after-load app.main/reload!}}
-    
-    :frontend
+   {:frontend
     {:target :browser
      :output-dir "resources/public/"
      #_#_:output-dir "public/"
