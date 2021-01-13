@@ -68,7 +68,7 @@
       (.remove scene c))))
 
 (defn animate [eng callback clock]
-  (let [delta (.getDelta clock)
+  (let [delta (.getDelta ^Object clock)
         {:keys [camera scene renderer controls stats]} @eng]
     (js/requestAnimationFrame (partial animate eng callback clock))
     (.traverse

@@ -154,7 +154,7 @@
             (.add camera-pos camera-move)
             (swap! state assoc :camera-lock false))))
       ; turn the sky pink when the rock and player come close together
-      (let [d (.distanceTo (.-position rock) pos)
+      (let [d (.distanceTo ^Object (.-position rock) pos)
             r (if (< d 5) 0.99 0.125)]
         (aset scene "background" "r" r)
         (aset scene "fog" "color" "r" r))

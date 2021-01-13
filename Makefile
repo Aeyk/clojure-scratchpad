@@ -4,7 +4,7 @@ CSS_DEST=resources/public/css/site.css
 .DEFAULT_GOAL: all
 all: css frontend backend server
 
-css:
+css: css/style.scss
 	cp -r node_modules/leaflet/dist/images resources/public/css
 	echo -e "\033[32m"
 	npx node-sass "$(SASS_SOURCE)" "$(CSS_DEST)" --watch
