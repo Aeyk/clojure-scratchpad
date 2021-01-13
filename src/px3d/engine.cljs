@@ -1,4 +1,4 @@
-(ns px3d.engine
+(ns game.engine
   (:require ["three/build/three.module.js" :as THREE]
             ["three/examples/jsm/libs/stats.module.js" :as Stats]
             ["three/examples/jsm/controls/OrbitControls.js" :as OrbitControls]

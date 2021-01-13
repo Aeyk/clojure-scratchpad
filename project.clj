@@ -95,15 +95,9 @@
     {:target :browser
      :output-dir "public/js"
      :asset-path "js"
-     :modules {:main {:init-fn px3d.core/main}}}
-     ;;:devtools {:after-load app.main/reload!}}
-
-    :game-client-prod
-    {:target :browser
-     :output-dir "resources/public"
-     :asset-path "."
-     :modules {:main {:init-fn game.client.core/main}}}
-
+     :modules {:main {:init-fn my.game/main}}}
+    ;;:devtools {:after-load app.main/reload!}}
+    
     :frontend
     {:target :browser
      :output-dir "resources/public/"
