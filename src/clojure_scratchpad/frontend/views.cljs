@@ -223,12 +223,20 @@
             :fill (or fill "white")
             :stroke "black"}])
 
+(defn circle-art-one [{:keys
+               [x y r fill id]}]
+  [:circle {:cx x :cy y  :r r
+            :fill (or fill "white")
+            :stroke "black"
+            :id id}])
+
+
 ;;; https://stackoverflow.com/questions/28992878/svg-a-circle-of-circles
 (defn draw-nth-circle-around-circle-of-r-radius [n r c]
   (let [satellite-count c
         º-of-seperation (/ 360 satellite-count)
         coords (polar->cartesian c c r (* n º-of-seperation))]
-    (draw-circle (:x coords) (:y coords) 10)))
+    (draw-circle (:x coords) (:y coords) 9 "white" n)))
 ;; * Circle Art
 (defn art-one []
   [:svg {:width "100%"
@@ -238,18 +246,26 @@
          #_#_:style #js {:display "none"}}
    (for [x (range 20)]
      [:g {:key (gensym)}
-      (draw-circle (* x x x)
-                   (* x x x)
-                   (* x x x)
-                   "#d1d1d1")
-      (draw-circle (* x x x)
-                     (* x x)
-                     (* x x)
-                     "#b1b1b1") 
-      (draw-circle (* x x x)
-                   (* 2 x)
-                   (* 3 x)
-                   "#717171")])])
+      [circle-art-one
+       {:x (* x x x)
+        :y (* x x x)
+        :r (* x x x)
+        :fill "#d1d1d1"
+        :id (gensym x)}]
+
+      [circle-art-one
+       {:x (* x x x)
+        :y (* x x)
+        :r (* x x)
+        :fill "#b1b1b1"
+        :id (gensym x)}]
+
+      [circle-art-one
+       {:x (* x x x)
+        :y (* 2 x)
+        :r (* 3 x)
+        :fill "717171"
+        :id (gensym x)}]])])
 ;; * Leaflet Stuff
 (defn location-component []
   (let [map
@@ -482,7 +498,7 @@
    [:h1.subtitle.note-name @current-note]
    blank-finger-chart])
 
-(defn circle []
+(defn circle  []
   (r/with-let [running? (r/atom true)]
     [:div
      [:h3.title "circles"]
@@ -724,3 +740,17 @@
                          (reset! calculator-value
                                  (str @calculator-value v)))))))})
        button])]])
+
+
+(defn draw-n-circles-around-xy [n x y]
+  [:g
+   {:style
+    {:transform-origin (str x " " y)}}
+   (for [nx (range 0 n)]
+     (draw-nth-circle-around-circle-of-r-radius nx 30 n))])
+
+(defn euclid []
+  [:div
+   [:svg  {:viewBox "-100 -100 400 400"}
+    [:g 
+     (draw-n-circles-around-xy 3 0 0)]]])

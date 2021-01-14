@@ -34,6 +34,12 @@
     {:name :router/circle
      :view views/circle}]
 
+
+   ["/euclid"
+    {:name :router/euclid
+     :view views/euclid
+}]
+
    ["/map"
     {:name :router/map
      :view views/map-container}]
