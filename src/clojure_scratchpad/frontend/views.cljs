@@ -274,11 +274,35 @@
                      (js/console.log (e.target.getCenter)
                                      (e.target.getBounds)))})]))
 
+(def set-text js/console.log)
+
+(def gps
+  (r/atom {:latitude nil
+                :longitude nil
+                :accuracy -1}))
+
+(defn get-prop [e & ps]
+  (reduce (fn [h v] (aget h (name v))) e ps))
+
+(defn gps-listener [e]
+  (let [lat (get-prop e :coords :latitude)
+        lng (get-prop e :coords :longitude)
+        acc (get-prop e :coords :accuracy)]
+    (reset! gps {:latitude lat :longitude lng :accuracy acc})))
+
 (defn map-container []
   (let [center (atom [27.77 -82.63])
         [lat lng] @center]
     [:div
-     [:input.input
+     [:p (str @gps)]
+     [:form
+      [:input.input {:type :text}]
+      [:button.button.is-primary
+       {:on-click
+        (fn [e]
+          (.watchPosition (get-prop js/navigator :geolocation) gps-listener))}
+       "Add Message From My Location"]]
+     #_#_[:input.input
       {:type :number
        :default-value lat}]
      [:input.input
@@ -293,6 +317,7 @@
       [:> react-leaflet/Marker {:position @center}
        [:> react-leaflet/Popup "Hello world!"]]
       [:location-component]]]))
+
 ;; * Navigation Stuff
 (defn make-dropdown-navigation [label dropdowns]
   (let [state (r/atom {:navbar-hidden true})]
