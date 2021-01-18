@@ -76,7 +76,10 @@
                  [hickory "0.7.1"]
                  [quil "3.1.0"]
                  [keybind "2.2.0"]
-                 [org.xerial/sqlite-jdbc "3.23.1"]]
+                 [org.xerial/sqlite-jdbc "3.23.1"]
+                 [etaoin "0.4.0"]
+                 [buddy/buddy-auth "2.2.0"]
+                 [buddy/buddy-core "1.9.0"]]
   
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-shadow "0.3.1"]
@@ -93,7 +96,7 @@
    :builds
    {:frontend
     {:target :browser
-     :output-dir "resources/public/"
+     :output-dir "reqsources/public/"
      #_#_:output-dir "public/"
      :compiler-options {:output-feature-set :es5}
      :modules {:main {:init-fn clojure-scratchpad.frontend/init}}}

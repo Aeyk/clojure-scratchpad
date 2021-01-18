@@ -2,6 +2,8 @@
   (:require [reitit.ring :as ring]
             [org.httpkit.server :as http]
             [ring.middleware.reload :refer [wrap-reload]]
+            [buddy.auth.backends :as backends]
+            [buddy.auth.middleware :refer (wrap-authentication)]
             [taoensso.timbre :refer [info]]))
 
 (def routes
