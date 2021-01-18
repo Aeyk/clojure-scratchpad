@@ -2,6 +2,7 @@
   (:require [reitit.ring :as ring]
             [org.httpkit.server :as http]
             [ring.middleware.reload :refer [wrap-reload]]
+            [ring.util.response :refer (response)]
             [buddy.auth.backends :as backends]
             [buddy.auth.middleware :refer (wrap-authentication)]
             [taoensso.timbre :refer [info]]))
@@ -9,8 +10,13 @@
 (def routes
   [""
    {:middleware []}
+   ["/me"
+    (fn [req]
+      (if (:identity req)
+        (response (:identity req))
+        (response "Anonymous")))]
    #_["/" (fn [req] {:status 200
-                   :body "Hello"})]])
+                     :body "Hello"})]])
 
 (def app
   (ring/ring-handler
