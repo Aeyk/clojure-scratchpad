@@ -95,11 +95,6 @@
          :auto-reload? true
          :reload-paths ["src"]}
 
-  :figwheel {:http-server-root "."
-             :nrepl-port 7002
-             :nrepl-middleware [cider.piggieback/wrap-cljs-repl]
-             :css-dirs ["public/css"]}
-
   :shadow-cljs
   {:source-paths ["src"]
    :dev-http {3000 "resources/public/"}
@@ -119,32 +114,4 @@
 
      :compiler-options {:output-feature-set :es6
                         :optimizations :simple}
-     :main backend.server/init}}}
-
-
-  :cljsbuild)
-{:builds
- {:app
-  {:source-paths ["src/cljs"]
-   :compiler
-   {:main "frontend"
-    :output-to "public/js/app.js"
-    :output-dir "public/js/out"
-    :asset-path   "js/out"
-    :source-map true
-    :optimizations :none
-    :pretty-print  true}
-   :figwheel
-   {:on-jsload "clojure-scratchpad.frontend/init"
-    :open-urls ["http://localhost:3449/index.html"]}}
-
-  :release
-  {:source-paths ["src/cljs"]
-   :compiler
-   {:output-to "public/js/app.js"
-    :output-dir "target/release"
-    :optimizations :advanced
-    :infer-externs true
-    :pretty-print false}}}}
-
-  
+     :main backend.server/init}}})
