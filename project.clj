@@ -79,11 +79,21 @@
                  [org.xerial/sqlite-jdbc "3.23.1"]
                  [etaoin "0.4.0"]
                  [buddy/buddy-auth "2.2.0"]
-                 [buddy/buddy-core "1.9.0"]]
-  
+                 [buddy/buddy-core "1.9.0"]
+                 [environ "1.1.0"]
+                 [com.draines/postal "2.0.2"]
+                 
+                 [factual/geo "3.0.0-rc-2"]]
+
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-shadow "0.3.1"]
+            [lein-ring "0.12.5"]
             [lein-figwheel "0.5.20"]]
+
+  :ring {:handler      backend.dev/dev-handler
+         :port         8080
+         :auto-reload? true
+         :reload-paths ["src"]}
 
   :figwheel {:http-server-root "."
              :nrepl-port 7002
@@ -112,29 +122,29 @@
      :main backend.server/init}}}
 
 
-  :cljsbuild
-  {:builds
-   {:app
-    {:source-paths ["src/cljs"]
-     :compiler
-     {:main "frontend"
-      :output-to "public/js/app.js"
-      :output-dir "public/js/out"
-      :asset-path   "js/out"
-      :source-map true
-      :optimizations :none
-      :pretty-print  true}
-     :figwheel
-     {:on-jsload "clojure-scratchpad.frontend/init"
-      :open-urls ["http://localhost:3449/index.html"]}}
+  :cljsbuild)
+{:builds
+ {:app
+  {:source-paths ["src/cljs"]
+   :compiler
+   {:main "frontend"
+    :output-to "public/js/app.js"
+    :output-dir "public/js/out"
+    :asset-path   "js/out"
+    :source-map true
+    :optimizations :none
+    :pretty-print  true}
+   :figwheel
+   {:on-jsload "clojure-scratchpad.frontend/init"
+    :open-urls ["http://localhost:3449/index.html"]}}
 
-    :release
-    {:source-paths ["src/cljs"]
-     :compiler
-     {:output-to "public/js/app.js"
-      :output-dir "target/release"
-      :optimizations :advanced
-      :infer-externs true
-      :pretty-print false}}}}
+  :release
+  {:source-paths ["src/cljs"]
+   :compiler
+   {:output-to "public/js/app.js"
+    :output-dir "target/release"
+    :optimizations :advanced
+    :infer-externs true
+    :pretty-print false}}}}
 
-  )
+  
