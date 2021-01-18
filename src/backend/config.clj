@@ -3,8 +3,9 @@
             [cprop.source :as source]
             [mount.core :refer [args defstate]]))
 
-(defstate env :start (load-config
-                       :merge
-                       [(args)
-                        (source/from-system-props)
-                        (source/from-env)]))
+(defstate env
+  :start (load-config
+          :merge
+          [(args)
+           (source/from-system-props)
+           (source/from-env)]))

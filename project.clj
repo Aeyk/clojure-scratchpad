@@ -82,15 +82,23 @@
                  [buddy/buddy-core "1.9.0"]
                  [environ "1.1.0"]
                  [com.draines/postal "2.0.2"]
-                 
-                 [factual/geo "3.0.0-rc-2"]]
+                 [metosin/ring-http-response "0.9.1"]
+                 [factual/geo "3.0.0-rc-2"]
+                 [buddy/buddy-hashers "1.7.0"]
+                 [toucan "1.15.1"]
+                 [conman "0.9.0"]
+                 [camel-snake-kebab/camel-snake-kebab "0.4.2"]
+                 [org.postgresql/postgresql "42.2.18"]
+                 [com.impossibl.pgjdbc-ng/pgjdbc-ng "0.8.6"]
+                 [cprop "0.1.17"]
+                 [expound "0.8.6"]]
 
-  :plugins [[lein-cljsbuild "1.1.7"]
-            [lein-shadow "0.3.1"]
+  :plugins [[lein-shadow "0.3.1"]
             [lein-ring "0.12.5"]
-            [lein-figwheel "0.5.20"]]
+            [com.jakemccrary/lein-test-refresh "0.24.1"]
+            [jonase/eastwood "0.3.5"]]
 
-  :ring {:handler      backend.dev/dev-handler
+  :ring {:handler      backend.server/app
          :port         8080
          :auto-reload? true
          :reload-paths ["src"]}

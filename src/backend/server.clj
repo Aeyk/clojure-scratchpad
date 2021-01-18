@@ -3,13 +3,22 @@
             [org.httpkit.server :as http]
             [ring.middleware.reload :refer [wrap-reload]]
             [ring.util.response :refer (response)]
+            [backend.middleware :as mw]
             [buddy.auth.backends :as backends]
-            [buddy.auth.middleware :refer (wrap-authentication)]
+            [buddy.auth.middleware :refer [wrap-authentication wrap-authorization]]
             [taoensso.timbre :refer [info]]))
+
+(defn authfn [request auth-data]
+  (let [{:keys [username password]} auth-data]
+    username))
+
+(def backend
+  (backends/basic
+   {:realm "MyApi"
+    :authfn authfn}))
 
 (def routes
   [""
-   {:middleware []}
    ["/me"
     (fn [req]
       (if (:identity req)
@@ -20,8 +29,7 @@
 
 (def app
   (ring/ring-handler
-   (ring/router
-    routes)
+   (ring/router routes)
    (ring/routes
     (ring/create-resource-handler {:path ""})
     (ring/create-default-handler))))
