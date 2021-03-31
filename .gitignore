@@ -3,7 +3,7 @@
 /public
 /.shadow-cljs
 /out
-/target
+/target/
 /classes
 /checkouts
 profiles.clj

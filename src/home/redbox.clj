@@ -5,6 +5,8 @@
    [garden.core :as css]
    [clojure.edn :as edn]
    [cheshire.core :as json]
+   [etaoin.api :as wd]
+   [etaoin.keys :as k]
    [net.cgrand.enlive-html :as select]))
 
 (def redbox-releases
@@ -14,17 +16,27 @@
 
 (def redbox-releases-names (into #{} (map :name redbox-releases)))
 
-(defn library-url [q page]
-  (str
-   "https://pplc.ent.sirsi.net/client/en_US/clearwater/search/results?qf=FORMAT%09Format%09VIDEODISC%09Video+disc+%7C%7C+BLURAY%09Blu-ray&qf=LIBRARY%09Library%091%3ACMA%09Clearwater+-+Main+Library+%7C%7C+1%3ACNG%09Clearwater+-+North+Greenwood+Library&qu="
-   q
-   "&ic=true&isd=true&te=" (if (not (zero? page)) "&rw=" (* 12 page))))
+(defn library-url
+  ([q] (library-url q 0))
+  ([q page]
+   (str
 
-(defn library-feed [q page]
-  (str
-   "https://pplc.ent.sirsi.net/client/rss/hitlist/clearwater/?qf=FORMAT%09Format%09VIDEODISC%09Video+disc+%7C%7C+BLURAY%09Blu-ray&qf=LIBRARY%09Library%091%3ACMA%09Clearwater+-+Main+Library+%7C%7C+1%3ACNG%09Clearwater+-+North+Greenwood+Library&qu="
-   q
-   "&ic=true&isd=true&dt=list" (if (not (zero? page)) "&rw=" (* 12 page))))
+    (str "https://pplc.ent.sirsi.net/client/en_US/clearwater/search/results?qu=" q "&qf=LIBRARY%09Library%091%3ACMA%09Clearwater+-+Main+Library+%7C%7C+1%3ACNG%09Clearwater+-+North+Greenwood+Library&qf=FORMAT%09Format%09VIDEODISC%09Video+disc+%7C%7C+BLURAY%09Blu-ray&ic=true" (if (not (zero? page)) "&rw=" (* 12 page)))
+
+    
+    #_"https://pplc.ent.sirsi.net/client/en_US/clearwater/search/results?ic=true&te=&qu=" q "&ic=true&isd=true&te=" (if (not (zero? page)) "&rw=" (* 12 page)))
+   #_(str 
+    "https://pplc.ent.sirsi.net/client/en_US/clearwater/search/results?qf=FORMAT%09Format%09VIDEODISC%09Video+disc+%7C%7C+BLURAY%09Blu-ray&qf=LIBRARY%09Library%091%3ACMA%09Clearwater+-+Main+Library+%7C%7C+1%3ACNG%09Clearwater+-+North+Greenwood+Library&qu="
+    q
+    "&ic=true&isd=true&te=" (if (not (zero? page)) "&rw=" (* 12 page)))))
+
+(defn library-feed
+  ([q] (library-url q 0))
+  ([q page]
+   (str
+    "https://pplc.ent.sirsi.net/client/rss/hitlist/clearwater/?qf=FORMAT%09Format%09VIDEODISC%09Video+disc+%7C%7C+BLURAY%09Blu-ray&qf=LIBRARY%09Library%091%3ACMA%09Clearwater+-+Main+Library+%7C%7C+1%3ACNG%09Clearwater+-+North+Greenwood+Library&qu="
+    q
+    "&ic=true&isd=true&dt=list" (if (not (zero? page)) "&rw=" (* 12 page)))))
 
 (defn url-encode
   [string]
@@ -94,3 +106,15 @@
      [:img
       {:src
        (str (isbn-image-lookup name))}]])))
+
+(def browser (wd/firefox))
+
+(wd/go browser 
+       (library-url (pr-str (url-encode  (nth (vec redbox-releases-names) 7)))))
+
+(wd/click browser {:css "input#q"})
+(wd/fill browser (wd/query browser {:css "input#q"}) (nth (vec redbox-releases-names) 7))
+(wd/click browser {:css "input#searchButton"})
+(wd/get-element-value
+ browser
+ (wd/select browser ".detailItemsTable_LIBRARY"))

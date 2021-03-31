@@ -6,12 +6,11 @@
    [environ.core :refer [env]]
    [backend.jwt :as jwt]
    [backend.db :as db]
-   [backend.db.user :as user]
    ))
 
 (defn basic-auth
   [db request {:keys [username password]}]
-  (let [user (user/get-user-by-username db username)]
+  (let [user (db/get-user-by-username db username)]
     (if (and user (hashers/check password (:password user)))
       (-> user
           (dissoc :password)

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cljs-demo">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/public/cljs-demo.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -15,6 +15,12 @@
 (SecurityUtils/setSecurityManager
  (.getInstance (IniSecurityManagerFactory. "classpath:shiro.ini")))
 
+
+(try (.login (SecurityUtils/getSubject)
+             (UsernamePasswordToken. "admin" "secret"))
+     (catch Exception e
+       (.getCause e)))
+
 (def http-handler
   (ring/ring-handler
    (ring/router
@@ -29,11 +35,9 @@
                        password (get (:params request) "password")
                        current-user (SecurityUtils/getSubject)
                        token (UsernamePasswordToken. username
-                                                     password)]
-                   
-                   (try (.login current-user token)
+                                                     password)]                                      (try (.login current-user token)
                           (catch Exception e
-                            (str "Invalid username or password " username " " password))))})}]
+                            (str (.printStackTrace e)))))})}]
        ["/register"
         {:post (fn [{{:strs [email username password]} :params :as req}]
                  {:status 200
@@ -54,8 +58,9 @@
          (fn [{{:strs [name]} :query-params :as req}]
            {:status 200
             :body
+            (let [current-user (SecurityUtils/getSubject)]
             (str "Hello, "
-                 (if (nil? name) "stranger" name))})}]]]]
+                 (if (nil? current-user) "stranger" current-user)))})}]]]]
     {:data {:muuntaja m/instance
             :middleware
             [params/wrap-params
@@ -68,3 +73,5 @@
 
 (jetty/run-jetty #'http-handler {:port 8000 :join? false ;; TODO whats :join? do
 })
+
+

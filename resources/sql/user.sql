@@ -72,12 +72,11 @@ WHERE
 -- :command :insert
 -- :result :raw
 -- :doc Inserts a single user into account table
-INSERT INTO account (
-  status,
+INSERT INTO account (  
   email,
   username,
   password,
-  user_data,
+  salt,
   permissions
 )
 VALUES (
@@ -85,7 +84,7 @@ VALUES (
   :email,
   :username,
   :password,
-  :user_data,
+  :salt,
   :permissions
 );
 

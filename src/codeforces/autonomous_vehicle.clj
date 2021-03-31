@@ -1,6 +1,8 @@
 (ns codeforces.autonomous-vehicle
   (:require
+   [clojure.math.combinatorics :as combo]
    [hiccup.core :as html]
+   [thi.ng.geom.utils.intersect :as intersect]
    [clojure.string :as str]))
 
 ;; 512 mb
@@ -53,6 +55,23 @@
             [:line {:x1 x1 :y1 y1 :x2 x2 :y2 y2
                     :stroke "black"}]))]))
 
+;; Point is [x y] tuple
+(defn compute-line [pt1 pt2]
+  (let [[x1 y1] pt1
+        [x2 y2] pt2
+        m (/ (- y2 y1) (- x2 x1))]
+    {:slope  m
+     :offset (- y1 (* m x1))}))
+
+(defn intercept [line1 line2]
+  (let [x (/ (- (:offset line1) (:offset line2))
+             (- (:slope  line2) (:slope  line1)))]
+    {:x x
+     :y (+ (* (:slope line1) x)
+           (:offset line1))}))
+
+(compute-line [0 3] [0 6])
+
 (defn point-intersects-line [[px py] [lx1 ly1 lx2 ly2]]
   (if
       (or
@@ -95,11 +114,13 @@
 (move-point-down-line  [6 4] [6 11 6 3])
 
 
-(let [[fline & rlines] (str/split ex-2 #"\n")
-      metadata (parse-first-line fline)
-      lines (map #(str/split % #"\s") rlines)]
-  metadata
-  #_(map #(Integer/parseInt %) (first lines)))
+(map line-intersects)
+(combo/combinations (let [[fline & rlines] (str/split ex-2 #"\n")
+                          metadata (parse-first-line fline)
+                          lines (map #(str/split % #"\s") rlines)]
+                      (for [line lines]
+                        (map #(Integer/parseInt %) line)))  
+                    2)
 
 
 (let [[fline & rlines] (str/split ex-2 #"\n")

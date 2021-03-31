@@ -6,7 +6,8 @@
    [reitit.frontend.easy :as rfe]
    [reitit.coercion.spec :as rss]
    [spec-tools.data-spec :as ds]
-   [fipp.edn :as fedn]))
+   ;; [fipp.edn :as fedn]
+   ))
 
 (defn home-page []
   [:div

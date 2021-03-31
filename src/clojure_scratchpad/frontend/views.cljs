@@ -277,10 +277,10 @@
 (def set-text js/console.log)
 
 (def gps
-  (r/atom {:latitude nil
-                :longitude nil
-                :accuracy -1}))
-
+  (r/atom {:latitude 27.77
+           :longitude -82.63
+           :accuracy -1}))
+(def center (r/atom [27.77 -82.63]))
 (defn get-prop [e & ps]
   (reduce (fn [h v] (aget h (name v))) e ps))
 
@@ -288,28 +288,30 @@
   (let [lat (get-prop e :coords :latitude)
         lng (get-prop e :coords :longitude)
         acc (get-prop e :coords :accuracy)]
-    (reset! gps {:latitude lat :longitude lng :accuracy acc})))
+    (reset! gps {:latitude lat :longitude lng :accuracy acc})
+    (reset! center [lat lng])))
 
 (defn map-container []
-  (let [center (atom [27.77 -82.63])
-        [lat lng] @center]
-    [:div
+  (let [[lat lng] @center]
+    [:div#leaflet-container
      [:p (str @gps)]
      [:form
       [:input.input {:type :text}]
       [:button.button.is-primary
        {:on-click
         (fn [e]
-          (.watchPosition (get-prop js/navigator :geolocation) gps-listener))}
+          (.watchPosition (get-prop js/navigator :geolocation) gps-listener)
+          )}
        "Add Message From My Location"]]
      #_#_[:input.input
-      {:type :number
-       :default-value lat}]
+          {:type :number
+           :default-value lat}]
      [:input.input
       {:type :number
        :default-value lng}]
      [:> react-leaflet/MapContainer
-      {:center [lat lng]
+      {#_#_:ref map-ref
+       :center @center
        :zoom 13}
       [:> react-leaflet/TileLayer
        {:attribution "&copy <a href=\"http://osm.org/copyright\">OpenStreetMap</a> contributors"

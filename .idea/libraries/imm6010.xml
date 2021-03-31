@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="imm6010">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/resources/imm6010.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -4,6 +4,7 @@
             [ring.middleware.reload :refer [wrap-reload]]
             [compojure.core :refer [defroutes GET]]
             [compojure.route :refer [not-found]]
+            [clojure.string :as str]
             [ring.handler.dump :refer [handle-dump]])
   (:import [com.impossibl.postgres.jdbc PGDataSource]
            [com.impossibl.postgres.api.jdbc 
@@ -46,4 +47,38 @@
 ;; TODO: clojure.async my pg-db stream
 ;; TODO: clojurescript websockets <-> postgresql LISTEN / NOTIFY;
 ;; TODO: sente / ? for websockets
+
+
+
+(-> "123")
+;; Didn't notice this:
+;; > positive integers only?
+((fn [s]
+   {:pre (pos-int? (Integer/parseInt s))}
+   (pr-str
+    (map #(Integer/parseInt %)
+         (str/split s))))
+ "123")
+
+
+((fn [s]
+   {:pre (pos-int? (Integer/parseInt s))}
+   (pr-str
+    (map #(Integer/parseInt %)
+         (str/split s #"")))) "123")
+
+
+
+((fn [s]
+   {:pre (pos-int? (Integer/parseInt s))}
+   (pr-str
+    (map #(Integer/parseInt %)
+         (str/split s #"")))) "123")
+
+
+(pr-str
+ (map int
+      (str/split "123" #"")))
+    
+
 
