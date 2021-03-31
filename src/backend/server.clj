@@ -55,7 +55,7 @@
     :authfn authfn}))
 
 (defn register! [db emailer user]
-  (db/add-user! db/*db* user)
+  ;; (db/add-user! db/*db* user)
   #_(email/send-register-notification! emailer
                                      "me@pinellas.space"
                                      (dissoc user :password))
